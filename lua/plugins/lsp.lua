@@ -97,8 +97,6 @@ return {
                         },
                     },
                     gopls = {
-                        cmd = { "gopls", "serve" },
-                        filetypes = { "go" },
                         settings = {
                             gopls = {
                                 gofumpt = true,
@@ -122,7 +120,6 @@ return {
                                     rangeVariableTypes = true,
                                 },
                                 analyses = {
-                                    fieldalignment = true,
                                     nilness = true,
                                     unusedparams = true,
                                     unusedwrite = true,
