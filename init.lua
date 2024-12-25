@@ -31,6 +31,7 @@ require("lazy").setup({
         { import = "lazyvim.plugins.extras.lang.tailwind" },
         -- optional plugins
         -- { import = "extensions.obsidian" },
+        { import = "extensions.tmux-navigator" },
         -- { import = "extensions.codecompanion" },
         -- { import = "extensions.avante" },
     },

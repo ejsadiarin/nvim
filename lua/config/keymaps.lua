@@ -4,6 +4,14 @@
 --  NOTE: these are only "essential" keymaps, plugin-specific ones aren't included here
 --  See `:help vim.keymap.set()`
 
+vim.keymap.del("n", "<leader><tab>d")
+vim.keymap.del("n", "<leader><tab>f")
+vim.keymap.del("n", "<leader><tab>l")
+vim.keymap.del("n", "<leader><tab>o")
+vim.keymap.del("n", "<leader><tab>[")
+vim.keymap.del("n", "<leader><tab>]")
+vim.keymap.del("n", "<leader><tab><tab>")
+
 --  Remap normal mode to "kj" when insert mode
 vim.keymap.set("i", "kj", "<ESC>", { silent = true })
 
@@ -66,6 +74,12 @@ vim.keymap.set("n", "<A-h>", "<C-w><C-h>", { desc = "Move focus to the left wind
 vim.keymap.set("n", "<A-l>", "<C-w><C-l>", { desc = "Move focus to the right window" })
 vim.keymap.set("n", "<A-j>", "<C-w><C-j>", { desc = "Move focus to the lower window" })
 vim.keymap.set("n", "<A-k>", "<C-w><C-k>", { desc = "Move focus to the upper window" })
+
+-- Tmux Navigation within Neovim (requires: "christoomey/vim-tmux-navigator" )
+vim.keymap.set("n", "<A-h>", "<CMD>TmuxNavigateLeft<CR>", {})
+vim.keymap.set("n", "<A-l>", "<CMD>TmuxNavigateRight<CR>", {})
+vim.keymap.set("n", "<A-j>", "<CMD>TmuxNavigateDown<CR>", {})
+vim.keymap.set("n", "<A-k>", "<CMD>TmuxNavigateUp<CR>", {})
 
 -- Vertical and Horizontal Splits
 vim.keymap.set("n", "<leader>wh", "<C-W>s", { desc = "Horizontal Split" })
