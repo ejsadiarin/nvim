@@ -166,11 +166,12 @@ return {
         keys = {
             { "<c-j>", "<c-j>", ft = "fzf", mode = "t", nowait = true },
             { "<c-k>", "<c-k>", ft = "fzf", mode = "t", nowait = true },
-            {
-                "<leader>,",
-                "<cmd>FzfLua buffers sort_mru=true sort_lastused=true<cr>",
-                desc = "Switch Buffer",
-            },
+            -- {
+            --     "<leader>,",
+            --     "<cmd>FzfLua buffers sort_mru=true sort_lastused=true<cr>",
+            --     desc = "Switch Buffer",
+            -- },
+            { "<leader>,", false },
             { "<leader>/", LazyVim.pick("live_grep"), desc = "Grep (Root Dir)" },
             { "<leader>:", "<cmd>FzfLua command_history<cr>", desc = "Command History" },
             { "<leader><space>", LazyVim.pick("files"), desc = "Find Files (Root Dir)" },
@@ -193,8 +194,8 @@ return {
             { "<leader>sC", "<cmd>FzfLua commands<cr>", desc = "Commands" },
             { "<leader>sd", "<cmd>FzfLua diagnostics_document<cr>", desc = "Document Diagnostics" },
             { "<leader>sD", "<cmd>FzfLua diagnostics_workspace<cr>", desc = "Workspace Diagnostics" },
-            { "<leader>sG", LazyVim.pick("live_grep"), desc = "Grep (Root Dir)" },
-            { "<leader>sg", LazyVim.pick("live_grep", { root = false }), desc = "Grep (cwd)" },
+            { "<leader>sg", LazyVim.pick("live_grep"), desc = "Grep (Root Dir)" },
+            { "<leader>sG", LazyVim.pick("live_grep", { root = false }), desc = "Grep (cwd)" },
             { "<leader>sh", "<cmd>FzfLua help_tags<cr>", desc = "Help Pages" },
             { "<leader>sH", "<cmd>FzfLua highlights<cr>", desc = "Search Highlight Groups" },
             { "<leader>sj", "<cmd>FzfLua jumps<cr>", desc = "Jumplist" },

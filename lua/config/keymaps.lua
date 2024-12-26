@@ -221,7 +221,14 @@ end, { desc = "Signature Help" })
 
 -- Buffer manipulation
 vim.keymap.set("n", "<leader>bd", "<CMD>bd<CR>", { desc = "Buffer: [d]elete" })
-vim.keymap.set("n", "<leader>bo", "<CMD>%bd|e#<CR>", { desc = "Buffer: [d]elete" })
+vim.keymap.set("n", "<leader>bo", "<CMD>%bd|e#<CR>", { desc = "Buffer: delete [o]thers" })
+
+-- vim.keymap.set("n", "<leader>bd", function()
+--     Snacks.bufdelete()
+-- end, { desc = "Delete Buffer" })
+-- vim.keymap.set("n", "<leader>bo", function()
+--     Snacks.bufdelete.other()
+-- end, { desc = "Delete Other Buffers" })
 
 local function open_todo_in_floating_window()
     -- NOTE: requires env variable $VAULT (`export VAULT=...` in your .bashrc or .zshrc)
