@@ -17,6 +17,7 @@ vim.opt.rtp:prepend(lazypath)
 -- #################
 -- #     LAZY      #
 -- #################
+package.loaded["lazyvim.config.options"] = true -- disable default lazyvim options
 require("lazy").setup({
     spec = {
         -- add LazyVim and import its plugins

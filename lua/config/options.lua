@@ -10,7 +10,7 @@ vim.g.maplocalleader = " "
 -- Set to true if you have a Nerd Font installed and selected in the terminal
 vim.g.have_nerd_font = true
 vim.g.diagnostics_active = true
--- vim.g.markdown_recommended_style = 0 -- Disable default markdown styles (see https://www.reddit.com/r/neovim/comments/z2lhyz/comment/ixjb7je)
+vim.g.markdown_recommended_style = 0 -- Disable default markdown styles (see https://www.reddit.com/r/neovim/comments/z2lhyz/comment/ixjb7je)
 vim.g.autoformat = true -- format on save
 
 local _border = "rounded"
@@ -69,8 +69,10 @@ vim.opt.guicursor = "a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor" -- Bl
 -- vim.opt.guicursor = "n-v-c:block,i-ci-ve:ver100/,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor"
 vim.opt.cursorline = true -- Show which line your cursor is on
 -- vim.opt.pumblend = 0 -- related to autocomplete documentation bg transparent, idk not make transparent bg
--- vim.opt.completeopt = { 'menu', 'menuone', 'noselect' }
-
+vim.opt.pumblend = 10 -- Popup blend
+vim.opt.pumheight = 10 -- Maximum number of entries in a popup
+vim.opt.completeopt = { "menu", "menuone", "noselect" }
+vim.opt.statuscolumn = [[%!v:lua.require'snacks.statuscolumn'.get()]]
 -- Fold options
 -- vim.opt.foldtext = 'v:lua.FoldText()' -- custom fold (see: lua/scripts/foldtext.lua)
 -- vim.opt.foldmethod = 'indent'
@@ -110,6 +112,7 @@ vim.opt.breakindent = true -- Enable break indent
 
 -- Save undo history
 vim.opt.undofile = true
+vim.opt.undolevels = 10000
 
 -- Case-insensitive searching UNLESS \C or one or more capital letters in the search term
 vim.opt.ignorecase = true -- Ignore case in search patterns
@@ -121,6 +124,8 @@ vim.opt.breakindent = true -- Enable break indent
 vim.opt.conceallevel = 1 -- default
 
 -- vim.opt.formatoptions = vim.o.formatoptions:gsub("cro", "") -- Avoid comments to continue on new lines
+vim.opt.formatexpr = "v:lua.require'lazyvim.util'.format.formatexpr()"
+vim.opt.formatoptions = "jcroqlnt" -- tcqj
 
 vim.opt.signcolumn = "yes" -- Keep signcolumn on by default
 -- vim.opt.foldcolumn = "1" -- '0' is not bad
@@ -145,6 +150,14 @@ vim.opt.laststatus = 3 -- Global statusline when on split
 --  and `:help 'listchars'`
 vim.opt.list = false -- if true then 'listchars' will display the whitespace
 vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
+-- vim.opt.fillchars = {
+--     foldopen = "",
+--     foldclose = "",
+--     fold = " ",
+--     foldsep = " ",
+--     diff = "╱",
+--     -- eob = " ",
+-- }
 
 -- Preview substitutions live, as you type!
 vim.opt.inccommand = "split"
@@ -159,3 +172,14 @@ vim.opt.sidescrolloff = 5 -- minimal number of screen columns to keep to the lef
 vim.opt.autoread = true -- Sync buffers automatically
 vim.opt.swapfile = false -- Disable neovim generating swapfiles and showing the error
 vim.opt.spell = false -- no spelling checks
+vim.opt.spelllang = { "en" }
+
+-- if vim.fn.has("nvim-0.10") == 1 then
+--     vim.opt.smoothscroll = true
+--     vim.opt.foldexpr = "v:lua.require'lazyvim.util'.ui.foldexpr()"
+--     vim.opt.foldmethod = "expr"
+--     vim.opt.foldtext = ""
+-- else
+--     vim.opt.foldmethod = "indent"
+--     vim.opt.foldtext = "v:lua.require'lazyvim.util'.ui.foldtext()"
+-- end
