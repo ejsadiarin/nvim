@@ -1,12 +1,4 @@
 return {
-    -- Configure LazyVim to load gruvbox
-    {
-        "LazyVim/LazyVim",
-        opts = {
-            colorscheme = "monokai-pro",
-        },
-    },
-
     -- WARN: THIS IS A VERY HEAVILY CUSTOMIZED MONOKAI
     {
         "loctvl842/monokai-pro.nvim",
