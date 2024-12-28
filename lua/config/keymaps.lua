@@ -238,7 +238,7 @@ local function open_todo_in_floating_window()
 
     local date_today = os.date("%Y-%m-%d")
     local todo_file = vim.fn.expand("$VAULT/Personal/todos/" .. date_today .. ".md")
-    if not vim.loop.fs_stat(todo_file) then
+    if not vim.uv.fs_stat(todo_file) then
         vim.notify("Failed to find the todo file: " .. todo_file, vim.log.levels.ERROR)
         return
     end
@@ -283,7 +283,7 @@ local function open_backlog_in_floating_window()
     vim.fn.system(script_path)
 
     local backlog_file = vim.fn.expand("$VAULT/backlog.md")
-    if not vim.loop.fs_stat(backlog_file) then
+    if not vim.uv.fs_stat(backlog_file) then
         vim.notify("Failed to find the backlog file: " .. backlog_file, vim.log.levels.ERROR)
         return
     end

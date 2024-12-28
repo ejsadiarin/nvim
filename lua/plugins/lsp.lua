@@ -8,6 +8,12 @@ return {
             { "williamboman/mason-lspconfig.nvim", config = function() end },
         },
         opts = function()
+            -- remap lsp keymaps (if LazyVim installed)
+            if pcall(require, "lazyvim") then
+                local keys = require("lazyvim.plugins.lsp.keymaps").get()
+                keys[#keys + 1] = { "gy", false }
+                keys[#keys + 1] = { "<leader>D", vim.lsp.buf.type_definition, desc = "Goto Type [D]efinition" }
+            end
             ---@class PluginLspOpts
             local ret = {
                 -- options for vim.diagnostic.config()
