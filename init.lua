@@ -34,7 +34,7 @@ require("lazy").setup({
         { import = "extensions.tmux-navigator" },
         -- { import = "extensions.codecompanion" },
         -- { import = "extensions.avante" },
-        -- { import = "extensions.vim-fugitive" },
+        { import = "extensions.vim-fugitive" },
     },
     defaults = {
         -- By default, only LazyVim plugins will be lazy-loaded. Your custom plugins will load during startup.

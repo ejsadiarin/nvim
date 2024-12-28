@@ -77,12 +77,13 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
         "spectre_panel",
         "startuptime",
         "tsplayground",
-        "neotest-output",
         "checkhealth",
-        "neotest-summary",
+        "neotest-output",
         "neotest-output-panel",
+        "neotest-summary",
         "dbout",
         "gitsigns.blame",
+        "fugitive",
     },
     callback = function()
         vim.keymap.set("n", "q", "<cmd>close<cr>", { buffer = 0, nowait = true, silent = true })
