@@ -103,6 +103,8 @@ return {
 
                     StatusLine = { bg = "#1d1e24" },
 
+                    -- FzfLuaTitle = { bg = "#1d1e24" },
+
                     TelescopeNormal = { fg = "#f2fffc" },
                     TelescopeResultsNormal = { fg = "#f2fffc" },
                     TelescopeResultsFunction = { fg = "#f9cc6c", bg = "#1d1e24" },
