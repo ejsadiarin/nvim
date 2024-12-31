@@ -21,7 +21,7 @@ return {
                 -- ]],
                 header = [[
                      fok
-  ]],
+]],
         -- stylua: ignore
         ---@type snacks.dashboard.Item[]
         keys = {
