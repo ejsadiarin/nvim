@@ -4,14 +4,19 @@
 --  NOTE: these are only "essential" keymaps, plugin-specific ones aren't included here
 --  See `:help vim.keymap.set()`
 
-vim.keymap.del("n", "<leader><tab>d")
-vim.keymap.del("n", "<leader><tab>f")
-vim.keymap.del("n", "<leader><tab>l")
-vim.keymap.del("n", "<leader><tab>o")
-vim.keymap.del("n", "<leader><tab>[")
-vim.keymap.del("n", "<leader><tab>]")
-vim.keymap.del("n", "<leader><tab><tab>")
-
+if pcall(require, "lazyvim") then
+    vim.keymap.del("n", "<leader><tab>d")
+    vim.keymap.del("n", "<leader><tab>f")
+    vim.keymap.del("n", "<leader><tab>l")
+    vim.keymap.del("n", "<leader><tab>o")
+    vim.keymap.del("n", "<leader><tab>[")
+    vim.keymap.del("n", "<leader><tab>]")
+    vim.keymap.del("n", "<leader><tab><tab>")
+    vim.keymap.del("n", "<leader>bb")
+    vim.keymap.del("n", "<leader>`")
+    vim.keymap.del("n", "<leader>bD")
+    vim.keymap.del("n", "<leader>K")
+end
 --  Remap normal mode to "kj" when insert mode
 vim.keymap.set("i", "kj", "<ESC>", { silent = true })
 

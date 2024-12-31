@@ -1,4 +1,3 @@
 # Another Neovim Configuration because why not
 
-- based on LazyVim again
-
+- personal neovim configuration with LazyVim's extras
