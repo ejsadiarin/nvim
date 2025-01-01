@@ -249,10 +249,16 @@ local function open_todo_in_floating_window()
     end
 
     if pcall(require, "snacks") then
+        local width = math.floor(vim.o.columns * 0.8)
+        local height = math.floor(vim.o.lines * 0.8)
+        local row = math.floor((vim.o.lines - height) / 8)
+        local col = math.floor((vim.o.columns - width) / 2)
         Snacks.win({
             file = todo_file,
-            width = 0.8,
-            height = 0.8,
+            width = width,
+            height = height,
+            row = row,
+            col = col,
             style = "float",
             border = "rounded",
             bo = {
@@ -295,19 +301,18 @@ local function open_backlog_in_floating_window()
 
     -- if has snacks.nvim plugin then use that to create the floating window instead
     if pcall(require, "snacks") then
+        local width = math.floor(vim.o.columns * 0.8)
+        local height = math.floor(vim.o.lines * 0.8)
+        local row = math.floor((vim.o.lines - height) / 8)
+        local col = math.floor((vim.o.columns - width) / 2)
         Snacks.win({
             file = backlog_file,
-            width = 0.8,
-            height = 0.8,
-            border = "rounded",
+            width = width,
+            height = height,
+            row = row,
+            col = col,
             style = "float",
-            wo = {
-                spell = false,
-                wrap = false,
-                signcolumn = "yes",
-                statuscolumn = " ",
-                conceallevel = 3,
-            },
+            border = "rounded",
             bo = {
                 modifiable = true,
             },
