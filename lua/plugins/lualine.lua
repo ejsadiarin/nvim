@@ -157,10 +157,11 @@ return {
                             end
                         end,
                     },
+                    { "filetype", icons_enabled = false, separator = "", padding = { left = 1, right = 1 } },
                     -- { "filetype", icon_only = true, separator = "", padding = { left = 1, right = 1 } },
                 },
                 lualine_y = {
-                    { "filetype", separator = "", icons_enabled = false, padding = { left = 0, right = 1 } },
+                    -- { "filetype", separator = "", icons_enabled = false, padding = { left = 0, right = 1 } },
                     -- { "filetype", separator = "", icons_enabled = false, padding = { left = 1, right = 1 } },
                     { "location", padding = { left = 1, right = 1 } },
                     { "progress", padding = { left = 0, right = 1 } },
