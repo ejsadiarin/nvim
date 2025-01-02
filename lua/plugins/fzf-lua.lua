@@ -217,7 +217,7 @@ return {
             { "<leader>sH", "<cmd>FzfLua highlights<cr>", desc = "Search [H]ighlight Groups" },
             { "<leader>sj", "<cmd>FzfLua jumps<cr>", desc = "[j]umplist" },
             { "<leader>sk", "<cmd>FzfLua keymaps<cr>", desc = "[k]ey Maps" },
-            { "<leader>sl", "<cmd>FzfLua loclist<cr>", desc = "[l]ocation List" },
+            { "<leader>sL", "<cmd>FzfLua loclist<cr>", desc = "[l]ocation List" },
             { "<leader>sM", "<cmd>FzfLua man_pages<cr>", desc = "[M]an Pages" },
             { "<leader>sm", "<cmd>FzfLua marks<cr>", desc = "Jump to [m]ark" },
             { "<leader>sR", "<cmd>FzfLua resume<cr>", desc = "[R]esume" },
@@ -244,6 +244,30 @@ return {
                     })
                 end,
                 desc = "Goto [S]ymbol (Workspace)",
+            },
+            {
+                "<leader>fl",
+                function()
+                    local path = vim.fn.stdpath("data")
+                    if vim.uv.fs_stat(path) then
+                        require("fzf-lua").files({
+                            cwd = path,
+                        })
+                    end
+                end,
+                desc = "Find [l]azy files",
+            },
+            {
+                "<leader>sl",
+                function()
+                    local path = vim.fn.stdpath("data")
+                    if vim.uv.fs_stat(path) then
+                        require("fzf-lua").live_grep_glob({
+                            cwd = path,
+                        })
+                    end
+                end,
+                desc = "Grep from [l]azy files",
             },
         },
     },

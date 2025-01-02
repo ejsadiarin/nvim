@@ -227,7 +227,7 @@ vim.keymap.set("n", "<C-U>", "<C-U>zz")
 vim.keymap.set("n", "<C-D>", "<C-D>zz")
 
 -- lsp signature help popup when insert mode
-vim.keymap.set({ "i", "x" }, "<C-s>", function()
+vim.keymap.set({ "i", "x" }, "<C-k>", function()
     vim.lsp.buf.signature_help()
 end, { desc = "Signature Help" })
 
