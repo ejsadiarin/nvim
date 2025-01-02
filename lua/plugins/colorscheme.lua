@@ -84,11 +84,14 @@ return {
                     Normal = { fg = "#fcffb8", bg = "NONE" },
                     CursorLine = { bg = "#1d1e24" },
                     NormalFloat = { bg = "NONE" },
-                    FloatTitle = { bg = "#f9cc6c" },
-                    FloatFooter = { bg = "#f9cc6c" },
+                    FloatTitle = { bg = "NONE" },
+                    FloatFooter = { bg = "NONE" },
+                    -- FloatTitle = { bg = "#f9cc6c" },
+                    -- FloatFooter = { bg = "#f9cc6c" },
                     FloatBorder = { fg = "#425157" },
                     Directory = { fg = "#f9cc6c" },
                     SignColumn = { bg = "NONE" },
+                    Comment = { bg = "NONE" },
 
                     -- ['@lsp.type.namespace.go'] = { fg = '#743c93' },
                     -- ['@lsp.type.namespace.go'] = { fg = '#fcffb8' },
@@ -103,7 +106,7 @@ return {
                     LazyNormal = { fg = "#f2fffc", bg = "NONE" },
                     LazyButton = { bg = "#1d1e24" },
 
-                    StatusLine = { bg = "#1d1e24" },
+                    StatusLine = { bg = "NONE" },
 
                     -- FzfLuaTitle = { bg = "#1d1e24" },
 
