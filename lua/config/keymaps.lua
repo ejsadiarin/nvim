@@ -16,6 +16,11 @@ if pcall(require, "lazyvim") then
     vim.keymap.del("n", "<leader>`")
     vim.keymap.del("n", "<leader>bD")
     vim.keymap.del("n", "<leader>K")
+    vim.keymap.del("n", "<leader>qd")
+    vim.keymap.del("n", "<leader>ql")
+    vim.keymap.del("n", "<leader>qq")
+    vim.keymap.del("n", "<leader>qs")
+    vim.keymap.del("n", "<leader>qS")
 end
 --  Remap normal mode to "kj" when insert mode
 vim.keymap.set("i", "kj", "<ESC>", { silent = true })
@@ -42,7 +47,8 @@ vim.keymap.set("n", "<leader><tab>", "<cmd>e #<CR>", { desc = "Switch to latest 
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 
 -- Diagnostic keymaps
-vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [q]uickfix list" })
+vim.keymap.set("n", "<leader>q", "<CMD>copen<CR>", { desc = "Open [q]uickfix list" })
+-- vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [q]uickfix list" })
 vim.keymap.set("n", "<leader>cd", function()
     vim.diagnostic.open_float({ border = "single" }) -- enable border on diagnostic float window
 end, { desc = "Line [d]iagnostics" })
