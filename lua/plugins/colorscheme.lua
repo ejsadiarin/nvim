@@ -93,7 +93,8 @@ return {
                     SignColumn = { bg = "NONE" },
                     Comment = { bg = "NONE" },
 
-                    -- ['@lsp.type.namespace.go'] = { fg = '#743c93' },
+                    ["@lsp.type.namespace.go"] = { fg = "#be7be5" },
+                    -- ["@lsp.type.namespace.go"] = { fg = "#b8bcb9" },
                     -- ['@lsp.type.namespace.go'] = { fg = '#fcffb8' },
                     Function = { fg = "#ff6d7e" },
                     Todo = { fg = "#4aa4bf" },

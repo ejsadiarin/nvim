@@ -3,6 +3,7 @@
 -- #################
 
 vim.g.snacks_animate = false
+vim.g.minipairs_disable = true
 --  NOTE: Must happen before plugins are loaded (otherwise wrong leader will be used)
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
@@ -144,6 +145,10 @@ vim.opt.timeoutlen = 300
 vim.opt.splitbelow = true -- force all horizontal splits to go below current window
 vim.opt.splitright = true -- force all vertical splits to go to the right of current window
 vim.opt.laststatus = 3 -- Global statusline when on split
+
+vim.opt.ruler = true
+vim.opt.showcmd = true
+vim.opt.statusline = "%S"
 
 -- Sets how neovim will display certain whitespace characters in the editor.
 --  See `:help 'list'`

@@ -248,7 +248,7 @@ return {
             {
                 "<leader>fl",
                 function()
-                    local path = vim.fn.stdpath("data")
+                    local path = vim.fn.stdpath("data") .. "/lazy/LazyVim"
                     if vim.uv.fs_stat(path) then
                         require("fzf-lua").files({
                             cwd = path,
@@ -260,7 +260,7 @@ return {
             {
                 "<leader>sl",
                 function()
-                    local path = vim.fn.stdpath("data")
+                    local path = vim.fn.stdpath("data") .. "/lazy/LazyVim"
                     if vim.uv.fs_stat(path) then
                         require("fzf-lua").live_grep_glob({
                             cwd = path,

@@ -16,6 +16,9 @@ return {
             markdown = true,
         },
         config = function(_, opts)
+            -- TODO: put the <leader>up toggle mini_pairs here, OR
+            -- try to lazy load this plugin since i keep this disabled by default
+            -- see: /home/exquisite/.local/share/lvim/lazy/LazyVim/lua/lazyvim/util
             LazyVim.mini.pairs(opts)
         end,
     },

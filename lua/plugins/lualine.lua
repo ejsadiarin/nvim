@@ -63,17 +63,28 @@ return {
                         function()
                             if package.loaded["grapple"] and require("grapple").exists() then
                                 return "󰛢 " .. require("grapple").name_or_index()
+                                -- return "[ " .. require("grapple").name_or_index() .. " ]"
                             end
                             return "󰛢 N"
+                            -- return "[ N ]"
                         end,
                         -- cond = function()
                         --   return package.loaded['grapple'] and require('grapple').exists()
                         -- end,
                     },
+                    -- {
+                    --     function()
+                    --         require("lualine.components.branch.git_branch").init()
+                    --         local branch = "G:" .. require("lualine.components.branch.git_branch").get_branch()
+                    --         return branch ~= nil and branch or ""
+                    --     end,
+                    -- },
                     {
                         "branch",
-                        icon = { "", align = "left", color = { fg = "#a6e3a1" } },
-                        padding = { left = 1, right = 1 },
+                        -- color = { fg = "#a6e3a1" },
+                        -- icons_enabled = false,
+                        icon = { "Git:", align = "left", color = { fg = "#a6e3a1" } },
+                        padding = { left = 1, right = 0 },
                     },
                 },
 
@@ -99,10 +110,14 @@ return {
                     {
                         "diagnostics",
                         symbols = {
-                            error = " ",
-                            warn = " ",
-                            info = " ",
-                            hint = " ",
+                            error = "e:",
+                            warn = "w:",
+                            info = "i:",
+                            hint = "h:",
+                            -- error = " ",
+                            -- warn = " ",
+                            -- info = " ",
+                            -- hint = " ",
                         },
                         padding = { left = 1, right = 1 },
                     },
@@ -124,9 +139,12 @@ return {
                         "diff",
                         colored = true,
                         symbols = {
-                            added = " ", -- added = " ",
-                            modified = " ",
-                            removed = " ",
+                            added = "+ ", -- added = " ",
+                            modified = "~ ",
+                            removed = "- ",
+                            -- added = " ", -- added = " ",
+                            -- modified = " ",
+                            -- removed = " ",
                         },
                         source = function()
                             local gitsigns = vim.b.gitsigns_status_dict
@@ -139,11 +157,12 @@ return {
                             end
                         end,
                     },
-                    { "filetype", separator = "", padding = { left = 1, right = 1 } },
                     -- { "filetype", icon_only = true, separator = "", padding = { left = 1, right = 1 } },
                 },
                 lualine_y = {
-                    { "location", padding = { left = 0, right = 1 } },
+                    { "filetype", separator = "", icons_enabled = false, padding = { left = 0, right = 1 } },
+                    -- { "filetype", separator = "", icons_enabled = false, padding = { left = 1, right = 1 } },
+                    { "location", padding = { left = 1, right = 1 } },
                     { "progress", padding = { left = 0, right = 1 } },
                 },
                 lualine_z = {
