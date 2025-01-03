@@ -10,4 +10,7 @@ return {
         --     end,
         -- })
     end,
+    keys = {
+        { "<leader>G", "<CMD>tab Git<CR>", desc = "Open [G]it Fugitive" },
+    },
 }
