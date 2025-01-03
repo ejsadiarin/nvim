@@ -81,7 +81,7 @@ return {
                     -- },
                     {
                         "branch",
-                        -- color = { fg = "#a6e3a1" },
+                        -- color = { fg = "#e3a1c7" },
                         -- icons_enabled = false,
                         icon = { "Git:", align = "left", color = { fg = "#a6e3a1" } },
                         padding = { left = 1, right = 0 },
@@ -110,10 +110,10 @@ return {
                     {
                         "diagnostics",
                         symbols = {
-                            error = "e:",
-                            warn = "w:",
-                            info = "i:",
-                            hint = "h:",
+                            error = "E:",
+                            warn = "W:",
+                            info = "I:",
+                            hint = "H:",
                             -- error = " ",
                             -- warn = " ",
                             -- info = " ",
