@@ -54,6 +54,7 @@ return {
                 relative = "editor",
             },
             scratch = {
+                relative = "editor",
                 width = 70,
                 height = 20,
                 bo = { buftype = "", buflisted = false, bufhidden = "hide", swapfile = false },
@@ -100,12 +101,17 @@ return {
             end,
             desc = "Lazygit",
         },
+        -- {
+        --     "<leader>gb",
+        --     function()
+        --         Snacks.git.blame_line()
+        --     end,
+        --     desc = "Git Blame Line",
+        -- },
         {
             "<leader>gb",
-            function()
-                Snacks.git.blame_line()
-            end,
-            desc = "Git Blame Line",
+            "<CMD>Git blame_line<CR>",
+            desc = "Git Browse",
         },
         {
             "<leader>gB",
