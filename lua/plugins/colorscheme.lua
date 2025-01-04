@@ -108,6 +108,7 @@ return {
                     LazyButton = { bg = "#1d1e24" },
 
                     StatusLine = { bg = "NONE" },
+                    SnippetTabstop = { bg = "NONE" },
 
                     -- FzfLuaTitle = { bg = "#1d1e24" },
 

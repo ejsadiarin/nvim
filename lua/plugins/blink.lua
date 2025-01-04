@@ -18,14 +18,27 @@ return {
         },
         completion = {
             menu = {
+                enabled = true,
                 border = "rounded",
-                winhighlight = "Normal:BlinkCmpDoc,FloatBorder:BlinkCmpDocBorder,CursorLine:BlinkCmpDocCursorLine,Search:None",
+                winhighlight = "Normal:BlinkCmpMenu,FloatBorder:BlinkCmpMenuBorder,CursorLine:BlinkCmpMenuSelection,Search:None",
+                -- winhighlight = "Normal:BlinkCmpDoc,FloatBorder:BlinkCmpDocBorder,CursorLine:BlinkCmpDocCursorLine,Search:None",
             },
             documentation = {
                 auto_show = true,
                 auto_show_delay_ms = 200,
                 window = { border = "rounded" },
             },
+        },
+        snippets = {
+            expand = function(snippet)
+                return LazyVim.cmp.expand(snippet)
+            end,
+            active = function(filter)
+                return vim.snippet.active(filter)
+            end,
+            jump = function(direction)
+                vim.snippet.jump(direction)
+            end,
         },
         signature = {
             enabled = true,
