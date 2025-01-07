@@ -46,6 +46,13 @@ return {
         },
         sources = {
             default = { "lsp", "path", "snippets", "buffer" },
+            -- default = function()
+            --     if pcall(require, "codecompanion") then
+            --         return { "lsp", "path", "snippets", "buffer", "codecompanion" } -- do i want ai completion?
+            --     else
+            --         return { "lsp", "path", "snippets", "buffer" }
+            --     end
+            -- end,
             cmdline = {},
             -- uncomment if want
             -- cmdline = function()

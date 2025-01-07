@@ -156,11 +156,13 @@ vim.api.nvim_create_autocmd({ "TermOpen", "BufEnter" }, {
 -- })
 
 -- :Telescope yaml_schema from 'yaml-companion'
-vim.api.nvim_create_autocmd("FileType", {
+vim.api.nvim_create_autocmd({ "FileType", "BufEnter" }, {
     group = vim.api.nvim_create_augroup("telescope-yaml-schema", { clear = true }),
     pattern = { "yaml", "yml" },
     callback = function()
-        vim.keymap.set("n", "<leader>cs", "<cmd>Telescope yaml_schema<cr>", { desc = "Change yaml [s]chema" })
+        if vim.bo.filetype == "yaml" or "yml" then
+            vim.keymap.set("n", "<leader>cy", "<cmd>Telescope yaml_schema<cr>", { desc = "Change yaml [s]chema" })
+        end
     end,
 })
 
