@@ -198,6 +198,7 @@ return {
             { "<leader>fd", LazyVim.pick("files"), desc = "Find [d]irectory Files (Root Dir)" },
             { "<leader>fe", LazyVim.pick("files", { root = false }), desc = "Find [e]very File (cwd)" },
             { "<leader>fg", "<cmd>FzfLua git_files<cr>", desc = "Find [g]it Files (git-files)" },
+            { "<leader>fq", "<cmd>FzfLua quickfix_stack<cr>", desc = "[q]uickfix stack" },
             { "<leader>fr", "<cmd>FzfLua oldfiles<cr>", desc = "[r]ecent Files" },
             { "<leader>fR", LazyVim.pick("oldfiles", { cwd = vim.uv.cwd() }), desc = "[R]ecent Files (cwd)" },
             -- git

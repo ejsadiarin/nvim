@@ -349,3 +349,6 @@ vim.keymap.set("n", "<leader>J", "<CMD>OpenBacklog<CR>", { desc = "Open Backlog"
 if pcall(require, "oil") then
     vim.keymap.set("n", "<leader>-", "<CMD>Oil<CR>", { desc = "Open Oil" })
 end
+
+vim.keymap.set("n", "<leader>[", "<CMD>tabprev<CR>", { desc = "tabprev" })
+vim.keymap.set("n", "<leader>]", "<CMD>tabnext<CR>", { desc = "tabnext" })

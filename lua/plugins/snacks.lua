@@ -79,7 +79,7 @@ return {
             desc = "Spawn Scratch Buffer",
         },
         {
-            "<leadercS",
+            "<leader>cS",
             function()
                 Snacks.scratch.select()
             end,
