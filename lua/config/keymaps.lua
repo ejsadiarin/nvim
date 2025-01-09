@@ -210,7 +210,7 @@ vim.keymap.set("n", "<leader>uC", ":set conceallevel=", { desc = "Manual Change 
 
 -- unpolluted paste (paste from yank register) - old: vim.keymap.set({ 'n', 'x' }, '<leader>p', '"0p', { desc = 'Unpolluted [p]aste' })
 vim.keymap.set({ "n", "x" }, "<leader>p", '"+p', { desc = "Clipboard [p]aste" })
-vim.keymap.set({ "n", "x" }, "P", '"0p', { desc = "Unpolluted [p]aste from 0 registry" })
+vim.keymap.set({ "n", "x" }, "P", '"0p', { desc = "Unpolluted [p]aste from last yank" })
 
 -- save without formatting
 vim.keymap.set("n", "<leader>ccs", ":noautocmd w<CR>", { desc = "Save without formatting" })

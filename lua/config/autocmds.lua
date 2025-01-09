@@ -196,11 +196,11 @@ vim.api.nvim_create_autocmd({ "FileType", "BufEnter" }, {
 vim.api.nvim_create_user_command("W", "w", {})
 
 -- copy to system clipboard on yank only (not on delete, etc.)
-vim.api.nvim_create_autocmd({ "TextYankPost" }, {
-    callback = function()
-        vim.fn.setreg("+", vim.fn.getreg("0"))
-    end,
-})
+-- vim.api.nvim_create_autocmd({ "TextYankPost" }, {
+--     callback = function()
+--         vim.fn.setreg("+", vim.fn.getreg("0"))
+--     end,
+-- })
 
 -- automatically opne Trouble qflist (test with :silent grep vim %)
 vim.api.nvim_create_autocmd("QuickFixCmdPost", {
