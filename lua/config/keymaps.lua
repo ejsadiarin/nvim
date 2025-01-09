@@ -22,6 +22,7 @@ if pcall(require, "lazyvim") then
     vim.keymap.del("n", "<leader>qs")
     vim.keymap.del("n", "<leader>qS")
     vim.keymap.del("n", "<C-s>")
+    vim.keymap.del("n", "<leader>fT")
 end
 --  Remap normal mode to "kj" when insert mode
 vim.keymap.set("i", "kj", "<ESC>", { silent = true })
@@ -71,6 +72,13 @@ vim.keymap.set("n", "<leader>uI", "<cmd>InspectTree<cr>", { desc = "UI: [I]nspec
 -- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
 -- is not what someone will guess without a bit more experience.
 vim.keymap.set("t", "<C-[>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
+
+vim.keymap.set("n", "<c-/>", function()
+    Snacks.terminal(nil, { cwd = LazyVim.root() })
+end, { desc = "Terminal (Root Dir)" })
+vim.keymap.set("n", "<c-_>", function()
+    Snacks.terminal(nil, { cwd = LazyVim.root() })
+end, { desc = "which_key_ignore" })
 
 -- TIP: Disable arrow keys in normal mode
 -- vim.keymap.set('n', '<left>', '<cmd>echo "Use h to move!!"<CR>')

@@ -270,6 +270,19 @@ return {
                 end,
                 desc = "Grep from [l]azy files",
             },
+            {
+                "<leader>ft",
+                function()
+                    -- NOTE: requires env variable $VAULT (`export VAULT=...` in your .bashrc or .zshrc)
+                    local todos = vim.fn.expand("$VAULT/Personal/todos")
+                    if vim.uv.fs_stat(todos) then
+                        require("fzf-lua").files({
+                            cwd = todos,
+                        })
+                    end
+                end,
+                desc = "Find [t]odos",
+            },
         },
     },
 }
