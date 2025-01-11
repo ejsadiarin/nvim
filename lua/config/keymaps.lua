@@ -367,3 +367,44 @@ end
 
 vim.keymap.set("n", "<leader>[", "<CMD>tabprev<CR>", { desc = "tabprev" })
 vim.keymap.set("n", "<leader>]", "<CMD>tabnext<CR>", { desc = "tabnext" })
+
+-- SPECIALS [e]
+vim.keymap.set("n", "<leader>ej", function()
+    local ok, input = pcall(vim.fn.input, "(:terminal go doc ? | bat -l go --pager 'less -R'): ")
+    if not ok then
+        return
+    end
+    local cmd = "terminal go doc " .. input .. " | bat -l go --pager 'less -R'"
+    vim.fn.histadd("cmd", cmd)
+    vim.cmd(cmd)
+end, { desc = "e: godoc", silent = true })
+
+vim.keymap.set("n", "<leader>ef", function()
+    local godoc = vim.fn.expand("/usr/lib/go/src")
+    local ok, fzf_lua = pcall(require, "fzf-lua")
+    if vim.uv.fs_stat(godoc) then
+        if ok then
+            fzf_lua.files({
+                cwd = godoc,
+            })
+        end
+    end
+end, { desc = "e: [f]ind go docs", silent = true })
+
+vim.keymap.set("n", "<leader>eg", function()
+    local godoc = vim.fn.expand("/usr/lib/go/src")
+    local f = vim.fn.expand(godoc .. "/net/http/server.go")
+    local ok, fzf_lua = pcall(require, "fzf-lua")
+    if vim.uv.fs_stat(f) then
+        -- Open a file from the directory to initialize the LSP
+        vim.cmd("e " .. f)
+        vim.defer_fn(function()
+            if ok then
+                fzf_lua.lsp_live_workspace_symbols({
+                    regex_filter = _G.symbols_filter,
+                    cwd = godoc,
+                })
+            end
+        end, 500) -- Adjust the delay as needed
+    end
+end, { desc = "e: [g]rep go docs", silent = true })
