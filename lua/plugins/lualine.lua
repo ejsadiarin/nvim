@@ -25,6 +25,8 @@ return {
             "someone-stole-my-name/yaml-companion.nvim",
         },
         opts = {
+            extensions = {},
+            -- extensions = { "neo-tree", "lazy", "fzf" },
             options = {
                 theme = "auto", -- 'auto', 'catppuccin', 'tokyonight', 'gruvbox'
                 icons_enabled = true,

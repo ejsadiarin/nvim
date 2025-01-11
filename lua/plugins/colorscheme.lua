@@ -159,7 +159,7 @@ return {
                     -- SnacksNotifierHistoryTitle = { bg = "NONE" },
                     -- SnacksNotifierHistoryDateTime = { bg = "NONE" },
 
-                    lualine_a_normal = { bg = "#f9cc6c" },
+                    lualine_a_normal = { bg = "#1e1e1e" },
 
                     ["@markup.raw.block.markdown"] = { bg = "NONE" },
                     ["@markup.raw.markdown_inline"] = { bg = "NONE" },

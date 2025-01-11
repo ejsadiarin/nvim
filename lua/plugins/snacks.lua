@@ -183,6 +183,30 @@ return {
             desc = "Prev Reference",
         },
         {
+            "<leader>j",
+            function()
+                if vim.wo.diff then
+                    vim.cmd.normal({ "[c", bang = true })
+                else
+                    require("gitsigns").nav_hunk("prev")
+                end
+                -- Snacks.words.jump(-vim.v.count1)
+            end,
+            desc = "Prev git change (hunk)",
+        },
+        {
+            "<leader>k",
+            function()
+                if vim.wo.diff then
+                    vim.cmd.normal({ "]c", bang = true })
+                else
+                    require("gitsigns").nav_hunk("next")
+                end
+                -- Snacks.words.jump(-vim.v.count1)
+            end,
+            desc = "Next git change (hunk)",
+        },
+        {
             "<leader>N",
             desc = "Neovim News",
             function()

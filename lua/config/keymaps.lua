@@ -166,11 +166,15 @@ vim.keymap.set("n", "<leader>ch", function()
             return line:gsub(checked_checkbox, unchecked_checkbox, 1)
         end,
         make_checkbox = function(line)
-            if not line:match("^%s*-%s.*$") and not line:match("^%s*%d%s.*$") then
-                -- "xxx" -> "- [ ] xxx"
+            -- handle lines that already start with "-" but don't have a checkbox
+            if line:match("^%s*-%s[^%[]") then
+                -- "- something" -> "- [ ] something"
+                return line:gsub("^(%s*-%s)(.*)", "%1[ ] %2", 1)
+            elseif not line:match("^%s*-%s.*$") and not line:match("^%s*%d%s.*$") then
+                -- "something" -> "- [ ] something"
                 return line:gsub("(%S+)", "- [ ] %1", 1)
             else
-                -- "- xxx" -> "- [ ] xxx", "3. xxx" -> "3. [ ] xxx"
+                -- "- [x] something" -> "- [ ] something", "3. [x] something" -> "3. [ ] something"
                 return line:gsub("(%s*- )(.*)", "%1[ ] %2", 1):gsub("(%s*%d%. )(.*)", "%1[ ] %2", 1)
             end
         end,
@@ -183,6 +187,7 @@ vim.keymap.set("n", "<leader>ch", function()
         local current_line = vim.api.nvim_buf_get_lines(bufnr, start_line, start_line + 1, false)[1] or ""
         -- If the line contains a checked checkbox then uncheck it.
         -- Otherwise, if it contains an unchecked checkbox, check it.
+        -- If it doesn't have a checkbox, add one.
         local new_line = ""
         if not line_with_checkbox(current_line) then
             new_line = checkbox.make_checkbox(current_line)
@@ -194,8 +199,6 @@ vim.keymap.set("n", "<leader>ch", function()
         vim.api.nvim_buf_set_lines(bufnr, start_line, start_line + 1, false, { new_line })
         vim.api.nvim_win_set_cursor(0, cursor)
     end
-    -- vim.api.nvim_create_user_command("ToggleCheckbox", M.toggle, {})
-    -- return M
     M.toggle()
 end, { desc = "Toggle C[h]eckbox" })
 
@@ -211,6 +214,10 @@ vim.keymap.set("n", "<leader>uC", ":set conceallevel=", { desc = "Manual Change 
 -- unpolluted paste (paste from yank register) - old: vim.keymap.set({ 'n', 'x' }, '<leader>p', '"0p', { desc = 'Unpolluted [p]aste' })
 vim.keymap.set({ "n", "x" }, "<leader>p", '"+p', { desc = "Clipboard [p]aste" })
 vim.keymap.set({ "n", "x" }, "P", '"0p', { desc = "Unpolluted [p]aste from last yank" })
+
+-- yank to clipboard
+vim.keymap.set("n", "<leader>y", '"+y$', { desc = "[y]ank to clipboard" })
+vim.keymap.set("x", "<leader>y", '"+y', { desc = "[y]ank selection to clipboard" })
 
 -- save without formatting
 vim.keymap.set("n", "<leader>ccs", ":noautocmd w<CR>", { desc = "Save without formatting" })
