@@ -38,6 +38,7 @@ require("lazy").setup({
         { import = "extensions.vim-fugitive" },
         { import = "extensions.colorizer" },
         -- { import = "extensions.telescope" },
+        -- { import = "extensions.fzf-lua" },
     },
     defaults = {
         -- By default, only LazyVim plugins will be lazy-loaded. Your custom plugins will load during startup.
