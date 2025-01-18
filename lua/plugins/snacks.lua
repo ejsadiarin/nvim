@@ -169,7 +169,6 @@ return {
         { "<leader>fd", LazyVim.pick("files"), desc = "Find [d]irectory Files (Root Dir)" },
         { "<leader>fe", LazyVim.pick("files", { root = false }), desc = "Find [e]very File (cwd)" },
         { "<leader>fg", function() Snacks.picker.git_files() end, desc = "Find [g]it Files (git-files)" },
-        -- { "<leader>fq", "<cmd>FzfLua quickfix_stack<cr>", desc = "[q]uickfix stack" },
         { "<leader>fr", LazyVim.pick("oldfiles"), desc = "[r]ecent Files" },
         { "<leader>fR", LazyVim.pick("oldfiles", { filter = { cwd = true }}), desc = "[R]ecent Files (cwd)" },
         -- git
@@ -177,12 +176,12 @@ return {
         -- { "<leader>gc", "<cmd>FzfLua git_commits<CR>", desc = "[c]ommits" },
         { "<leader>gd", function() Snacks.picker.git_diff() end, desc = "[d]iff (hunks)" },
         { "<leader>gs", function() Snacks.picker.git_status() end, desc = "[s]tatus" },
-        -- grep
+        -- -- grep
         { "<leader>sg", LazyVim.pick("live_grep"), desc = "[g]rep (Root Dir)" },
         { "<leader>sG", LazyVim.pick("live_grep", { root = false }), desc = "[G]rep (cwd)" },
         { "<leader>sw", LazyVim.pick("grep_word"), desc = "Visual selection or [w]ord (Root Dir)", mode = { "n", "x" } },
         { "<leader>sW", LazyVim.pick("grep_word", { root = false }), desc = "Visual selection or [W]ord (cwd)", mode = { "n", "x" } },
-        -- search
+        -- -- search
         { '<leader>s"', function() Snacks.picker.registers() end, desc = "registers" },
         { "<leader>sa", function() Snacks.picker.autocmds() end, desc = "[a]utocmds" },
         { "<leader>sc", function() Snacks.picker.command_history() end, desc = "[c]ommand History" },
@@ -199,16 +198,16 @@ return {
         { "<leader>sq", function() Snacks.picker.qflist() end, desc = "[q]uickfix List" },
         { "<leader>uC", function() Snacks.picker.colorschemes() end, desc = "[C]olorschemes" },
         { "<leader>fp", function() Snacks.picker.projects() end, desc = "[p]rojects" },
-        { "<leader>ss", function() Snacks.picker.lsp_symbols() end, desc = "Goto [s]ymbol", has = "documentSymbol" },
-        {
-            "<leader>sS",
-            function()
-                require("fzf-lua").lsp_live_workspace_symbols({
-                    regex_filter = symbols_filter,
-                })
-            end,
-            desc = "Goto [S]ymbol (Workspace)",
-        },
+        { "<leader>ss", function() Snacks.picker.lsp_symbols() end, desc = "Goto [s]ymbol"},
+        -- {
+        --     "<leader>sS",
+        --     function()
+        --         require("fzf-lua").lsp_live_workspace_symbols({
+        --             regex_filter = symbols_filter,
+        --         })
+        --     end,
+        --     desc = "Goto [S]ymbol (Workspace)",
+        -- },
         {
             "<leader>fl",
             function()
