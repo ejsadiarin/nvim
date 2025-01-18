@@ -17,7 +17,9 @@ vim.opt.rtp:prepend(lazypath)
 -- #################
 -- #     LAZY      #
 -- #################
-package.loaded["lazyvim.config.options"] = true -- disable default lazyvim options
+-- if pcall(require, "lazyvim") then
+--     package.loaded["lazyvim.config.options"] = false -- disable default lazyvim options
+-- end
 require("lazy").setup({
     spec = {
         -- add LazyVim and import its plugins
@@ -30,6 +32,7 @@ require("lazy").setup({
         { import = "lazyvim.plugins.extras.lang.typescript" },
         { import = "lazyvim.plugins.extras.lang.tailwind" },
         { import = "lazyvim.plugins.extras.dap.core" },
+        { import = "lazyvim.plugins.extras.editor.snacks_picker" },
         -- optional plugins
         -- { import = "extensions.obsidian" },
         { import = "extensions.tmux-navigator" },

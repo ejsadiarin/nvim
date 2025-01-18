@@ -2,11 +2,15 @@
 -- #    GLOBALS    #
 -- #################
 
-vim.g.snacks_animate = false
-vim.g.minipairs_disable = true
 --  NOTE: Must happen before plugins are loaded (otherwise wrong leader will be used)
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
+
+if pcall(require, "lazyvim") then
+    vim.g.snacks_animate = false
+    vim.g.minipairs_disable = true
+    vim.g.lazyvim_picker = "snacks"
+end
 
 -- Set to true if you have a Nerd Font installed and selected in the terminal
 vim.g.have_nerd_font = true
