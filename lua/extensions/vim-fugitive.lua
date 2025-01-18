@@ -1,5 +1,6 @@
 return {
     "tpope/vim-fugitive",
+    cmd = { "Git", "G" },
     opts = {},
     config = function()
         -- vim.api.nvim_create_autocmd("FileType", {
