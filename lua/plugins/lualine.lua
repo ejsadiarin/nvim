@@ -166,7 +166,7 @@ return {
                     -- { "filetype", separator = "", icons_enabled = false, padding = { left = 0, right = 1 } },
                     -- { "filetype", separator = "", icons_enabled = false, padding = { left = 1, right = 1 } },
                     { "location", padding = { left = 1, right = 2 } },
-                    { "progress", padding = { left = 0, right = 2 } },
+                    { "progress", padding = { left = 0, right = 0 } },
                 },
                 lualine_z = {
                     -- { 'progress', padding = { left = 0, right = 1 } },

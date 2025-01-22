@@ -81,8 +81,9 @@ return {
             end,
             override = function()
                 return {
-                    Normal = { fg = "#fcffb8", bg = "NONE" },
+                    Normal = { fg = "#fcffb8", bg = "NONE" }, -- #19171a
                     CursorLine = { bg = "#1d1e24" },
+                    Cursor = { fg = "#fcef0b", bg = "#fcef0b" },
                     NormalFloat = { bg = "NONE" },
                     FloatTitle = { bg = "NONE" },
                     FloatFooter = { bg = "NONE" },
