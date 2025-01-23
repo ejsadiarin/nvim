@@ -370,6 +370,15 @@ vim.keymap.set("n", "<leader>]", "<CMD>tabnext<CR>", { desc = "tabnext" })
 
 -- SPECIALS [e]
 vim.keymap.set("n", "<leader>ej", function()
+    -- requires go and bat to be installed
+    if vim.fn.executable("go") == 0 then
+        vim.notify("'go' is not installed or not in PATH!", vim.log.levels.ERROR)
+        return
+    end
+    if vim.fn.executable("bat") == 0 then
+        vim.notify("'bat' is not installed or not in PATH!", vim.log.levels.ERROR)
+        return
+    end
     local ok, input = pcall(vim.fn.input, "(:terminal go doc ? | bat -l go --pager 'less -R'): ")
     if not ok then
         return

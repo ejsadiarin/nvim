@@ -91,7 +91,7 @@ return {
         { "<leader>un", function() Snacks.notifier.hide() end, desc = "Dismiss All Notifications", },
         { "<leader>bd", "<CMD>:bd<CR>", desc = "Buffer: [d]elete" },
         -- { "<leader>bd", function() Snacks.bufdelete() end, desc = "Buffer: [d]elete" },
-        { "<leader>gg", function() Snacks.lazygit() end, desc = "Lazygit", },
+        { "<leader>gg", function() Snacks.lazygit( { cwd = LazyVim.root.git() }) end, desc = "Lazygit", },
         { "<leader>gb", function() Snacks.git.blame_line() end, desc = "Git [b]lame Line", },
         -- { "<leader>gb", "<CMD>Git blame_line<CR>", desc = "Git [b]lame Line", },
         { "<leader>gB", function() Snacks.gitbrowse() end, desc = "Git Browse", },
