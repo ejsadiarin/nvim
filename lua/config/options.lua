@@ -103,10 +103,12 @@ vim.opt.showmode = true -- Show mode for exquisite simplicity
 --  Schedule the setting after `UiEnter` because it can increase startup-time.
 --  Remove this option if you want your OS clipboard to remain independent.
 --  See `:help 'clipboard'`
-vim.schedule(function()
-    vim.opt.clipboard = "unnamed"
-    -- vim.opt.clipboard = 'unnamedplus'
-end)
+-- vim.schedule(function()
+--     vim.opt.clipboard = "unnamed"
+--     -- vim.opt.clipboard = 'unnamedplus'
+-- end)
+
+vim.opt.clipboard = "unnamed"
 
 vim.opt.tabstop = 4 -- Insert 4 spaces for a tab
 vim.opt.softtabstop = 4 -- Number of spaces tabs count for while editing
