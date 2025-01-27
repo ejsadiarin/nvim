@@ -7,15 +7,9 @@ return {
             "mason.nvim",
             { "williamboman/mason-lspconfig.nvim", config = function() end },
         },
-        opts = function()
-            -- remap lsp keymaps (if LazyVim installed)
-            if pcall(require, "lazyvim") then
-                local keys = require("lazyvim.plugins.lsp.keymaps").get()
-                keys[#keys + 1] = { "gy", false }
-                keys[#keys + 1] = { "<leader>D", vim.lsp.buf.type_definition, desc = "Goto Type [D]efinition" }
-            end
+        opts = function(_, opts)
             ---@class PluginLspOpts
-            local ret = {
+            return vim.tbl_deep_extend("force", opts, {
                 -- options for vim.diagnostic.config()
                 ---@type vim.diagnostic.Opts
                 diagnostics = {
@@ -32,10 +26,14 @@ return {
                     severity_sort = true,
                     signs = {
                         text = {
-                            [vim.diagnostic.severity.ERROR] = LazyVim.config.icons.diagnostics.Error,
-                            [vim.diagnostic.severity.WARN] = LazyVim.config.icons.diagnostics.Warn,
-                            [vim.diagnostic.severity.HINT] = LazyVim.config.icons.diagnostics.Hint,
-                            [vim.diagnostic.severity.INFO] = LazyVim.config.icons.diagnostics.Info,
+                            [vim.diagnostic.severity.ERROR] = "E",
+                            [vim.diagnostic.severity.WARN] = "W",
+                            [vim.diagnostic.severity.HINT] = "H",
+                            [vim.diagnostic.severity.INFO] = "I",
+                            -- [vim.diagnostic.severity.ERROR] = LazyVim.config.icons.diagnostics.Error,
+                            -- [vim.diagnostic.severity.WARN] = LazyVim.config.icons.diagnostics.Warn,
+                            -- [vim.diagnostic.severity.HINT] = LazyVim.config.icons.diagnostics.Hint,
+                            -- [vim.diagnostic.severity.INFO] = LazyVim.config.icons.diagnostics.Info,
                         },
                     },
                 },
@@ -153,11 +151,18 @@ return {
                     -- ["*"] = function(server, opts) end,
                     --
                 },
-            }
-            return ret
+            })
+            -- return ret
         end,
         ---@param opts PluginLspOpts
         config = function(_, opts)
+            -- remap lsp keymaps (if LazyVim installed)
+            if pcall(require, "lazyvim") then
+                local keys = require("lazyvim.plugins.lsp.keymaps").get()
+                keys[#keys + 1] = { "gy", false }
+                keys[#keys + 1] = { "<leader>D", vim.lsp.buf.type_definition, desc = "Goto Type [D]efinition" }
+            end
+
             -- setup autoformat
             LazyVim.format.register(LazyVim.lsp.formatter())
 
