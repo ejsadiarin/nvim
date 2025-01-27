@@ -19,36 +19,18 @@ return {
             input = { enabled = false },
             scope = { enabled = true },
             scroll = { enabled = true },
-            bigfile = { enabled = true },
+            bigfile = { enabled = false },
             profiler = { enabled = true },
-            dashboard = {
-                preset = {
-                    --                header = [[
-                    --        ██╗      █████╗ ███████╗██╗   ██╗██╗   ██╗██╗███╗   ███╗          Z
-                    --        ██║     ██╔══██╗╚══███╔╝╚██╗ ██╔╝██║   ██║██║████╗ ████║      Z
-                    --        ██║     ███████║  ███╔╝  ╚████╔╝ ██║   ██║██║██╔████╔██║   z
-                    --        ██║     ██╔══██║ ███╔╝    ╚██╔╝  ╚██╗ ██╔╝██║██║╚██╔╝██║ z
-                    --        ███████╗██║  ██║███████╗   ██║    ╚████╔╝ ██║██║ ╚═╝ ██║
-                    --        ╚══════╝╚═╝  ╚═╝╚══════╝   ╚═╝     ╚═══╝  ╚═╝╚═╝     ╚═╝
-                    -- ]],
-                    header = [[
-                     fok
-]],
-        -- stylua: ignore
-        ---@type snacks.dashboard.Item[]
-        keys = {
-          { icon = " ", key = "r", desc = "Recent Files", action = ":lua Snacks.dashboard.pick('oldfiles')" },
-          { icon = " ", key = "c", desc = "Config", action = ":lua Snacks.dashboard.pick('files', {cwd = vim.fn.stdpath('config')})" },
-          { icon = " ", key = "s", desc = "Restore Session", section = "session" },
-          { icon = "󰒲 ", key = "l", desc = "Lazy", action = ":Lazy" },
-          { icon = " ", key = "q", desc = "Quit", action = ":qa" },
-        },
-                },
-            },
             notifier = {
                 enabled = true,
                 timeout = 3000,
                 style = "fancy",
+                filter = function(n)
+                    if n.msg == "No information available" then
+                        return false
+                    end
+                    return true
+                end,
             },
             quickfile = { enabled = true },
             scratch = {
@@ -80,6 +62,30 @@ return {
                     border = "rounded",
                     title_pos = "center",
                     footer_pos = "center",
+                },
+            },
+            dashboard = {
+                preset = {
+                    --                header = [[
+                    --        ██╗      █████╗ ███████╗██╗   ██╗██╗   ██╗██╗███╗   ███╗          Z
+                    --        ██║     ██╔══██╗╚══███╔╝╚██╗ ██╔╝██║   ██║██║████╗ ████║      Z
+                    --        ██║     ███████║  ███╔╝  ╚████╔╝ ██║   ██║██║██╔████╔██║   z
+                    --        ██║     ██╔══██║ ███╔╝    ╚██╔╝  ╚██╗ ██╔╝██║██║╚██╔╝██║ z
+                    --        ███████╗██║  ██║███████╗   ██║    ╚████╔╝ ██║██║ ╚═╝ ██║
+                    --        ╚══════╝╚═╝  ╚═╝╚══════╝   ╚═╝     ╚═══╝  ╚═╝╚═╝     ╚═╝
+                    -- ]],
+                    header = [[
+                     fok
+]],
+                -- stylua: ignore start
+                ---@type snacks.dashboard.Item[]
+                    keys = {
+                        { icon = " ", key = "r", desc = "Recent Files", action = ":lua Snacks.dashboard.pick('oldfiles')" },
+                        { icon = " ", key = "c", desc = "Config", action = ":lua Snacks.dashboard.pick('files', {cwd = vim.fn.stdpath('config')})" },
+                        { icon = " ", key = "s", desc = "Restore Session", section = "session" },
+                        { icon = "󰒲 ", key = "l", desc = "Lazy", action = ":Lazy" },
+                        { icon = " ", key = "q", desc = "Quit", action = ":qa" },
+                    },
                 },
             },
         },
