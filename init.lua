@@ -42,6 +42,7 @@ require("lazy").setup({
         { import = "extensions.colorizer" },
         -- { import = "extensions.telescope" },
         -- { import = "extensions.fzf-lua" },
+        { import = "extensions.image" },
     },
     defaults = {
         -- By default, only LazyVim plugins will be lazy-loaded. Your custom plugins will load during startup.
@@ -74,5 +75,9 @@ require("lazy").setup({
                 "zipPlugin",
             },
         },
+    },
+}, {
+    rocks = {
+        hererocks = true, -- recommended if you do not have global installation of Lua 5.1.
     },
 })
