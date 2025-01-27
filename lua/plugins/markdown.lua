@@ -4,6 +4,9 @@ return {
         optional = true,
         opts = {
             formatters = {
+                ["prettier"] = {
+                    prepend_args = { "--tab-width", "4", "--use-tabs", "false" },
+                },
                 ["markdown-toc"] = {
                     condition = function(_, ctx)
                         for _, line in ipairs(vim.api.nvim_buf_get_lines(ctx.buf, 0, -1, false)) do
@@ -23,46 +26,23 @@ return {
                 },
             },
             formatters_by_ft = {
+                -- ["markdown"] = {},
+                -- ["markdown.mdx"] = {},
                 ["markdown"] = { "prettier", "markdownlint-cli2", "markdown-toc" },
                 ["markdown.mdx"] = { "prettier", "markdownlint-cli2", "markdown-toc" },
             },
         },
     },
+
     {
         "williamboman/mason.nvim",
         opts = { ensure_installed = { "markdownlint-cli2", "markdown-toc" } },
-    },
-    {
-        "nvimtools/none-ls.nvim",
-        optional = true,
-        opts = function(_, opts)
-            local nls = require("null-ls")
-            opts.sources = vim.list_extend(opts.sources or {}, {
-                nls.builtins.diagnostics.markdownlint_cli2,
-            })
-        end,
-    },
-    {
-        "mfussenegger/nvim-lint",
-        optional = true,
-        opts = {
-            linters_by_ft = {
-                markdown = { "markdownlint-cli2" },
-            },
-        },
-    },
-    {
-        "neovim/nvim-lspconfig",
-        opts = {
-            servers = {
-                marksman = {},
-            },
-        },
     },
 
     -- Markdown preview
     {
         "iamcco/markdown-preview.nvim",
+        ft = { "markdown", "md" },
         cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
         build = function()
             require("lazy").load({ plugins = { "markdown-preview.nvim" } })
@@ -120,6 +100,10 @@ return {
     -- if preferred, then uncomment
     -- {
     --     "OXY2DEV/markview.nvim",
-    --     lazy = false
+    --     ft = { "markdown", "md" },
+    --     opts = {},
+    --     keys = {
+    --         { "<leader>um", "<CMD>Markview<CR>", desc = "[m]arkdown Preview" },
+    --     },
     -- },
 }
