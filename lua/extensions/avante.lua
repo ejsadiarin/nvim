@@ -6,17 +6,18 @@ return {
         version = false, -- set this if you want to always pull the latest change
         opts = {
             ---@alias Provider "claude" | "openai" | "azure" | "gemini" | "cohere" | "copilot" | string
-            provider = "openai",
-            auto_suggestions_provider = "openai", -- Since auto-suggestions are a high-frequency operation and therefore expensive, it is recommended to specify an inexpensive provider or even a free provider: copilot
+            provider = "copilot",
+            auto_suggestions_provider = "copilot", -- Since auto-suggestions are a high-frequency operation and therefore expensive, it is recommended to specify an inexpensive provider or even a free provider: copilot
+            -- copilot = {},
             openai = {
                 --- DEEPSEEK (needs top-up balance) ---
-                -- endpoint = "https://api.deepseek.com",
-                -- model = "deepseek-chat", -- options: "deepseek-reasoning", "deepseek-chat"
-                -- timeout = 30000, -- Timeout in milliseconds
-                -- temperature = 0,
-                -- max_tokens = 4096,
-                -- -- optional
-                -- api_key_name = "DEEPSEEK_API_KEY", -- default OPENAI_API_KEY if not set
+                endpoint = "https://api.deepseek.com",
+                model = "deepseek-chat", -- options: "deepseek-reasoning", "deepseek-chat"
+                timeout = 30000, -- Timeout in milliseconds
+                temperature = 0,
+                max_tokens = 4096,
+                -- optional
+                api_key_name = "DEEPSEEK_API_KEY", -- default OPENAI_API_KEY if not set
             },
             claude = {
                 endpoint = "https://api.anthropic.com",
@@ -25,14 +26,16 @@ return {
                 max_tokens = 4096,
                 api_key_name = "ANTHROPIC_API_KEY",
             },
+            hints = { enabled = false },
             suggestion = {
                 debounce = 600,
                 throttle = 600,
             },
         },
-        keys = {
-            { "<leader>ee", "<CMD>AvanteToggle<CR>", desc = "toggle avant[e]" },
-        },
+        -- keys = {
+        --     { "<leader>aa", function() require("avante.api").ask() end, desc = "avante: [a]sk", },
+        --     { "<leader>ee", "<CMD>AvanteToggle<CR>", desc = "toggle avant[e]" },
+        -- },
         -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
         build = "make",
         -- build = "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false" -- for windows

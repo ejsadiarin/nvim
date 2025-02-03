@@ -1,17 +1,19 @@
 return {
     "saghen/blink.cmp",
+    lazy = false,
     dependencies = {
         "rafamadriz/friendly-snippets",
     },
     ---@module 'blink.cmp'
     ---@type blink.cmp.Config
     opts = {
-        enabled = function()
-            return not vim.tbl_contains({}, vim.bo.filetype)
-                and vim.bo.buftype ~= "nofile"
-                and vim.bo.buftype ~= "prompt"
-                and vim.b.completion ~= "false"
-        end,
+        -- HACK: this is commented out for codecompanion.nvim to work with blink properly
+        -- enabled = function()
+        --     return not vim.tbl_contains({}, vim.bo.filetype)
+        --         and vim.bo.buftype ~= "nofile"
+        --         and vim.bo.buftype ~= "prompt"
+        --         and vim.b.completion ~= "false"
+        -- end,
         appearance = {
             use_nvim_cmp_as_default = false,
             nerd_font_variant = "mono",
@@ -41,11 +43,22 @@ return {
             end,
         },
         signature = {
+            ---@type boolean
             enabled = true,
             window = { border = "rounded" },
         },
         sources = {
+            ---@type table
             default = { "lsp", "path", "snippets", "buffer" },
+            -- default = { "lsp", "path", "snippets", "buffer", "codecompanion" },
+            -- default = { "codecompanion" },
+            -- providers = {
+            --     codecompanion = {
+            --         name = "CodeCompanion",
+            --         module = "codecompanion.providers.completion.blink",
+            --         enabled = true,
+            --     },
+            -- },
             -- default = function()
             --     if pcall(require, "codecompanion") then
             --         return { "lsp", "path", "snippets", "buffer", "codecompanion" } -- do i want ai completion?
@@ -96,4 +109,9 @@ return {
             ["<C-down>"] = { "scroll_documentation_down", "fallback" },
         },
     },
+    -- opts_extend = {
+    --     "sources.completion.enabled_providers",
+    --     "sources.compat",
+    --     "sources.default",
+    -- },
 }

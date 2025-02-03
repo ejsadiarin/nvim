@@ -91,7 +91,6 @@ return {
                 },
 
                 lualine_c = {
-                    -- LazyVim.lualine.root_dir(),
                     { "filetype", icon_only = true, separator = "", padding = { left = 1, right = 0 } },
                     {
                         "filename",
@@ -108,7 +107,6 @@ return {
                         -- color = { fg = '#f9cc6c' },
                         color = { fg = "#f38ba8" },
                     },
-                    -- { LazyVim.lualine.pretty_path() },
                     {
                         "diagnostics",
                         symbols = {

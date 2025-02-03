@@ -31,18 +31,20 @@ require("lazy").setup({
         { import = "lazyvim.plugins.extras.lang.docker" },
         { import = "lazyvim.plugins.extras.lang.typescript" },
         { import = "lazyvim.plugins.extras.lang.tailwind" },
+        { import = "lazyvim.plugins.extras.lang.clangd" },
         { import = "lazyvim.plugins.extras.dap.core" },
         { import = "lazyvim.plugins.extras.editor.snacks_picker" },
         -- optional plugins
         -- { import = "extensions.obsidian" },
         { import = "extensions.tmux-navigator" },
-        -- { import = "extensions.codecompanion" },
-        { import = "extensions.avante" },
+        { import = "extensions.codecompanion" },
+        -- { import = "extensions.copilot" },
+        -- { import = "extensions.avante" },
         { import = "extensions.vim-fugitive" },
         { import = "extensions.colorizer" },
         -- { import = "extensions.telescope" },
         -- { import = "extensions.fzf-lua" },
-        { import = "extensions.image" },
+        -- { import = "extensions.image" },
     },
     defaults = {
         -- By default, only LazyVim plugins will be lazy-loaded. Your custom plugins will load during startup.
