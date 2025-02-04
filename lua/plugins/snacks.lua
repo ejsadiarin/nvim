@@ -19,7 +19,7 @@ return {
             input = { enabled = false },
             scope = { enabled = true },
             scroll = { enabled = true },
-            bigfile = { enabled = false },
+            bigfile = { enabled = true },
             profiler = { enabled = true },
             notifier = {
                 enabled = true,

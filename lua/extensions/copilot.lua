@@ -62,15 +62,50 @@ return {
             table.insert(
                 opts.sections.lualine_x,
                 2,
-                LazyVim.lualine.status(LazyVim.config.icons.kinds.Copilot, function()
-                    local clients = package.loaded["copilot"]
-                            and LazyVim.lsp.get_clients({ name = "copilot", bufnr = 0 })
-                        or {}
-                    if #clients > 0 then
-                        local status = require("copilot.api").status.data.status
-                        return (status == "InProgress" and "pending") or (status == "Warning" and "error") or "ok"
-                    end
-                end)
+                {
+                    function()
+                        local clients = package.loaded["copilot"]
+                                and LazyVim.lsp.get_clients({ name = "copilot", bufnr = 0 })
+                            or {}
+                        -- local ok, _ = pcall(require, "copilot")
+                        -- if ok then
+                        --     clients = LazyVim.lsp.get_clients({ name = "copilot", bufnr = 0 })
+                        -- end
+                        if #clients > 0 then
+                            local status = require("copilot.api").status.data.status
+                            local stat = ""
+                            if status == "InProgress" and "pending" then
+                                stat = "pending"
+                            elseif status == "" or "ok" or "Normal" then
+                                stat = "on"
+                            -- elseif status == "ok" then
+                            --     stat = "ok"
+                            -- elseif status == "Normal" then
+                            --     stat = "Normal"
+                            -- elseif status == "" then
+                            --     stat = ""
+                            elseif status == "Warning" and "error" then
+                                stat = "warning"
+                            end
+                            return "ai:" .. stat
+                            -- return "[ai:" .. stat .. "]"
+                        end
+                        return ""
+                    end,
+                    color = function()
+                        return { fg = "Special" }
+                    end,
+                }
+                -- LazyVim.lualine.status("ai", function()
+                --     -- LazyVim.lualine.status(LazyVim.config.icons.kinds.Copilot, function()
+                --     local clients = package.loaded["copilot"]
+                --             and LazyVim.lsp.get_clients({ name = "copilot", bufnr = 0 })
+                --         or {}
+                --     if #clients > 0 then
+                --         local status = require("copilot.api").status.data.status
+                --         return (status == "InProgress" and "pending") or (status == "Warning" and "error") or "ok"
+                --     end
+                -- end)
             )
         end,
     },

@@ -38,7 +38,7 @@ require("lazy").setup({
         -- { import = "extensions.obsidian" },
         { import = "extensions.tmux-navigator" },
         { import = "extensions.codecompanion" },
-        -- { import = "extensions.copilot" },
+        { import = "extensions.copilot" },
         -- { import = "extensions.avante" },
         { import = "extensions.vim-fugitive" },
         { import = "extensions.colorizer" },

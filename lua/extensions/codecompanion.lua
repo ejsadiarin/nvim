@@ -1,6 +1,22 @@
 local copilot_fn = function()
     local copilot_config = {
         -- env = { api_key = "GITHUB_TOKEN" }, -- see github/copilot.vim for details
+        schema = {
+            model = {
+                order = 1,
+                mapping = "parameters",
+                type = "enum",
+                desc = "ID of the model to use. See the model endpoint compatibility table for details on which models work with the Chat API.",
+                ---@type string|fun(): string
+                default = "claude-3.5-sonnet",
+                choices = {
+                    "gpt-4o-2024-08-06",
+                    "claude-3.5-sonnet",
+                    ["o1-preview-2024-09-12"] = { opts = { stream = false } },
+                    ["o1-mini-2024-09-12"] = { opts = { stream = false } },
+                },
+            },
+        },
     }
     return require("codecompanion.adapters").extend("copilot", copilot_config)
 end
@@ -172,7 +188,6 @@ return {
             -- "github/copilot.vim",
             {
                 "saghen/blink.cmp",
-                lazy = false,
                 opts = {
                     keymap = {
                         preset = "enter",
@@ -200,8 +215,11 @@ return {
             },
         },
         keys = function()
+            -- Launch/toggle a new CodeCompanion chat window
             vim.keymap.set("n", "<leader>aa", "<CMD>CodeCompanionChat Toggle<CR>", { desc = "ai: ch[a]t" })
+            -- Open CodeCompanion's command menu with predefined prompts/templates
             vim.keymap.set("n", "<leader>ac", "<CMD>CodeCompanionCmd<CR>", { desc = "ai: [c]md" })
+            -- Open CodeCompanion's action palette for context-aware AI operations
             vim.keymap.set("n", "<leader>as", "<CMD>CodeCompanionActions<CR>", { desc = "ai: action[s]" })
             vim.keymap.set(
                 { "n", "v" },
@@ -258,7 +276,19 @@ return {
                         },
                     },
                 },
-                inline = { adapter = "copilot" },
+                inline = {
+                    adapter = "copilot",
+                    keymaps = {
+                        accept_change = {
+                            modes = { n = "<leader>aga" },
+                            description = "Accept the suggested change",
+                        },
+                        reject_change = {
+                            modes = { n = "<leader>agr" },
+                            description = "Reject the suggested change",
+                        },
+                    },
+                },
                 agent = { adapter = "copilot" },
             },
             display = {
@@ -283,8 +313,8 @@ return {
                     strategy = "chat",
                     description = "Get some special advice from an LLM",
                     opts = {
-                        mapping = "<leader>ce",
-                        modes = { "v" },
+                        -- mapping = "<leader>ce",
+                        -- modes = { "v" },
                         short_name = "expert",
                         auto_submit = true,
                         stop_context_insertion = true,
