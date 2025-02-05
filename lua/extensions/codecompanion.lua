@@ -217,16 +217,13 @@ return {
         keys = function()
             -- Launch/toggle a new CodeCompanion chat window
             vim.keymap.set("n", "<leader>aa", "<CMD>CodeCompanionChat Toggle<CR>", { desc = "ai: ch[a]t" })
-            -- Open CodeCompanion's command menu with predefined prompts/templates
-            vim.keymap.set("n", "<leader>ac", "<CMD>CodeCompanionCmd<CR>", { desc = "ai: [c]md" })
             -- Open CodeCompanion's action palette for context-aware AI operations
             vim.keymap.set("n", "<leader>as", "<CMD>CodeCompanionActions<CR>", { desc = "ai: action[s]" })
-            vim.keymap.set(
-                { "n", "v" },
-                "<leader>ae",
-                "<CMD>CodeCompanion<CR>",
-                { desc = "ai: [f]ile write with diff" }
-            )
+            -- Open CodeCompanion's command menu with predefined prompts/templates
+            vim.keymap.set("n", "<leader>ad", "<CMD>CodeCompanionCmd<CR>", { desc = "ai: cm[d]" })
+            -- stylua: ignore start
+            vim.keymap.set( { "n", "v" }, "<leader>af", "<CMD>CodeCompanion<CR>", { desc = "ai: [f]ile write with diff" })
+            -- stylua: ignore end
             vim.keymap.set("n", "<leader>fa", function()
                 local chats = vim.fn.stdpath("data") .. "/codecompanion_chats"
                 Snacks.picker.files({

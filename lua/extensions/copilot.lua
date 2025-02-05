@@ -26,6 +26,9 @@ return {
             })
             vim.cmd("Copilot disable") -- disable copilot by default
         end,
+        keys = {
+            { "<leader>ac", ":Copilot ", desc = "ai: [c]opilot" },
+        },
     },
     { "giuxtaposition/blink-cmp-copilot" },
     {
