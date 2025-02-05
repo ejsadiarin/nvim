@@ -24,7 +24,7 @@ return {
                     help = true,
                 },
             })
-            vim.cmd("Copilot disable")
+            vim.cmd("Copilot disable") -- disable copilot by default
         end,
     },
     { "giuxtaposition/blink-cmp-copilot" },
@@ -72,10 +72,6 @@ return {
                         local clients = package.loaded["copilot"]
                                 and LazyVim.lsp.get_clients({ name = "copilot", bufnr = 0 })
                             or {}
-                        -- local ok, _ = pcall(require, "copilot")
-                        -- if ok then
-                        --     clients = LazyVim.lsp.get_clients({ name = "copilot", bufnr = 0 })
-                        -- end
                         if #clients > 0 then
                             local status = require("copilot.api").status.data.status
                             local stat = ""
@@ -83,12 +79,6 @@ return {
                                 stat = "pending"
                             elseif status == "" or "ok" or "Normal" then
                                 stat = "on"
-                            -- elseif status == "ok" then
-                            --     stat = "ok"
-                            -- elseif status == "Normal" then
-                            --     stat = "Normal"
-                            -- elseif status == "" then
-                            --     stat = ""
                             elseif status == "Warning" and "error" then
                                 stat = "warning"
                             end
