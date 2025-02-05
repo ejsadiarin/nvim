@@ -3,24 +3,29 @@ return {
         "zbirenbaum/copilot.lua",
         cmd = "Copilot",
         build = ":Copilot auth",
-        event = "BufReadPost",
-        opts = {
-            suggestion = {
-                enabled = not vim.g.ai_cmp,
-                auto_trigger = true,
-                hide_during_completion = vim.g.ai_cmp,
-                keymap = {
-                    accept = false, -- handled by nvim-cmp / blink.cmp
-                    next = "<M-]>",
-                    prev = "<M-[>",
+        -- event = "BufReadPost",
+        event = "InsertEnter",
+        config = function()
+            require("copilot").setup({
+                suggestion = {
+                    enabled = false,
+                    -- enabled = not vim.g.ai_cmp,
+                    auto_trigger = false,
+                    -- hide_during_completion = vim.g.ai_cmp,
+                    keymap = {
+                        accept = false, -- handled by nvim-cmp / blink.cmp
+                        next = "<M-]>",
+                        prev = "<M-[>",
+                    },
                 },
-            },
-            panel = { enabled = false },
-            filetypes = {
-                markdown = true,
-                help = true,
-            },
-        },
+                panel = { enabled = false },
+                filetypes = {
+                    markdown = true,
+                    help = true,
+                },
+            })
+            vim.cmd("Copilot disable")
+        end,
     },
     { "giuxtaposition/blink-cmp-copilot" },
     {
@@ -97,7 +102,7 @@ return {
                     end,
                 }
                 -- LazyVim.lualine.status("ai", function()
-                --     -- LazyVim.lualine.status(LazyVim.config.icons.kinds.Copilot, function()
+                -- LazyVim.lualine.status(LazyVim.config.icons.kinds.Copilot, function()
                 --     local clients = package.loaded["copilot"]
                 --             and LazyVim.lsp.get_clients({ name = "copilot", bufnr = 0 })
                 --         or {}
