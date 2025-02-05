@@ -83,6 +83,8 @@ return {
         },
         keymap = {
             ["<C-space>"] = { "show", "show_documentation", "hide_documentation" },
+            ["<A-m>"] = { "hide", "fallback" },
+            ["<A-e>"] = { "hide", "fallback" },
             ["<C-e>"] = { "hide", "fallback" },
             ["<CR>"] = { "accept", "fallback" },
 
@@ -105,6 +107,8 @@ return {
             ["<Down>"] = { "select_next", "fallback" },
             ["<C-p>"] = { "select_prev", "fallback" },
             ["<C-n>"] = { "select_next", "fallback" },
+            ["<C-k>"] = { "scroll_documentation_up", "fallback" },
+            ["<C-j>"] = { "scroll_documentation_down", "fallback" },
             ["<C-up>"] = { "scroll_documentation_up", "fallback" },
             ["<C-down>"] = { "scroll_documentation_down", "fallback" },
         },

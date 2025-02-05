@@ -1,3 +1,9 @@
+-- NOTE: to use copilot
+--      - :Copilot enable first (<leader>ac then ... enable)
+--      - use <M-.> or <M-,> to start/trigger suggestion & navigate through suggestions
+--      - use <M-m> or <M-e> or <C-e> to hide completion window (to see whole ai suggestion)
+--      - use <M-y> to accept suggestion
+
 return {
     {
         "zbirenbaum/copilot.lua",
@@ -8,17 +14,21 @@ return {
         config = function()
             require("copilot").setup({
                 suggestion = {
-                    enabled = false,
+                    enabled = true,
                     -- enabled = not vim.g.ai_cmp,
                     auto_trigger = false,
+                    hide_during_completion = true,
                     -- hide_during_completion = vim.g.ai_cmp,
                     keymap = {
-                        accept = false, -- handled by nvim-cmp / blink.cmp
-                        next = "<M-]>",
-                        prev = "<M-[>",
+                        -- accept = false, -- handled by nvim-cmp / blink.cmp
+                        -- accept = "<CR>", -- if no cmp, just autosuggest
+                        accept = "<M-y>", -- if no cmp, just autosuggest
+                        next = "<M-.>",
+                        prev = "<M-,>",
+                        dismiss = "<C-c>",
                     },
                 },
-                panel = { enabled = false },
+                panel = { enabled = true },
                 filetypes = {
                     markdown = true,
                     help = true,
@@ -26,42 +36,42 @@ return {
             })
             vim.cmd("Copilot disable") -- disable copilot by default
         end,
-        keys = {
-            { "<leader>ac", ":Copilot ", desc = "ai: [c]opilot" },
-        },
-    },
-    { "giuxtaposition/blink-cmp-copilot" },
-    {
-        "zbirenbaum/copilot.lua",
-        opts = function()
-            LazyVim.cmp.actions.ai_accept = function()
-                if require("copilot.suggestion").is_visible() then
-                    LazyVim.create_undo()
-                    require("copilot.suggestion").accept()
-                    return true
-                end
-            end
+        keys = function()
+            vim.keymap.set({ "n", "v" }, "<leader>ac", ":Copilot ", { desc = "ai: [c]opilot" })
         end,
     },
-    {
-        "saghen/blink.cmp",
-        optional = true,
-        dependencies = { "giuxtaposition/blink-cmp-copilot" },
-        opts = {
-            sources = {
-                default = { "copilot" },
-                providers = {
-                    copilot = {
-                        name = "copilot",
-                        module = "blink-cmp-copilot",
-                        kind = "Copilot",
-                        score_offset = 100,
-                        async = true,
-                    },
-                },
-            },
-        },
-    },
+    -- { "giuxtaposition/blink-cmp-copilot" },
+    -- {
+    --     "zbirenbaum/copilot.lua",
+    --     opts = function()
+    --         LazyVim.cmp.actions.ai_accept = function()
+    --             if require("copilot.suggestion").is_visible() then
+    --                 LazyVim.create_undo()
+    --                 require("copilot.suggestion").accept()
+    --                 return true
+    --             end
+    --         end
+    --     end,
+    -- },
+    -- {
+    --     "saghen/blink.cmp",
+    --     optional = true,
+    --     dependencies = { "giuxtaposition/blink-cmp-copilot" },
+    --     opts = {
+    --         sources = {
+    --             default = { "copilot" },
+    --             providers = {
+    --                 copilot = {
+    --                     name = "copilot",
+    --                     module = "blink-cmp-copilot",
+    --                     kind = "Copilot",
+    --                     score_offset = 100,
+    --                     async = true,
+    --                 },
+    --             },
+    --         },
+    --     },
+    -- },
     {
         "nvim-lualine/lualine.nvim",
         optional = true,
