@@ -249,26 +249,27 @@ return {
                             callback = "strategies.chat.slash_commands.file",
                             description = "Select a file with Snacks",
                             opts = {
-                                provider = LazyVim.pick.want(),
-                                -- provider = "snacks", -- Other options include 'default', 'mini_pick', 'fzf_lua', 'snacks'
+                                provider = "snacks", -- Other options include 'default', 'mini_pick', 'fzf_lua', 'snacks'
+                                -- provider = LazyVim.pick.want(),
                                 -- contains_code = true,
                             },
                         },
                         ["buffer"] = {
                             opts = {
-                                provider = LazyVim.pick.want(),
+                                provider = "snacks", -- Other options include 'default', 'mini_pick', 'fzf_lua', 'snacks'
+                                -- provider = LazyVim.pick.want(),
                             },
                         },
                         ["help"] = {
                             opts = {
-                                provider = LazyVim.pick.want(),
-                                -- provider = "snacks", -- telescope|mini_pick|fzf_lua
+                                provider = "snacks", -- Other options include 'default', 'mini_pick', 'fzf_lua', 'snacks'
+                                -- provider = LazyVim.pick.want(),
                             },
                         },
                         ["symbols"] = {
                             opts = {
-                                provider = LazyVim.pick.want(),
-                                -- provider = "snacks", -- default|telescope|mini_pick|fzf_lua
+                                provider = "snacks", -- Other options include 'default', 'mini_pick', 'fzf_lua', 'snacks'
+                                -- provider = LazyVim.pick.want(),
                             },
                         },
                     },
