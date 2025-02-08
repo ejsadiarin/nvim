@@ -35,6 +35,12 @@ return {
                             -- [vim.diagnostic.severity.HINT] = LazyVim.config.icons.diagnostics.Hint,
                             -- [vim.diagnostic.severity.INFO] = LazyVim.config.icons.diagnostics.Info,
                         },
+                        numhl = {
+                            [vim.diagnostic.severity.WARN] = "WarningMsg",
+                            [vim.diagnostic.severity.ERROR] = "ErrorMsg",
+                            [vim.diagnostic.severity.INFO] = "DiagnosticInfo",
+                            [vim.diagnostic.severity.HINT] = "DiagnosticHint",
+                        },
                     },
                 },
                 -- Enable this to enable the builtin LSP inlay hints on Neovim >= 0.10.0
