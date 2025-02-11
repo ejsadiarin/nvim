@@ -3,5 +3,10 @@
     "prefix": "ir",
     "body": "if err != nil {\n\treturn ${1:nil}, ${2:err}\n}",
     "description": "Snippet for if err != nil with return"
+  },
+  "if err != nil no body": {
+    "prefix": "ire",
+    "body": "if err != nil {\n\t${1:}\n}",
+    "description": "if err != nil without body"
   }
 }
