@@ -83,6 +83,8 @@ return {
                 return {
                     Normal = { fg = "#fcffb8", bg = "NONE" }, -- #19171a
                     CursorLine = { bg = "#1d1e24" },
+                    CursorLineNr = { fg = "#fcef0b" },
+                    -- CursorLineNr = { fg = "#b8bcb9" },
                     Cursor = { fg = "#fcef0b", bg = "#fcef0b" },
                     NormalFloat = { bg = "NONE" },
                     FloatTitle = { bg = "NONE" },

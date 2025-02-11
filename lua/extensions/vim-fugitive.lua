@@ -11,8 +11,8 @@ return {
         --     end,
         -- })
     end,
-    keys = {
-        { "<leader>G", "<CMD>tab Git<CR>", desc = "Open [G]it Fugitive" },
-        { "<leader>C", "<CMD>tab Git commit | startinsert<CR>", desc = "Git [C]ommit" },
-    },
+    -- keys = {
+    --     { "<leader>G", "<CMD>tab Git<CR>", desc = "Open [G]it Fugitive" },
+    --     { "<leader>C", "<CMD>tab Git commit | startinsert<CR>", desc = "Git [C]ommit" },
+    -- },
 }
