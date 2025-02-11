@@ -166,11 +166,11 @@ vim.api.nvim_create_autocmd({ "FileType", "BufEnter" }, {
     end,
 })
 
--- wincmd L all vim-fugitive buffers
-vim.api.nvim_create_autocmd("FileType", {
-    pattern = { "fugitive" },
-    command = "wincmd L",
-})
+-- -- wincmd L all vim-fugitive buffers
+-- vim.api.nvim_create_autocmd("FileType", {
+--     pattern = { "fugitive" },
+--     command = "wincmd L",
+-- })
 
 -- -- disable treesitter on large files (UPDATE (2024-10-24): better solved by folke's snacks.nvim bigfile module)
 -- local aug = vim.api.nvim_create_augroup('buf_large', { clear = true })
