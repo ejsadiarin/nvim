@@ -236,14 +236,14 @@ return {
                 -- adapter = "anthropic" | "copilot" | "deepseek" | "gemini" | "huggingface" | "openai" | "ollama"
                 chat = {
                     adapter = "copilot",
-                    -- keymaps = {
-                    --     send = {
-                    --         modes = { n = "<C-s>", i = "<C-s>" },
-                    --     },
-                    --     close = {
-                    --         modes = { n = "<C-c>", i = "<C-c>" },
-                    --     },
-                    -- },
+                    keymaps = {
+                        send = {
+                            modes = { n = "<C-s>", i = "<C-s>" },
+                        },
+                        close = {
+                            modes = { n = "<C-x>", i = "<C-x>" },
+                        },
+                    },
                     slash_commands = {
                         ["file"] = {
                             callback = "strategies.chat.slash_commands.file",
