@@ -119,6 +119,9 @@ return {
                     StatusLine = { bg = "NONE" },
                     SnippetTabstop = { bg = "NONE" },
 
+                    BlinkCmpKindMethod = { fg = "#a2e57b" },
+                    BlinkCmpKindFunction = { fg = "#a2e57b" },
+
                     -- FzfLuaTitle = { bg = "#1d1e24" },
 
                     TelescopeNormal = { fg = "#f2fffc" },

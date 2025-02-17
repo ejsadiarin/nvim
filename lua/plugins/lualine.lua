@@ -22,7 +22,10 @@ return {
             end
         end,
         dependencies = {
-            "someone-stole-my-name/yaml-companion.nvim",
+            {
+                "someone-stole-my-name/yaml-companion.nvim",
+                lazy = true,
+            },
         },
         opts = {
             extensions = {},

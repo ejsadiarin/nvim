@@ -194,6 +194,10 @@ return {
                         -- ["<S-Tab>"] = { "select_prev", "fallback" },
                         -- ["<Tab>"] = { "select_next", "fallback" },
                     },
+                    cmdline = {
+                        enabled = false,
+                        sources = {},
+                    },
                     sources = {
                         default = { "lsp", "path", "snippets", "buffer", "codecompanion" },
                         providers = {
@@ -203,7 +207,6 @@ return {
                                 enabled = true,
                             },
                         },
-                        cmdline = {}, -- Disable sources for command-line mode
                         -- compat = { "codecompanion" },
                     },
                 },

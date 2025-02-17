@@ -47,6 +47,23 @@ return {
             enabled = true,
             window = { border = "rounded" },
         },
+        cmdline = {
+            enabled = false,
+            sources = {},
+            -- uncomment if want
+            -- cmdline = function()
+            --     local type = vim.fn.getcmdtype()
+            --     -- search forward & backward
+            --     if type == "/" or type == "?" then
+            --         return { "buffer" }
+            --     end
+            --     -- commands
+            --     if type == ":" then
+            --         return { "cmdline" }
+            --     end
+            --     return {}
+            -- end,
+        },
         sources = {
             ---@type table
             default = { "lsp", "path", "snippets", "buffer" },
@@ -65,20 +82,6 @@ return {
             --     else
             --         return { "lsp", "path", "snippets", "buffer" }
             --     end
-            -- end,
-            cmdline = {},
-            -- uncomment if want
-            -- cmdline = function()
-            --     local type = vim.fn.getcmdtype()
-            --     -- search forward & backward
-            --     if type == "/" or type == "?" then
-            --         return { "buffer" }
-            --     end
-            --     -- commands
-            --     if type == ":" then
-            --         return { "cmdline" }
-            --     end
-            --     return {}
             -- end,
         },
         keymap = {

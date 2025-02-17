@@ -21,6 +21,13 @@ return {
             scroll = { enabled = true },
             bigfile = { enabled = true },
             profiler = { enabled = true },
+            image = {
+                enabled = true,
+                -- force = true,
+                -- doc = {
+                --     enabled = true,
+                -- },
+            },
             notifier = {
                 enabled = true,
                 timeout = 3000,
