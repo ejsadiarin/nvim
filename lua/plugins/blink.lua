@@ -1,5 +1,6 @@
 return {
     "saghen/blink.cmp",
+    build = "...", -- needs cargo
     lazy = false,
     dependencies = {
         "rafamadriz/friendly-snippets",
