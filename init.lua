@@ -41,6 +41,7 @@ require("lazy").setup({
         -- { import = "extensions.avante" },
         { import = "extensions.vim-fugitive" },
         { import = "extensions.colorizer" },
+        { import = "extensions.rest" },
         -- { import = "extensions.telescope" },
         -- { import = "extensions.fzf-lua" },
         -- { import = "extensions.image" },
