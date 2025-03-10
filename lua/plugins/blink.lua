@@ -1,10 +1,24 @@
 return {
     "saghen/blink.cmp",
-    build = "...", -- needs cargo
-    lazy = false,
+    -- build = "...", -- needs cargo
+    -- lazy = false,
+    version = not vim.g.lazyvim_blink_main and "*",
+    build = vim.g.lazyvim_blink_main and "cargo build --release",
+    opts_extend = {
+        "sources.completion.enabled_providers",
+        "sources.compat",
+        "sources.default",
+    },
     dependencies = {
         "rafamadriz/friendly-snippets",
+        {
+            "saghen/blink.compat",
+            optional = true, -- make optional so it's only enabled if any extras need it
+            opts = {},
+            version = not vim.g.lazyvim_blink_main and "*",
+        },
     },
+    event = "InsertEnter",
     ---@module 'blink.cmp'
     ---@type blink.cmp.Config
     opts = {
@@ -33,6 +47,7 @@ return {
             },
         },
         snippets = {
+            preset = "luasnip",
             expand = function(snippet)
                 return LazyVim.cmp.expand(snippet)
             end,
