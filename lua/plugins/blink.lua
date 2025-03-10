@@ -45,7 +45,7 @@ return {
         },
         signature = {
             ---@type boolean
-            enabled = true,
+            enabled = false,
             window = { border = "rounded" },
         },
         cmdline = {

@@ -46,19 +46,19 @@ vim.diagnostic.config({
     },
 })
 
+--- NOTE: LSP borders (hover and signature help) are already handled by Noice
 -- Rounded borders for LSP hover floating window
 -- TODO: add snacks.nvim win, check if have snacks.nvim first, if not then fallback to native
-vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-    -- Use a sharp border with `FloatBorder` highlights
-    border = "rounded",
-    -- add the title in hover float window
-    -- title = "hover"
-})
-
+-- vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
+--     -- Use a sharp border with `FloatBorder` highlights
+--     border = "rounded",
+--     -- add the title in hover float window
+--     -- title = "hover"
+-- })
 -- Rounded borders for LSP signatureHelp floating window
-vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
-    border = "rounded",
-})
+-- vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
+--     border = "rounded",
+-- })
 
 -- #################
 -- #    OPTIONS    #
