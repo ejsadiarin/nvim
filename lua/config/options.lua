@@ -170,6 +170,17 @@ vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
 --     -- eob = " ",
 -- }
 
+vim.opt.diffopt = {
+    "internal",
+    "filler",
+    "closeoff",
+    "context:12",
+    "algorithm:histogram",
+    "linematch:200",
+    "indent-heuristic",
+    -- "iwhite", -- I toggle this one, it doesn't fit all cases.
+}
+
 -- Preview substitutions live, as you type!
 vim.opt.inccommand = "split"
 

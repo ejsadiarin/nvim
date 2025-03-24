@@ -188,7 +188,8 @@ return {
         -- git
         { "<leader>gc", function() Snacks.picker.git_log() end, desc = "Git Log" },
         -- { "<leader>gc", "<cmd>FzfLua git_commits<CR>", desc = "[c]ommits" },
-        { "<leader>gd", function() Snacks.picker.git_diff() end, desc = "[d]iff (hunks)" },
+        { "<leader>gd", false },
+        -- { "<leader>gd", function() Snacks.picker.git_diff() end, desc = "[d]iff (hunks)" },
         { "<leader>gs", function() Snacks.picker.git_status() end, desc = "[s]tatus" },
         -- -- grep
         { "<leader>sg", LazyVim.pick("live_grep"), desc = "[g]rep (Root Dir)" },
