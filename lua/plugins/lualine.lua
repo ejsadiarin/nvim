@@ -1,10 +1,10 @@
-local function get_schema()
-    local schema = require("yaml-companion").get_buf_schema(0)
-    if schema.result[1].name == "none" then
-        return ""
-    end
-    return schema.result[1].name
-end
+-- local function get_schema()
+--     local schema = require("yaml-companion").get_buf_schema(0)
+--     if schema.result[1].name == "none" then
+--         return ""
+--     end
+--     return schema.result[1].name
+-- end
 
 return {
     {
@@ -22,10 +22,10 @@ return {
             end
         end,
         dependencies = {
-            {
-                "someone-stole-my-name/yaml-companion.nvim",
-                lazy = true,
-            },
+            -- {
+            --     "someone-stole-my-name/yaml-companion.nvim",
+            --     lazy = true,
+            -- },
         },
         opts = {
             extensions = {},
@@ -127,16 +127,16 @@ return {
                 },
 
                 lualine_x = {
-                    {
-                        function()
-                            return get_schema()
-                        end,
-                        padding = { left = 1, right = 1 },
-                        -- optional condition to ensure yaml-companion is loaded
-                        cond = function()
-                            return require("yaml-companion") ~= nil
-                        end,
-                    },
+                    -- {
+                    --     function()
+                    --         return get_schema()
+                    --     end,
+                    --     padding = { left = 1, right = 1 },
+                    --     -- optional condition to ensure yaml-companion is loaded
+                    --     cond = function()
+                    --         return require("yaml-companion") ~= nil
+                    --     end,
+                    -- },
 
                     {
                         "diff",

@@ -8,6 +8,7 @@ end
 
 return {
     "sindrets/diffview.nvim",
+    lazy = false,
     command = "DiffviewOpen",
     keys = {
         {
