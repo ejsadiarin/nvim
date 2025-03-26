@@ -40,6 +40,21 @@ return {
                         },
                     },
                 },
+                jsonls = {
+                    -- lazy-load schemastore when needed
+                    on_new_config = function(new_config)
+                        new_config.settings.json.schemas = new_config.settings.json.schemas or {}
+                        vim.list_extend(new_config.settings.json.schemas, require("schemastore").json.schemas())
+                    end,
+                    settings = {
+                        json = {
+                            format = {
+                                enable = true,
+                            },
+                            validate = { enable = true },
+                        },
+                    },
+                },
             },
             setup = {
                 yamlls = function()
@@ -59,6 +74,30 @@ return {
         "b0o/SchemaStore.nvim",
         lazy = true,
         version = false, -- last release is way too old
+        -- config = function()
+        --     require("lspconfig").yamlls.setup({
+        --         settings = {
+        --             yaml = {
+        --                 schemaStore = {
+        --                     -- You must disable built-in schemaStore support if you want to use
+        --                     -- this plugin and its advanced options like `ignore`.
+        --                     enable = false,
+        --                     -- Avoid TypeError: Cannot read properties of undefined (reading 'length')
+        --                     url = "",
+        --                 },
+        --                 schemas = require("schemastore").yaml.schemas(),
+        --             },
+        --         },
+        --     })
+        --     require("lspconfig").jsonls.setup({
+        --         settings = {
+        --             json = {
+        --                 schemas = require("schemastore").json.schemas(),
+        --                 validate = { enable = true },
+        --             },
+        --         },
+        --     })
+        -- end,
     },
 
     {
@@ -146,5 +185,44 @@ return {
                 silent = true,
             },
         },
+    },
+    -- JSON
+    {
+        "nvim-treesitter/nvim-treesitter",
+        opts = { ensure_installed = { "json5" } },
+    },
+    -- Kubernetes, Helm, etc.
+    {
+        "williamboman/mason.nvim",
+        opts = { ensure_installed = { "kube-linter" } },
+    },
+    { "towolf/vim-helm", ft = "helm" },
+    {
+        "nvim-treesitter/nvim-treesitter",
+        opts = { ensure_installed = { "helm" } },
+    },
+    {
+        "neovim/nvim-lspconfig",
+        opts = {
+            servers = {
+                helm_ls = {},
+            },
+            setup = {
+                yamlls = function()
+                    LazyVim.lsp.on_attach(function(client, buffer)
+                        if vim.bo[buffer].filetype == "helm" then
+                            vim.schedule(function()
+                                vim.cmd("LspStop ++force yamlls")
+                            end)
+                        end
+                    end, "yamlls")
+                end,
+            },
+        },
+    },
+    -- CICD
+    {
+        "williamboman/mason.nvim",
+        opts = { ensure_installed = { "actionlint" } },
     },
 }
