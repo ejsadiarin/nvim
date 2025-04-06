@@ -24,9 +24,13 @@ return {
             image = {
                 enabled = true,
                 -- force = true,
-                -- doc = {
-                --     enabled = true,
-                -- },
+                doc = {
+                    enabled = true,
+                    inline = false,
+                    float = true,
+                    max_width = 20,
+                    max_height = 10,
+                },
             },
             notifier = {
                 enabled = true,
