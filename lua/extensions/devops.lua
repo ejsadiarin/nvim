@@ -33,9 +33,28 @@ return {
                             schemaStore = {
                                 -- Must disable built-in schemaStore support to use
                                 -- schemas from SchemaStore.nvim plugin
-                                enable = false,
+                                -- enable = false,
                                 -- Avoid TypeError: Cannot read properties of undefined (reading 'length')
-                                url = "",
+                                -- url = "",
+                                -- on enable use this:
+                                enable = true,
+                                url = "https://www.schemastore.org/api/json/catalog.json",
+                            },
+                            schemas = {
+                                kubernetes = "*.yaml",
+                                ["http://json.schemastore.org/github-workflow"] = ".github/workflows/*",
+                                ["http://json.schemastore.org/github-action"] = ".github/action.{yml,yaml}",
+                                ["https://raw.githubusercontent.com/microsoft/azure-pipelines-vscode/master/service-schema.json"] = "azure-pipelines*.{yml,yaml}",
+                                ["https://raw.githubusercontent.com/ansible/ansible-lint/main/src/ansiblelint/schemas/ansible.json#/$defs/tasks"] = "roles/tasks/*.{yml,yaml}",
+                                ["https://raw.githubusercontent.com/ansible/ansible-lint/main/src/ansiblelint/schemas/ansible.json#/$defs/playbook"] = "*play*.{yml,yaml}",
+                                ["http://json.schemastore.org/prettierrc"] = ".prettierrc.{yml,yaml}",
+                                ["http://json.schemastore.org/kustomization"] = "kustomization.{yml,yaml}",
+                                ["http://json.schemastore.org/chart"] = "Chart.{yml,yaml}",
+                                ["https://json.schemastore.org/dependabot-v2"] = ".github/dependabot.{yml,yaml}",
+                                ["https://gitlab.com/gitlab-org/gitlab/-/raw/master/app/assets/javascripts/editor/schema/ci.json"] = "*gitlab-ci*.{yml,yaml}",
+                                ["https://raw.githubusercontent.com/OAI/OpenAPI-Specification/main/schemas/v3.1/schema.json"] = "*api*.{yml,yaml}",
+                                ["https://raw.githubusercontent.com/compose-spec/compose-spec/master/schema/compose-spec.json"] = "*compose*.{yml,yaml}",
+                                ["https://raw.githubusercontent.com/argoproj/argo-workflows/master/api/jsonschema/schema.json"] = "*flow*.{yml,yaml}",
                             },
                         },
                     },
@@ -220,9 +239,61 @@ return {
             },
         },
     },
+
     -- CICD
     {
         "williamboman/mason.nvim",
         opts = { ensure_installed = { "actionlint" } },
+    },
+
+    -- Formatting
+    {
+        "stevearc/conform.nvim",
+        event = { "BufReadPre", "BufNewFile", "InsertLeave" },
+        opts = {
+            formatters = {
+                shfmt = {
+                    prepend_args = { "-i", "2" }, -- 2 spaces instead of tab
+                },
+                stylua = {
+                    prepend_args = { "--indent-type", "Spaces", "--indent-width", "4" }, -- 4 spaces instead of tab
+                },
+                yamlfmt = {
+                    prepend_args = {
+                        "-formatter",
+                        "indent=2,include_document_start=true,retain_line_breaks_single=true",
+                    },
+                },
+            },
+            -- format_on_save = function()
+            --     -- Disable with a global variable
+            --     if not vim.g.autoformat then
+            --         return
+            --     end
+            --     return { async = false, timeout_ms = 500, lsp_fallback = false }
+            -- end,
+            -- log_level = vim.log.levels.TRACE,
+            formatters_by_ft = {
+                go = { "goimports", "gofmt" },
+                javascript = { "prettier" },
+                json = { "prettier" },
+                lua = { "stylua" },
+                ["markdown"] = { "prettier", "markdownlint-cli2", "markdown-toc" },
+                ["markdown.mdx"] = { "prettier", "markdownlint-cli2", "markdown-toc" },
+                python = { "isort", "ruff_format" },
+                sh = { "shfmt" },
+                terraform = { "terraform_fmt" },
+                ["terraform-vars"] = { "terraform_fmt" },
+                tex = { "latexindent" },
+                toml = { "taplo" },
+                typst = { "typstfmt" },
+                yaml = { "yamlfmt" },
+            },
+        },
+    },
+
+    {
+        "williamboman/mason.nvim",
+        opts = { ensure_installed = { "yamlfmt", "taplo", "terraform-ls" } },
     },
 }
