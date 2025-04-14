@@ -67,6 +67,7 @@ return {
                 {
                     mode = { "n", "v" },
                     { "<leader><tab>", group = "tabs" },
+                    { "<leader>q", group = "session" },
                     { "<leader>c", group = "code" },
                     { "<leader>d", group = "debug" },
                     { "<leader>dp", group = "profiler" },
