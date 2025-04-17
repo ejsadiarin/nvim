@@ -5,7 +5,7 @@ return {
         opts = {
             formatters = {
                 ["prettier"] = {
-                    prepend_args = { "--tab-width", "4", "--use-tabs", "false" },
+                    prepend_args = { "--tab-width", "2", "--use-tabs", "false" },
                 },
                 ["markdown-toc"] = {
                     condition = function(_, ctx)
@@ -30,6 +30,9 @@ return {
                 -- ["markdown.mdx"] = {},
                 ["markdown"] = { "prettier", "markdownlint-cli2", "markdown-toc" },
                 ["markdown.mdx"] = { "prettier", "markdownlint-cli2", "markdown-toc" },
+                javascript = { "prettier" },
+                typescript = { "prettier" },
+                json = { "prettier" },
             },
         },
     },

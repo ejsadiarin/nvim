@@ -45,7 +45,7 @@ require("lazy").setup({
         { import = "extensions.vim-fugitive" },
         { import = "extensions.colorizer" },
         { import = "extensions.rest" }, -- NOTE: requires luarocks and lua-5.1/lua5.1 (compat-lua) installed on machine
-        { import = "extensions.presence" },
+        -- { import = "extensions.presence" },
         { import = "extensions.diffview" },
         { import = "extensions.devops" },
         -- { import = "extensions.kulala" },
