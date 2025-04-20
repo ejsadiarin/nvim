@@ -27,9 +27,9 @@ return {
                 doc = {
                     enabled = true,
                     inline = false,
-                    float = true,
-                    max_width = 20,
-                    max_height = 10,
+                    float = false,
+                    max_width = 200,
+                    max_height = 100,
                 },
             },
             notifier = {
@@ -103,6 +103,8 @@ return {
         keys = {
         -- stylua: ignore start
         { "<leader>n", false },
+        { "<leader>ei", function() Snacks.image.hover() end, desc = "View Image", }, -- must disable opts.image.doc.inline and opts.image.doc.float
+        { "<leader>i", function() Snacks.image.hover() end, desc = "View Image", }, -- must disable opts.image.doc.inline and opts.image.doc.float
         { "<leader>cs", function() Snacks.scratch() end, desc = "Spawn Scratch Buffer", },
         { "<leader>cS", function() Snacks.scratch.select() end, desc = "Select Scratch Buffer", },
         { "<leader>un", function() Snacks.notifier.hide() end, desc = "Dismiss All Notifications", },
