@@ -192,7 +192,7 @@ return {
         { "<leader>fr", LazyVim.pick("oldfiles"), desc = "[r]ecent Files" },
         { "<leader>fR", LazyVim.pick("oldfiles", { filter = { cwd = true }}), desc = "[R]ecent Files (cwd)" },
         -- git
-        { "<leader>gc", function() Snacks.picker.git_log() end, desc = "Git Log" },
+        { "<leader>gc", function() Snacks.picker.git_branches() end, desc = "Git Log" },
         -- { "<leader>gc", "<cmd>FzfLua git_commits<CR>", desc = "[c]ommits" },
         { "<leader>gd", false },
         -- { "<leader>gd", function() Snacks.picker.git_diff() end, desc = "[d]iff (hunks)" },
