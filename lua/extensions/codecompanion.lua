@@ -8,10 +8,10 @@ local copilot_fn = function()
                 type = "enum",
                 desc = "ID of the model to use. See the model endpoint compatibility table for details on which models work with the Chat API.",
                 ---@type string|fun(): string
-                default = "claude-3.5-sonnet",
+                default = "claude-3.7-sonnet",
                 choices = {
                     "gpt-4o-2024-08-06",
-                    "claude-3.5-sonnet",
+                    "claude-3.7-sonnet",
                     ["o1-preview-2024-09-12"] = { opts = { stream = false } },
                     ["o1-mini-2024-09-12"] = { opts = { stream = false } },
                 },
@@ -296,7 +296,7 @@ return {
                 action_palette = {
                     width = 95,
                     height = 10,
-                    prompt = "Prompt ", -- Prompt used for interactive LLM calls
+                    prompt = "Prompt: ", -- Prompt used for interactive LLM calls
                     provider = "default", -- default|telescope|mini_pick
                     opts = {
                         show_default_actions = true, -- Show the default actions in the action palette?
@@ -310,6 +310,42 @@ return {
             },
             adapters = supported_adapters,
             prompt_library = {
+                ["DevOps Expert"] = {
+                    strategy = "chat",
+                    description = "Get specialized DevOps advice from an LLM",
+                    opts = {
+                        short_name = "devops",
+                        auto_submit = true,
+                        stop_context_insertion = true,
+                        user_prompt = true,
+                    },
+                    prompts = {
+                        {
+                            role = "system",
+                            content = function(context)
+                                return "I want you to act as a senior DevOps engineer with expertise in CI/CD, containerization, infrastructure as code, cloud platforms, and automation. You are also expert in Kubernetes. I will ask you specific questions and I want you to return concise explanations and practical code examples. Make sure that the practices are modern, standard, best practices, and effective."
+                            end,
+                        },
+                        {
+                            role = "user",
+                            content = function(context)
+                                local text = require("codecompanion.helpers.actions").get_code(
+                                    context.start_line,
+                                    context.end_line
+                                )
+
+                                return "I have the following configuration or code:\n\n```"
+                                    .. context.filetype
+                                    .. "\n"
+                                    .. text
+                                    .. "\n```\n\nPlease analyze this from a DevOps perspective."
+                            end,
+                            opts = {
+                                contains_code = true,
+                            },
+                        },
+                    },
+                },
                 ["Code Expert"] = {
                     strategy = "chat",
                     description = "Get some special advice from an LLM",
