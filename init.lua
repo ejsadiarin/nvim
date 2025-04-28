@@ -48,6 +48,7 @@ require("lazy").setup({
         -- { import = "extensions.presence" },
         { import = "extensions.diffview" },
         { import = "extensions.devops" },
+        { import = "extensions.cloak" },
         -- { import = "extensions.kulala" },
         -- { import = "extensions.telescope" },
         -- { import = "extensions.fzf-lua" },
