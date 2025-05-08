@@ -46,23 +46,6 @@ return {
                 window = { border = "rounded" },
             },
         },
-        snippets = {
-            preset = "luasnip",
-            expand = function(snippet)
-                return LazyVim.cmp.expand(snippet)
-            end,
-            active = function(filter)
-                return vim.snippet.active(filter)
-            end,
-            jump = function(direction)
-                vim.snippet.jump(direction)
-            end,
-        },
-        signature = {
-            ---@type boolean
-            enabled = false,
-            window = { border = "rounded" },
-        },
         cmdline = {
             enabled = false,
             sources = {},
@@ -79,6 +62,23 @@ return {
             --     end
             --     return {}
             -- end,
+        },
+        snippets = {
+            preset = "luasnip",
+            expand = function(snippet)
+                return LazyVim.cmp.expand(snippet)
+            end,
+            active = function(filter)
+                return vim.snippet.active(filter)
+            end,
+            jump = function(direction)
+                vim.snippet.jump(direction)
+            end,
+        },
+        signature = {
+            ---@type boolean
+            enabled = false,
+            window = { border = "rounded" },
         },
         sources = {
             ---@type table
