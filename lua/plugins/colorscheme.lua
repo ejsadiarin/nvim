@@ -1,3 +1,8 @@
+-- Colorscheme:
+-- --> Monokai
+-- --> Jellybeans
+-- --> Tokyo Night
+
 return {
     -- WARN: THIS IS A VERY HEAVILY CUSTOMIZED MONOKAI
     {
@@ -236,5 +241,11 @@ return {
                 }
             end,
         },
+    },
+    {
+        "wtfox/jellybeans.nvim",
+        lazy = false,
+        priority = 1000,
+        opts = {}, -- Optional
     },
 }

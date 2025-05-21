@@ -224,7 +224,7 @@ vim.keymap.set({ "n", "x" }, "P", '"+p', { desc = "Clipboard [p]aste" })
 vim.keymap.set("n", "<leader>ccs", ":noautocmd w<CR>", { desc = "Save without formatting" })
 
 -- telescope select colorscheme
-vim.keymap.set("n", "<leader>uU", ":Telescope colorscheme<CR>", { desc = "UI: [s]elect colorscheme" })
+vim.keymap.set("n", "<leader>uU", Snacks.picker.colorschemes, { desc = "UI: [s]elect colorscheme" })
 
 -- transform selected to markdown link format
 -- vim.keymap.set('x', '<leader>ml', , {desc = 'Transform to markdown link'})
