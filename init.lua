@@ -25,6 +25,10 @@ require("lazy").setup({
         -- add LazyVim and import its plugins
         { "LazyVim/LazyVim", import = "lazyvim.plugins" },
         -- langs
+        -- for data-engineering BEGIN
+        { import = "lazyvim.plugins.extras.lang.sql" },
+        { import = "lazyvim.plugins.extras.lang.python" },
+        -- for data-engineering END
         { import = "lazyvim.plugins.extras.lang.go" },
         -- { import = "lazyvim.plugins.extras.lang.yaml" },
         -- { import = "lazyvim.plugins.extras.lang.ansible" },
@@ -33,6 +37,7 @@ require("lazy").setup({
         { import = "lazyvim.plugins.extras.lang.tailwind" },
         { import = "lazyvim.plugins.extras.lang.clangd" },
         { import = "lazyvim.plugins.extras.dap.core" },
+        { import = "lazyvim.plugins.extras.test.core" },
         { import = "lazyvim.plugins.extras.coding.luasnip" },
         -- import/override with your plugins
         { import = "plugins" },
@@ -50,7 +55,6 @@ require("lazy").setup({
         { import = "extensions.diffview" },
         { import = "extensions.devops" },
         { import = "extensions.cloak" },
-        -- { import = "extensions.kulala" },
         -- { import = "extensions.telescope" },
         -- { import = "extensions.fzf-lua" },
         -- { import = "extensions.image" },

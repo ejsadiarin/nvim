@@ -235,7 +235,7 @@ return {
         ft = { "yaml", "yml" },
         keys = {
             {
-                "<leader>ta",
+                "<leader>tA",
                 function()
                     require("ansible").run()
                 end,

@@ -101,6 +101,11 @@ return {
                     SignColumn = { bg = "NONE" },
                     Comment = { bg = "NONE" },
 
+                    -- For DBUI (vim-dadbod-ui)
+                    NotificationInfo = { bg = "NONE" },
+                    NotificationWarning = { bg = "NONE" },
+                    NotificationError = { bg = "NONE" },
+
                     ["@lsp.type.namespace.go"] = { fg = "#be7be5" },
                     -- ["@lsp.type.namespace.go"] = { fg = "#b8bcb9" },
                     -- ['@lsp.type.namespace.go'] = { fg = '#fcffb8' },

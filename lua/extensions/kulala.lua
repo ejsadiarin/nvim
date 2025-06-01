@@ -7,9 +7,9 @@ return {
             global_keymaps = true,
         },
         keys = {
-            { "<leader>Rs", desc = "Send request" },
-            { "<leader>Ra", desc = "Send all requests" },
-            { "<leader>Rb", desc = "Open scratchpad" },
+            { "<leader>rs", desc = "Send request" },
+            { "<leader>ra", desc = "Send all requests" },
+            { "<leader>rb", desc = "Open scratchpad" },
         },
     },
 }

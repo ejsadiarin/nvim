@@ -370,7 +370,9 @@ vim.keymap.set("n", "<leader>[", "<CMD>tabprev<CR>", { desc = "tabprev" })
 vim.keymap.set("n", "<leader>]", "<CMD>tabnext<CR>", { desc = "tabnext" })
 
 -- SPECIALS [e]
-vim.keymap.set("n", "<leader>ej", function()
+vim.keymap.set("n", "<leader>ej", "<cmd>DBUIToggle<cr>", { desc = "open/close dbui", silent = true })
+
+vim.keymap.set("n", "<leader>eg", function()
     -- requires go and bat to be installed
     if vim.fn.executable("go") == 0 then
         vim.notify("'go' is not installed or not in PATH!", vim.log.levels.ERROR)

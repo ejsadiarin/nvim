@@ -8,7 +8,7 @@ return {
         opts = {},
         -- stylua: ignore
         keys = {
-          { "<leader>r", function() require("persistence").load() end, desc = "Restore Session" },
+          { "<leader>qs", function() require("persistence").load() end, desc = "Restore Session" },
         },
     },
 }
