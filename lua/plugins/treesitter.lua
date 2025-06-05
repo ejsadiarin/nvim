@@ -44,6 +44,7 @@ return {
                 "markdown_inline",
                 "printf",
                 "python",
+                "sql",
                 "query",
                 "regex",
                 "toml",

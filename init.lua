@@ -25,10 +25,6 @@ require("lazy").setup({
         -- add LazyVim and import its plugins
         { "LazyVim/LazyVim", import = "lazyvim.plugins" },
         -- langs
-        -- for data-engineering BEGIN
-        { import = "lazyvim.plugins.extras.lang.sql" },
-        { import = "lazyvim.plugins.extras.lang.python" },
-        -- for data-engineering END
         { import = "lazyvim.plugins.extras.lang.go" },
         -- { import = "lazyvim.plugins.extras.lang.yaml" },
         -- { import = "lazyvim.plugins.extras.lang.ansible" },
@@ -52,6 +48,8 @@ require("lazy").setup({
         { import = "extensions.kulala" },
         -- { import = "extensions.rest" }, -- NOTE: requires luarocks and lua-5.1/lua5.1 (compat-lua) installed on machine
         -- { import = "extensions.presence" },
+        { import = "extensions.data-engineering.sql" },
+        { import = "extensions.data-engineering.python" },
         { import = "extensions.diffview" },
         { import = "extensions.devops" },
         { import = "extensions.cloak" },
