@@ -6,7 +6,7 @@ if lazyvim_docs then
     vim.g.lazyvim_python_ruff = "ruff"
 end
 
-local lsp = vim.g.lazyvim_python_lsp or "pyright"
+local lsp = vim.g.lazyvim_python_lsp or "basedpyright"
 local ruff = vim.g.lazyvim_python_ruff or "ruff"
 
 return {
@@ -73,6 +73,18 @@ return {
             for _, server in ipairs(servers) do
                 opts.servers[server] = opts.servers[server] or {}
                 opts.servers[server].enabled = server == lsp or server == ruff
+            end
+            if lsp == "pyright" or lsp == "basedpyright" then
+                opts.servers[lsp] = {
+                    enabled = true,
+                    settings = {
+                        python = {
+                            analysis = {
+                                diagnosticMode = "off",
+                            },
+                        },
+                    },
+                }
             end
         end,
     },

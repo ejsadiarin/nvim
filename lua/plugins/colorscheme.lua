@@ -101,6 +101,9 @@ return {
                     SignColumn = { bg = "NONE" },
                     Comment = { bg = "NONE" },
 
+                    SnacksIndentScope = { fg = "#555555" },
+                    SnacksIndent = { fg = "#222a2d" },
+
                     -- For DBUI (vim-dadbod-ui)
                     NotificationInfo = { bg = "NONE" },
                     NotificationWarning = { bg = "NONE" },

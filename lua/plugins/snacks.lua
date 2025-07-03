@@ -90,8 +90,9 @@ return {
                     --        ███████╗██║  ██║███████╗   ██║    ╚████╔╝ ██║██║ ╚═╝ ██║
                     --        ╚══════╝╚═╝  ╚═╝╚══════╝   ╚═╝     ╚═══╝  ╚═╝╚═╝     ╚═╝
                     -- ]],
+                    -- stylua: ignore
                     header = [[
-                     fok
+late at night i think of you.
 ]],
                 -- stylua: ignore start
                 ---@type snacks.dashboard.Item[]
