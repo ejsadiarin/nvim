@@ -319,6 +319,7 @@ return {
                                     -- default = "claude-3.7-sonnet",
                                     default = "claude-sonnet-4",
                                     -- default = "gpt-4.1",
+                                    -- default = "gemini-2.5-pro",
                                 },
                             },
                         })

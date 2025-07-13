@@ -26,6 +26,7 @@ require("lazy").setup({
         { "LazyVim/LazyVim", import = "lazyvim.plugins" },
         -- langs
         { import = "lazyvim.plugins.extras.lang.go" },
+        -- { import = "lazyvim.plugins.extras.lang.java" }, -- NOTE: somehow { import = "extensions.java" } works, see below
         -- { import = "lazyvim.plugins.extras.lang.yaml" },
         -- { import = "lazyvim.plugins.extras.lang.ansible" },
         { import = "lazyvim.plugins.extras.lang.docker" },
@@ -53,6 +54,7 @@ require("lazy").setup({
         { import = "extensions.diffview" },
         { import = "extensions.devops" },
         { import = "extensions.cloak" },
+        { import = "extensions.java" },
         -- { import = "extensions.telescope" },
         -- { import = "extensions.fzf-lua" },
         -- { import = "extensions.image" },
