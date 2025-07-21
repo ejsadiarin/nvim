@@ -277,6 +277,8 @@ local function open_todo_in_floating_window()
         local row = math.floor((vim.o.lines - height) / 8)
         local col = math.floor((vim.o.columns - width) / 2)
         Snacks.win({
+            title = date_today,
+            title_pos = "center",
             file = todo_file,
             width = width,
             height = height,
@@ -316,6 +318,8 @@ local function open_backlog_in_floating_window()
 
     vim.fn.system(script_path)
 
+    local date_today = os.date("%Y-%m-%d")
+
     local backlog_file = vim.fn.expand("$VAULT/backlog.md")
     if not vim.uv.fs_stat(backlog_file) then
         vim.notify("Failed to find the backlog file: " .. backlog_file, vim.log.levels.ERROR)
@@ -329,6 +333,8 @@ local function open_backlog_in_floating_window()
         local row = math.floor((vim.o.lines - height) / 8)
         local col = math.floor((vim.o.columns - width) / 2)
         Snacks.win({
+            title = date_today,
+            title_pos = "center",
             file = backlog_file,
             width = width,
             height = height,
@@ -361,6 +367,54 @@ end
 
 vim.api.nvim_create_user_command("OpenBacklog", open_backlog_in_floating_window, {})
 vim.keymap.set("n", "<leader>J", "<CMD>OpenBacklog<CR>", { desc = "Open Backlog" })
+
+local function open_todo_template()
+    local todo_template_file = vim.fn.expand("$VAULT/Personal/todo-template.md")
+    if not vim.uv.fs_stat(todo_template_file) then
+        vim.notify("Failed to find the todo_template file: " .. todo_template_file, vim.log.levels.ERROR)
+        return
+    end
+
+    -- if has snacks.nvim plugin then use that to create the floating window instead
+    if pcall(require, "snacks") then
+        local width = math.floor(vim.o.columns * 0.8)
+        local height = math.floor(vim.o.lines * 0.8)
+        local row = math.floor((vim.o.lines - height) / 8)
+        local col = math.floor((vim.o.columns - width) / 2)
+        Snacks.win({
+            title = "Todo Template",
+            title_pos = "center",
+            file = todo_template_file,
+            width = width,
+            height = height,
+            row = row,
+            col = col,
+            style = "float",
+            border = "rounded",
+            bo = {
+                modifiable = true,
+            },
+        })
+    else
+        local width = math.floor(vim.o.columns * 0.8)
+        local height = math.floor(vim.o.lines * 0.8)
+        local row = math.floor((vim.o.lines - height) / 2)
+        local col = math.floor((vim.o.columns - width) / 2)
+        local buf = vim.api.nvim_create_buf(false, true)
+        vim.api.nvim_open_win(buf, true, {
+            relative = "editor",
+            width = width,
+            height = height,
+            row = row,
+            col = col,
+            style = "minimal",
+            border = "rounded",
+        })
+        vim.cmd("edit " .. todo_template_file)
+    end
+end
+vim.api.nvim_create_user_command("OpenTodoTemplate", open_todo_template, {})
+vim.keymap.set("n", "<leader>H", "<CMD>OpenTodoTemplate<CR>", { desc = "Open todo-template" })
 
 if pcall(require, "oil") then
     vim.keymap.set("n", "<leader>-", "<CMD>Oil<CR>", { desc = "Open Oil" })

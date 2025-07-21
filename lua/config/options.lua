@@ -110,9 +110,9 @@ vim.opt.showmode = true -- Show mode for exquisite simplicity
 
 vim.opt.clipboard = "unnamed"
 
-vim.opt.tabstop = 4 -- Insert 4 spaces for a tab
-vim.opt.softtabstop = 4 -- Number of spaces tabs count for while editing
-vim.opt.shiftwidth = 4 -- the number of spaces inserted for each indentation
+vim.opt.tabstop = 2 -- Insert 4 spaces for a tab
+vim.opt.softtabstop = 2 -- Number of spaces tabs count for while editing
+vim.opt.shiftwidth = 2 -- the number of spaces inserted for each indentation
 vim.opt.expandtab = true -- convert tabs to spaces
 vim.opt.smartindent = true -- Makes indenting smart
 vim.opt.breakindent = true -- Enable break indent
