@@ -488,3 +488,5 @@ vim.api.nvim_create_user_command("Messages", function()
     vim.keymap.set("n", "q", "<cmd>close<CR>", { buffer = scratch_buffer })
 end, {})
 vim.keymap.set("n", "<leader>nm", "<CMD>Messages<CR>", { desc = "notification: [m]essages" })
+
+vim.keymap.set("n", "<leader>ea", "<CMD>MCPHub<CR>", { desc = "open mcphub" })
