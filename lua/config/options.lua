@@ -8,7 +8,7 @@ vim.g.maplocalleader = " "
 
 if pcall(require, "lazyvim") then
     vim.g.snacks_animate = false
-    vim.g.minipairs_disable = true
+    vim.g.minipairs_disable = false
     vim.g.lazyvim_picker = "snacks"
 end
 

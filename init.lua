@@ -56,7 +56,7 @@ require("lazy").setup({
         { import = "extensions.diffview" },
         { import = "extensions.devops" },
         { import = "extensions.cloak" },
-        { import = "extensions.mason-workaround" },
+        -- { import = "extensions.mason-workaround" },
         { import = "extensions.lsp" },
         -- { import = "extensions.java" },
         { import = "extensions.nvim-java" },
