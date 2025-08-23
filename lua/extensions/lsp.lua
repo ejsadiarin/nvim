@@ -106,6 +106,11 @@ return {
                             },
                         },
                     },
+                    jdtls = {
+                        handlers = {
+                            ["$/progress"] = function(_, result, ctx) end,
+                        },
+                    },
                     gopls = {
                         settings = {
                             gopls = {
