@@ -27,7 +27,7 @@ require("lazy").setup({
         -- langs
         { import = "lazyvim.plugins.extras.lang.go" },
         { import = "lazyvim.plugins.extras.lang.java" }, -- NOTE: use this
-        -- { import = "lazyvim.plugins.extras.lang.yaml" },
+        { import = "lazyvim.plugins.extras.lang.yaml" },
         -- { import = "lazyvim.plugins.extras.lang.ansible" },
         { import = "lazyvim.plugins.extras.lang.docker" },
         { import = "lazyvim.plugins.extras.lang.typescript" },
@@ -46,7 +46,7 @@ require("lazy").setup({
         -- { import = "extensions.avante" },
         { import = "extensions.vim-fugitive" },
         { import = "extensions.colorizer" },
-        { import = "extensions.kulala" },
+        { import = "extensions.kulala" }, -- NOTE: better than rest.nvim (or better just use postman)
         { import = "extensions.mcphub" },
         { import = "extensions.ts-error-translator" },
         -- { import = "extensions.rest" }, -- NOTE: requires luarocks and lua-5.1/lua5.1 (compat-lua) installed on machine
