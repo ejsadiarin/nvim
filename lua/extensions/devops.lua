@@ -219,7 +219,7 @@ return {
 
     -- ANSIBLE
     {
-        "williamboman/mason.nvim",
+        "mason-org/mason.nvim",
         opts = { ensure_installed = { "ansible-lint" } },
     },
     {
@@ -251,7 +251,7 @@ return {
     },
     -- Kubernetes, Helm, etc.
     {
-        "williamboman/mason.nvim",
+        "mason-org/mason.nvim",
         opts = { ensure_installed = { "kube-linter" } },
     },
     { "towolf/vim-helm", ft = "helm" },
@@ -281,7 +281,7 @@ return {
 
     -- CICD
     {
-        "williamboman/mason.nvim",
+        "mason-org/mason.nvim",
         opts = { ensure_installed = { "actionlint" } },
     },
 
@@ -332,7 +332,7 @@ return {
     },
 
     {
-        "williamboman/mason.nvim",
+        "mason-org/mason.nvim",
         opts = { ensure_installed = { "yamlfmt", "taplo", "terraform-ls" } },
     },
 }

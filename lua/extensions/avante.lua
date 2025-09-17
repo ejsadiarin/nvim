@@ -65,7 +65,7 @@ return {
             "MunifTanjim/nui.nvim",
             "folke/snacks.nvim", -- for input provider snacks
             --- The below dependencies are optional,
-            -- "nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
+            -- "nvim-tree/nvim-web-devicons", -- or nvim-mini/mini.icons
             "zbirenbaum/copilot.lua", -- for providers='copilot'
             {
                 -- support for image pasting

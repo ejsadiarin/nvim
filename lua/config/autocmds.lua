@@ -47,7 +47,7 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 
 -- -- Remove padding around neovim instance (OSC 11 and OSC 111 keeps terminal background color in sync with Neovim's bg color)
 -- -- see: https://www.reddit.com/r/neovim/comments/1ehidxy/you_can_remove_padding_around_neovim_instance/
--- -- also see: `mini.misc` module from 'mini.nvim' setup_termbg_sync() (ref: https://github.com/echasnovski/mini.nvim/blob/74e6b722c91113bc70d4bf67249ed8de0642b20e/doc/mini-misc.txt#L171)
+-- -- also see: `mini.misc` module from 'mini.nvim' setup_termbg_sync() (ref: https://github.com/nvim-mini/mini.nvim/blob/74e6b722c91113bc70d4bf67249ed8de0642b20e/doc/mini-misc.txt#L171)
 -- -- NOTE: (1) Make sure to have this executed before you load color scheme. Otherwise there will be no event for it to sync. Alternatively, add an explicit call to the first callback function and it should work as is.
 -- -- (2) It will not sync if you manually set Normal highlight group. It must be followed by the ColorScheme event.
 -- vim.api.nvim_create_autocmd({ 'UIEnter', 'ColorScheme' }, {

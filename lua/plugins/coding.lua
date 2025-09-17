@@ -1,7 +1,7 @@
 return {
     -- auto pairs
     {
-        "echasnovski/mini.pairs",
+        "nvim-mini/mini.pairs",
         event = "VeryLazy",
         opts = {
             modes = { insert = true, command = true, terminal = false },
@@ -32,7 +32,7 @@ return {
 
     -- Better text-objects
     {
-        "echasnovski/mini.ai",
+        "nvim-mini/mini.ai",
         event = "VeryLazy",
         opts = function()
             local ai = require("mini.ai")
@@ -78,7 +78,7 @@ return {
         -- - gsaiw) - [S]urround [A]dd [I]nner [W]ord [)]Paren
         -- - gsd'   - [S]urround [D]elete [']quotes
         -- - gsr)'  - [S]urround [R]eplace [)] [']
-        "echasnovski/mini.surround",
+        "nvim-mini/mini.surround",
         event = "VeryLazy",
         opts = {
             mappings = {
