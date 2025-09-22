@@ -27,11 +27,12 @@ require("lazy").setup({
         -- langs
         { import = "lazyvim.plugins.extras.lang.go" },
         { import = "lazyvim.plugins.extras.lang.java" }, -- NOTE: use this
-        { import = "lazyvim.plugins.extras.lang.yaml" },
+        -- { import = "lazyvim.plugins.extras.lang.yaml" },
         -- { import = "lazyvim.plugins.extras.lang.ansible" },
         { import = "lazyvim.plugins.extras.lang.docker" },
         { import = "lazyvim.plugins.extras.lang.typescript" },
         { import = "lazyvim.plugins.extras.lang.tailwind" },
+        { import = "lazyvim.plugins.extras.lang.terraform" },
         { import = "lazyvim.plugins.extras.lang.clangd" },
         { import = "lazyvim.plugins.extras.dap.core" },
         { import = "lazyvim.plugins.extras.test.core" },
@@ -62,6 +63,7 @@ require("lazy").setup({
         -- { import = "extensions.telescope" },
         -- { import = "extensions.fzf-lua" },
         -- { import = "extensions.image" },
+        -- { import = "extensions.dbt" },
     },
     defaults = {
         -- By default, only LazyVim plugins will be lazy-loaded. Your custom plugins will load during startup.
