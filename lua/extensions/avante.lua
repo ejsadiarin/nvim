@@ -1,17 +1,13 @@
 return {
     {
         "yetone/avante.nvim",
-        build = function()
-            -- conditionally use the correct build system for the current OS
-            if vim.fn.has("win32") == 1 then
-                return "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false"
-            else
-                return "make"
-            end
-        end,
+        build = vim.fn.has("win32") ~= 0
+                and "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false"
+            or "make BUILD_FROM_SOURCE=true",
         event = "VeryLazy",
         version = false, -- set this if you want to always pull the latest change
         opts = {
+            instructions_file = "avante.md",
             ---@alias Provider "claude" | "openai" | "azure" | "gemini" | "cohere" | "copilot" | string
             provider = "copilot",
             auto_suggestions_provider = "copilot", -- Since auto-suggestions are a high-frequency operation and therefore expensive, it is recommended to specify an inexpensive provider or even a free provider: copilot
@@ -31,7 +27,7 @@ return {
                 -- },
                 claude = {
                     endpoint = "https://api.anthropic.com",
-                    model = "claude-sonnet-4-20250514",
+                    model = "claude-sonnet-4.5",
                     extra_request_body = {
                         max_tokens = 4096,
                         temperature = 0,
@@ -40,7 +36,7 @@ return {
                 },
                 gemini = {
                     endpoint = "https://api.gemini.com",
-                    model = "gemini-2.0-flash-thinking-exp",
+                    model = "gemini-2.5-pro",
                     timeout = 20000, -- Timeout in milliseconds
                     extra_request_body = {
                         max_tokens = 2048,
@@ -55,10 +51,16 @@ return {
                 throttle = 600,
             },
         },
-        -- keys = {
-        --     { "<leader>aa", function() require("avante.api").ask() end, desc = "avante: [a]sk", },
-        --     { "<leader>ee", "<CMD>AvanteToggle<CR>", desc = "toggle avant[e]" },
-        -- },
+        keys = {
+            {
+                "<leader>aa",
+                function()
+                    require("avante.api").ask()
+                end,
+                desc = "avante: [a]sk",
+            },
+            { "<leader>ee", "<CMD>AvanteToggle<CR>", desc = "toggle avant[e]" },
+        },
         dependencies = {
             "stevearc/dressing.nvim",
             "nvim-lua/plenary.nvim",

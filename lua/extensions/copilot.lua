@@ -9,8 +9,7 @@ return {
         "zbirenbaum/copilot.lua",
         cmd = "Copilot",
         build = ":Copilot auth",
-        -- event = "BufReadPost",
-        event = "InsertEnter",
+        event = "BufReadPost",
         config = function()
             require("copilot").setup({
                 suggestion = {
@@ -86,7 +85,7 @@ return {
                                 and LazyVim.lsp.get_clients({ name = "copilot", bufnr = 0 })
                             or {}
                         if #clients > 0 then
-                            local status = require("copilot.api").status.data.status
+                            local status = require("copilot.status").data.status
                             local stat = ""
                             if status == "InProgress" and "pending" then
                                 stat = "pending"
@@ -116,5 +115,14 @@ return {
                 -- end)
             )
         end,
+    },
+    {
+        "neovim/nvim-lspconfig",
+        opts = {
+            servers = {
+                -- copilot.lua only works with its own copilot lsp server
+                copilot = { enabled = false },
+            },
+        },
     },
 }

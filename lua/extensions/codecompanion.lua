@@ -1,94 +1,3 @@
--- local copilot_fn = function()
---     local copilot_config = {
---         -- env = { api_key = "GITHUB_TOKEN" }, -- see github/copilot.vim for details
---         schema = {
---             model = {
---                 order = 1,
---                 mapping = "parameters",
---                 type = "enum",
---                 desc = "ID of the model to use. See the model endpoint compatibility table for details on which models work with the Chat API.",
---                 ---@type string|fun(): string
---                 -- default = "claude-3.7-sonnet",
---                 default = "claude-sonnet-4-20250514",
---                 choices = {
---                     "gpt-4.1",
---                     "claude-sonnet-4-20250514",
---                     "claude-3.7-sonnet",
---                     ["o1-preview-2024-09-12"] = { opts = { stream = false } },
---                     ["o1-mini-2024-09-12"] = { opts = { stream = false } },
---                 },
---             },
---         },
---     }
---     return require("codecompanion.adapters").extend("copilot", copilot_config)
--- end
---
--- local anthropic_fn = function()
---     local anthropic_config = {
---         env = { api_key = "ANTHROPIC_API_KEY" },
---     }
---     return require("codecompanion.adapters").extend("anthropic", anthropic_config)
--- end
---
--- local openai_fn = function()
---     local openai_config = {
---         env = { api_key = "OPENAI_API_KEY" },
---     }
---     return require("codecompanion.adapters").extend("openai", openai_config)
--- end
---
--- local gemini_fn = function()
---     local gemini_config = {
---         env = { api_key = "GEMINI_API_KEY" },
---         schema = {
---             model = {
---                 default = "gemini-2.0-flash-thinking-exp",
---             },
---         },
---     }
---     return require("codecompanion.adapters").extend("gemini", gemini_config)
--- end
---
--- local deepseek_fn = function()
---     local deepseek_config = {
---         env = { api_key = "DEEPSEEK_API_KEY" }, -- api_key = "cmd: pass show keys/deepseek | head -n 1",
---         -- schema = {
---         --   model = {
---         --     default = "deepseek-reasoner",
---         --   },
---         -- },
---     }
---     return require("codecompanion.adapters").extend("deepseek", deepseek_config)
--- end
---
--- --- Ollama config for CodeCompanion.
--- local ollama_fn = function()
---     return require("codecompanion.adapters").extend("ollama", {
---         schema = {
---             model = {
---                 default = "deepseek-r1:7b",
---                 -- default = "llama3.1:7b",
---                 -- default = "codellama:7b",
---             },
---             num_ctx = {
---                 default = 16384,
---             },
---             num_predict = {
---                 default = -1,
---             },
---         },
---     })
--- end
---
--- local supported_adapters = {
---     copilot = copilot_fn,
---     anthropic = anthropic_fn,
---     openai = openai_fn,
---     gemini = gemini_fn,
---     deepseek = deepseek_fn,
---     ollama = ollama_fn,
--- }
-
 local function save_path()
     local Path = require("plenary.path")
     local p = Path:new(vim.fn.stdpath("data") .. "/codecompanion_chats")
@@ -187,7 +96,6 @@ return {
         dependencies = {
             "nvim-lua/plenary.nvim",
             "nvim-treesitter/nvim-treesitter",
-            -- "github/copilot.vim",
             {
                 "saghen/blink.cmp",
                 opts = {
@@ -237,27 +145,12 @@ return {
             end, { desc = "find previous ch[a]t files" })
         end,
         opts = {
-            extensions = {
-                -- mcphub = {
-                --     callback = "mcphub.extensions.codecompanion",
-                --     opts = {
-                --         -- MCP Tools
-                --         make_tools = true, -- Make individual tools (@server__tool) and server groups (@server) from MCP servers
-                --         show_server_tools_in_chat = true, -- Show individual tools in chat completion (when make_tools=true)
-                --         add_mcp_prefix_to_tool_names = false, -- Add mcp__ prefix (e.g `@mcp__github`, `@mcp__neovim__list_issues`)
-                --         show_result_in_chat = true, -- Show tool results directly in chat buffer
-                --         format_tool = nil, -- function(tool_name:string, tool: CodeCompanion.Agent.Tool) : string Function to format tool names to show in the chat buffer
-                --         -- MCP Resources
-                --         make_vars = true, -- Convert MCP resources to #variables for prompts
-                --         -- MCP Prompts
-                --         make_slash_commands = true, -- Add MCP prompts as /slash commands
-                --     },
-                -- },
-            },
             strategies = {
-                -- adapter = "anthropic" | "copilot" | "deepseek" | "gemini" | "huggingface" | "openai" | "ollama"
+                -- You can set different adapters per strategy
+                -- adapter = "anthropic" | "copilot" | "gemini" | "openai" | "ollama" | "deepseek" | "huggingface"
                 chat = {
                     adapter = "copilot",
+                    model = "claude-sonnet-4.5",
                     keymaps = {
                         send = {
                             modes = { n = "<C-s>", i = "<C-s>" },
@@ -311,32 +204,107 @@ return {
                     -- },
                     -- agent = { adapter = "copilot" },
                 },
+                cmd = { adapter = "copilot" },
                 display = {
                     action_palette = {
                         width = 95,
                         height = 10,
                         prompt = "Prompt: ", -- Prompt used for interactive LLM calls
-                        provider = "default", -- default|telescope|mini_pick
+                        provider = "snacks", -- default|telescope|mini_pick
                         opts = {
                             show_default_actions = true, -- Show the default actions in the action palette?
                             show_default_prompt_library = true, -- Show the default prompt library in the action palette?
                         },
                     },
                     chat = {
-                        show_settings = true,
+                        -- show_settings = true,
+                        diff_window = {
+                            ---@return number|fun(): number
+                            width = function()
+                                return math.min(120, vim.o.columns - 10)
+                            end,
+                            ---@return number|fun(): number
+                            height = function()
+                                return vim.o.lines - 4
+                            end,
+                            opts = {
+                                number = true,
+                            },
+                        },
                     },
-                    diff = { provider = "default" },
+                    -- diff = { provider = "default" },
                 },
                 adapters = {
+                    acp = {
+                        gemini_cli = function()
+                            return require("codecompanion.adapters").extend("gemini_cli", {
+                                defaults = {
+                                    auth_method = "oauth-personal", -- "oauth-personal"|"gemini-api-key"|"vertex-ai"
+                                },
+                                env = {
+                                    GEMINI_API_KEY = "GEMINI_API_KEY",
+                                },
+                            })
+                        end,
+                    },
+                    -- Copilot adapter with multiple model options
                     copilot = function()
                         return require("codecompanion.adapters").extend("copilot", {
                             schema = {
                                 model = {
-                                    -- default = "claude-sonnet-4-20250514",
-                                    -- default = "claude-3.7-sonnet",
-                                    -- default = "claude-sonnet-4",
-                                    -- default = "gpt-4.1",
+                                    default = "claude-sonnet-4-20250514",
+                                    choices = {
+                                        "claude-sonnet-4-20250514",
+                                        "claude-3.7-sonnet",
+                                        "gpt-4.1",
+                                        "gemini-2.5-pro",
+                                        "o1-preview-2024-09-12",
+                                        "o1-mini-2024-09-12",
+                                    },
+                                },
+                            },
+                        })
+                    end,
+                    -- Anthropic/Claude adapter
+                    anthropic = function()
+                        return require("codecompanion.adapters").extend("anthropic", {
+                            env = {
+                                api_key = "ANTHROPIC_API_KEY",
+                            },
+                            schema = {
+                                model = {
+                                    default = "claude-sonnet-4-20250514",
+                                },
+                            },
+                        })
+                    end,
+                    -- Google Gemini adapter
+                    gemini = function()
+                        return require("codecompanion.adapters").extend("gemini", {
+                            env = {
+                                api_key = "GEMINI_API_KEY",
+                            },
+                            schema = {
+                                model = {
                                     default = "gemini-2.5-pro",
+                                    choices = {
+                                        "gemini-2.0-flash-thinking-exp",
+                                        "gemini-2.5-pro",
+                                        "gemini-1.5-pro",
+                                    },
+                                },
+                            },
+                        })
+                    end,
+                    -- OpenAI adapter
+                    openai = function()
+                        return require("codecompanion.adapters").extend("openai", {
+                            env = {
+                                api_key = "OPENAI_API_KEY",
+                            },
+                            schema = {
+                                model = {
+                                    default = "gpt-4.1",
                                 },
                             },
                         })

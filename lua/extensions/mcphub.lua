@@ -1,4 +1,5 @@
 vim.keymap.set("n", "<leader>ea", "<CMD>MCPHub<CR>", { desc = "open mcphub" })
+vim.keymap.set("n", "<leader>am", "<CMD>MCPHub<CR>", { desc = "open mcphub" })
 return {
     {
         "ravitemer/mcphub.nvim",
