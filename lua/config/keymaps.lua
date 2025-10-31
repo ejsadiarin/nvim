@@ -497,3 +497,5 @@ vim.keymap.set("n", "<leader>ec", "<CMD>CloakToggle<CR>", { desc = "toggle cloak
 vim.keymap.set("n", "<leader>eg", function()
     vim.cmd("split | terminal gemini")
 end, { desc = "gemini term buffer" })
+
+vim.keymap.set("i", "<C-a>", "<Esc>ggVG", { desc = "Select all text" })
