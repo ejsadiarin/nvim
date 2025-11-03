@@ -161,7 +161,7 @@ return {
                     },
                     slash_commands = {
                         ["file"] = {
-                            callback = "strategies.chat.slash_commands.file",
+                            -- callback = "strategies.chat.slash_commands.file",
                             description = "Select a file with Snacks",
                             opts = {
                                 provider = "snacks", -- Other options include 'default', 'mini_pick', 'fzf_lua', 'snacks'
