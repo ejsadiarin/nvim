@@ -103,6 +103,7 @@ return {
 
                     SnacksIndentScope = { fg = "#555555" },
                     SnacksIndent = { fg = "#222a2d" },
+                    SnacksDim = { link = "Conceal " },
 
                     -- For DBUI (vim-dadbod-ui)
                     NotificationInfo = { bg = "NONE" },

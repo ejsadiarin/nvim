@@ -223,7 +223,7 @@ vim.keymap.set({ "n", "x" }, "P", '"+p', { desc = "Clipboard [p]aste" })
 -- vim.keymap.set("x", "<leader>y", '"+y', { desc = "[y]ank selection to clipboard" })
 
 -- save without formatting
-vim.keymap.set("n", "<leader>ccs", ":noautocmd w<CR>", { desc = "Save without formatting" })
+vim.keymap.set("n", "<leader>es", ":noautocmd w<CR>", { desc = "Save without formatting" })
 
 -- telescope select colorscheme
 vim.keymap.set("n", "<leader>uU", Snacks.picker.colorschemes, { desc = "UI: [s]elect colorscheme" })
