@@ -18,7 +18,7 @@ return {
             version = not vim.g.lazyvim_blink_main and "*",
         },
     },
-    event = "InsertEnter",
+    event = { "InsertEnter", "CmdlineEnter" },
     ---@module 'blink.cmp'
     ---@type blink.cmp.Config
     opts = {
@@ -34,16 +34,27 @@ return {
             nerd_font_variant = "mono",
         },
         completion = {
+            accept = {
+                auto_brackets = {
+                    enabled = true,
+                },
+            },
             menu = {
                 enabled = true,
                 border = "rounded",
                 winhighlight = "Normal:BlinkCmpMenu,FloatBorder:BlinkCmpMenuBorder,CursorLine:BlinkCmpMenuSelection,Search:None",
                 -- winhighlight = "Normal:BlinkCmpDoc,FloatBorder:BlinkCmpDocBorder,CursorLine:BlinkCmpDocCursorLine,Search:None",
+                draw = {
+                    treesitter = { "lsp" },
+                },
             },
             documentation = {
                 auto_show = true,
                 auto_show_delay_ms = 200,
                 window = { border = "rounded" },
+            },
+            ghost_text = {
+                enabled = vim.g.ai_cmp,
             },
         },
         cmdline = {
@@ -62,9 +73,23 @@ return {
             --     end
             --     return {}
             -- end,
+            keymap = {
+                preset = "cmdline",
+                ["<Right>"] = false,
+                ["<Left>"] = false,
+            },
+            completion = {
+                list = { selection = { preselect = false } },
+                menu = {
+                    auto_show = function(ctx)
+                        return vim.fn.getcmdtype() == ":"
+                    end,
+                },
+                ghost_text = { enabled = true },
+            },
         },
         snippets = {
-            preset = "luasnip",
+            preset = "luasnip", -- "default", "luasnip"
             expand = function(snippet)
                 return LazyVim.cmp.expand(snippet)
             end,
