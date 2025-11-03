@@ -4,6 +4,7 @@ return {
     -- { "folke/noice.nvim", enabled = false },
     {
         "nvim-neo-tree/neo-tree.nvim",
+        enabled = false,
         cmd = "Neotree",
         keys = {
             { "<leader>fe", false },

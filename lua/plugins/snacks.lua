@@ -107,29 +107,6 @@ late at night i think of you.
             },
         },
         keys = {
-        -- stylua: ignore start
-        { "<leader>n", false },
-        { "<leader>ei", function() Snacks.image.hover() end, desc = "View Image", }, -- must disable opts.image.doc.inline and opts.image.doc.float
-        { "<leader>i", function() Snacks.image.hover() end, desc = "View Image", }, -- must disable opts.image.doc.inline and opts.image.doc.float
-        { "<leader>cs", function() Snacks.scratch() end, desc = "Spawn Scratch Buffer", },
-        { "<leader>cS", function() Snacks.scratch.select() end, desc = "Select Scratch Buffer", },
-        { "<leader>un", function() Snacks.notifier.hide() end, desc = "Dismiss All Notifications", },
-        { "<leader>bd", "<CMD>:bd<CR>", desc = "Buffer: [d]elete" },
-        -- { "<leader>bd", function() Snacks.bufdelete() end, desc = "Buffer: [d]elete" },
-        { "<leader>gg", function() Snacks.lazygit( { cwd = LazyVim.root.git() }) end, desc = "Lazygit", },
-        { "<leader>gb", function() Snacks.git.blame_line() end, desc = "Git [b]lame Line", },
-        -- { "<leader>gb", "<CMD>Git blame_line<CR>", desc = "Git [b]lame Line", },
-        { "<leader>gB", function() Snacks.gitbrowse() end, desc = "Git Browse", },
-        { "<leader>gf", function() Snacks.lazygit.log_file() end, desc = "Lazygit Current File History", },
-        { "<leader>gl", function() Snacks.lazygit.log() end, desc = "Lazygit Log (cwd)", },
-        { "<leader>cR", function() Snacks.rename() end, desc = "Rename File", },
-        { "<leader>nh", function() Snacks.notifier.show_history() end, desc = "Notification [h]istory", },
-        { "<leader>nd", function() Snacks.notifier.hide() end, desc = "Dismiss All Notifications", },
-        { "<c-/>", function() Snacks.terminal() end, desc = "Toggle Terminal", },
-        { "<c-_>", function() Snacks.terminal() end, desc = "which_key_ignore", },
-        { "]]", function() Snacks.words.jump(vim.v.count1) end, desc = "Next Reference", },
-        { "[[", function() Snacks.words.jump(-vim.v.count1) end, desc = "Prev Reference", },
-            -- stylua: ignore end
             {
                 "<leader>j",
                 function()
@@ -186,28 +163,48 @@ late at night i think of you.
         { "<leader>/", false },
         { "<leader>:", false },
         { "<leader><space>", false },
+
         -- { "<leader>/", LazyVim.pick("live_grep"), desc = "Grep (Root Dir)" },
         -- { "<leader><space>", LazyVim.pick("files"), desc = "Find Files (Root Dir)" },
         { "<leader>f:", function() Snacks.picker.command_history() end, desc = "[:]Command History" },
+        { "<leader>T", function() Snacks.explorer() end, desc = "File Explorer" },
         -- find
-        { "<leader>fb", function() Snacks.picker.buffers() end, desc = "[b]uffers" },
-        { "<leader>fc", LazyVim.pick.config_files(), desc = "Find [c]onfig File" },
-        { "<leader>fd", LazyVim.pick("files"), desc = "Find [d]irectory Files (Root Dir)" },
-        { "<leader>fe", LazyVim.pick("files", { root = false }), desc = "Find [e]very File (cwd)" },
+        { "<leader>fe", function() Snacks.picker.files() end, desc = "Find [e]very File (cwd)" },
+        { "<leader>fs", function() Snacks.picker.smart() end, desc = "Smart Find Files" },
         { "<leader>fg", function() Snacks.picker.git_files() end, desc = "Find [g]it Files (git-files)" },
-        { "<leader>fr", LazyVim.pick("oldfiles"), desc = "[r]ecent Files" },
-        { "<leader>fR", LazyVim.pick("oldfiles", { filter = { cwd = true }}), desc = "[R]ecent Files (cwd)" },
+        { "<leader>fb", function() Snacks.picker.buffers() end, desc = "Find [b]uffers" },
+        { "<leader>fc", function() Snacks.picker.files({ cwd = vim.fn.stdpath('config') }) end, desc = "Find [c]onfig Files" },
+        { "<leader>fr", function() Snacks.picker.recent() end, desc = "[r]ecent Files" },
+        -- { "<leader>fd", LazyVim.pick("files"), desc = "Find [d]irectory Files (Root Dir)" },
+        -- { "<leader>fR", LazyVim.pick("oldfiles", { filter = { cwd = true }}), desc = "[R]ecent Files (cwd)" },
         -- git
-        { "<leader>gc", function() Snacks.picker.git_branches() end, desc = "Git Log" },
-        -- { "<leader>gc", "<cmd>FzfLua git_commits<CR>", desc = "[c]ommits" },
-        { "<leader>gd", false },
-        -- { "<leader>gd", function() Snacks.picker.git_diff() end, desc = "[d]iff (hunks)" },
-        { "<leader>gs", function() Snacks.picker.git_status() end, desc = "[s]tatus" },
+        { "<leader>gg", function() Snacks.lazygit( { cwd = LazyVim.root.git() }) end, desc = "Lazygit", },
+        { "<leader>gb", function() Snacks.picker.git_branches() end, desc = "Git [b]ranches" },
+        { "<leader>gB", function() Snacks.gitbrowse() end, desc = "Git [B]rowse", },
+        { "<leader>gs", function() Snacks.picker.git_status() end, desc = "Git [s]tatus" },
+        { "<leader>gS", function() Snacks.picker.git_stash() end, desc = "Git [S]tash" },
+        { "<leader>gd", function() Snacks.picker.git_diff() end, desc = "Git [d]iff (Hunks)" },
+        { "<leader>gf", function() Snacks.lazygit.log_file() end, desc = "Lazygit Current [f]ile History", },
+        -- { "<leader>gf", function() Snacks.picker.git_log_file() end, desc = "Git Log File" },
+        { "<leader>gl", function() Snacks.lazygit.log() end, desc = "Lazygit [l]og (cwd)", },
+        -- { "<leader>gl", function() Snacks.picker.git_log() end, desc = "Git [l]og" },
+        { "<leader>gL", function() Snacks.picker.git_log_line() end, desc = "Git Log [L]ine" },
+        { "<leader>g.", function() Snacks.git.blame_line() end, desc = "Git [b]lame Line", },
+        -- gh
+        { "<leader>gi", function() Snacks.picker.gh_issue() end, desc = "GitHub Issues (open)" },
+        { "<leader>gI", function() Snacks.picker.gh_issue({ state = "all" }) end, desc = "GitHub Issues (all)" },
+        { "<leader>gp", function() Snacks.picker.gh_pr() end, desc = "GitHub Pull Requests (open)" },
+        { "<leader>gP", function() Snacks.picker.gh_pr({ state = "all" }) end, desc = "GitHub Pull Requests (all)" },
+        -- Grep
+        { "<leader>sb", function() Snacks.picker.lines() end, desc = "Buffer Lines" },
+        { "<leader>sB", function() Snacks.picker.grep_buffers() end, desc = "Grep Open Buffers" },
+        { "<leader>sw", function() Snacks.picker.grep_word() end, desc = "Visual selection or word", mode = { "n", "x" } },
+
         -- -- grep
-        { "<leader>sg", LazyVim.pick("live_grep"), desc = "[g]rep (Root Dir)" },
+        { "<leader>sg", function() Snacks.picker.grep() end, desc = "[g]rep" },
         { "<leader>sG", LazyVim.pick("live_grep", { root = false }), desc = "[G]rep (cwd)" },
-        { "<leader>sw", LazyVim.pick("grep_word"), desc = "Visual selection or [w]ord (Root Dir)", mode = { "n", "x" } },
-        { "<leader>sW", LazyVim.pick("grep_word", { root = false }), desc = "Visual selection or [W]ord (cwd)", mode = { "n", "x" } },
+        -- { "<leader>sw", LazyVim.pick("grep_word"), desc = "Visual selection or [w]ord (Root Dir)", mode = { "n", "x" } },
+        -- { "<leader>sW", LazyVim.pick("grep_word", { root = false }), desc = "Visual selection or [W]ord (cwd)", mode = { "n", "x" } },
         -- -- search
         { '<leader>s"', function() Snacks.picker.registers() end, desc = "registers" },
         { "<leader>sa", function() Snacks.picker.autocmds() end, desc = "[a]utocmds" },
@@ -225,17 +222,38 @@ late at night i think of you.
         { "<leader>sq", function() Snacks.picker.qflist() end, desc = "[q]uickfix List" },
         { "<leader>uC", function() Snacks.picker.colorschemes() end, desc = "[C]olorschemes" },
         { "<leader>fp", function() Snacks.picker.projects() end, desc = "[p]rojects" },
-        { "<leader>ss", function() Snacks.picker.lsp_symbols({ filter = LazyVim.config.kind_filter }) end, desc = "Goto [s]ymbol"},
-        { "<leader>sS", function() Snacks.picker.lsp_workspace_symbols({ filter = LazyVim.config.kind_filter }) end, desc = "LSP Workspace Symbols"},
-        -- {
-        --     "<leader>sS",
-        --     function()
-        --         require("fzf-lua").lsp_live_workspace_symbols({
-        --             regex_filter = symbols_filter,
-        --         })
-        --     end,
-        --     desc = "Goto [S]ymbol (Workspace)",
-        -- },
+        -- LSP
+        { "gd", function() Snacks.picker.lsp_definitions() end, desc = "Goto Definition" },
+        { "gD", function() Snacks.picker.lsp_declarations() end, desc = "Goto Declaration" },
+        { "gr", function() Snacks.picker.lsp_references() end, nowait = true, desc = "References" },
+        { "gI", function() Snacks.picker.lsp_implementations() end, desc = "Goto Implementation" },
+        { "gy", function() Snacks.picker.lsp_type_definitions() end, desc = "Goto T[y]pe Definition" },
+        { "gai", function() Snacks.picker.lsp_incoming_calls() end, desc = "C[a]lls Incoming" },
+        { "gao", function() Snacks.picker.lsp_outgoing_calls() end, desc = "C[a]lls Outgoing" },
+        { "<leader>ss", function() Snacks.picker.lsp_symbols() end, desc = "Goto [s]ymbol" },
+        { "<leader>sS", function() Snacks.picker.lsp_workspace_symbols() end, desc = "Goto [S]ymbol (Workspace)" },
+        -- Other
+        { "<leader>n", false },
+        { "<leader>z",  function() Snacks.zen() end, desc = "Toggle Zen Mode" },
+        { "<leader>Z",  function() Snacks.zen.zoom() end, desc = "Toggle Zoom" },
+        { "<leader>cs", function() Snacks.scratch() end, desc = "Spawn Scratch Buffer", },
+        -- { "<leader>.",  function() Snacks.scratch() end, desc = "Toggle Scratch Buffer" },
+        { "<leader>cS", function() Snacks.scratch.select() end, desc = "Select Scratch Buffer", },
+        -- { "<leader>S",  function() Snacks.scratch.select() end, desc = "Select Scratch Buffer" },
+        { "<leader>ei", function() Snacks.image.hover() end, desc = "View Image", }, -- must disable opts.image.doc.inline and opts.image.doc.float
+        { "<leader>i", function() Snacks.image.hover() end, desc = "View Image", }, -- must disable opts.image.doc.inline and opts.image.doc.float
+        { "<leader>bd", function() Snacks.bufdelete() end, desc = "Buffer: [d]elete" },
+        -- { "<leader>bd", "<CMD>:bd<CR>", desc = "Buffer: [d]elete" },
+        -- { "<leader>bd", function() Snacks.bufdelete() end, desc = "Buffer: [d]elete" },
+        { "<leader>cR", function() Snacks.rename.rename_file() end, desc = "Rename File" },
+        { "<leader>nh", function() Snacks.notifier.show_history() end, desc = "Notification [h]istory", },
+        -- { "<leader>n",  function() Snacks.notifier.show_history() end, desc = "Notification History" },
+        { "<leader>nd", function() Snacks.notifier.hide() end, desc = "Dismiss All Notifications", },
+        { "<leader>un", function() Snacks.notifier.hide() end, desc = "Dismiss All Notifications" },
+        { "<c-/>",      function() Snacks.terminal() end, desc = "Toggle Terminal" },
+        { "<c-_>",      function() Snacks.terminal() end, desc = "which_key_ignore" },
+        { "]]",         function() Snacks.words.jump(vim.v.count1) end, desc = "Next Reference", mode = { "n", "t" } },
+        { "[[",         function() Snacks.words.jump(-vim.v.count1) end, desc = "Prev Reference", mode = { "n", "t" } },
         {
             "<leader>fl",
             function()
@@ -333,21 +351,6 @@ late at night i think of you.
         end,
     },
 
-    {
-        "neovim/nvim-lspconfig",
-        opts = function()
-            local Keys = require("lazyvim.plugins.lsp.keymaps").get()
-            -- stylua: ignore
-            vim.list_extend(Keys, {
-                { "gd", function() Snacks.picker.lsp_definitions() end, desc = "Goto Definition", has = "definition" },
-                { "gr", function() Snacks.picker.lsp_references() end, nowait = true, desc = "References" },
-                { "gI", function() Snacks.picker.lsp_implementations() end, desc = "Goto Implementation" },
-                { "gy", function() Snacks.picker.lsp_type_definitions() end, desc = "Goto T[y]pe Definition" },
-                { "<leader>ss", function() Snacks.picker.lsp_symbols({ filter = LazyVim.config.kind_filter }) end, desc = "LSP Symbols", has = "documentSymbol" },
-                { "<leader>sS", function() Snacks.picker.lsp_workspace_symbols({ filter = LazyVim.config.kind_filter }) end, desc = "LSP Workspace Symbols", has = "workspace/symbols" },
-            })
-        end,
-    },
     {
         "folke/todo-comments.nvim",
         optional = true,

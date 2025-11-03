@@ -250,7 +250,7 @@ vim.keymap.set({ "i", "x" }, "<C-k>", function()
 end, { desc = "Signature Help" })
 
 -- Buffer manipulation
-vim.keymap.set("n", "<leader>bd", "<CMD>bd<CR>", { desc = "Buffer: [d]elete" })
+-- vim.keymap.set("n", "<leader>bd", "<CMD>bd<CR>", { desc = "Buffer: [d]elete" }) -- NOTE: handled by snacks.nvim
 vim.keymap.set("n", "<leader>bo", "<CMD>%bd|e#<CR>", { desc = "Buffer: delete [o]thers" })
 
 -- vim.keymap.set("n", "<leader>bd", function()
@@ -491,7 +491,7 @@ vim.api.nvim_create_user_command("Messages", function()
 end, {})
 vim.keymap.set("n", "<leader>nm", "<CMD>Messages<CR>", { desc = "notification: [m]essages" })
 
-vim.keymap.set("n", "<leader>ec", "<CMD>CloakToggle<CR>", { desc = "toggle cloak" })
+vim.keymap.set("n", "<leader>eh", "<CMD>CloakToggle<CR>", { desc = "toggle cloak [h]ide" })
 
 -- spawn terminal buffer with Gemini
 vim.keymap.set("n", "<leader>eg", function()
