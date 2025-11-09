@@ -65,6 +65,7 @@ require("lazy").setup({
         { import = "extensions.devops" },
         { import = "extensions.cloak" },
         { import = "extensions.lsp" },
+        { import = "extensions.compile-mode" },
         -- { import = "extensions.java" },
         -- { import = "extensions.nvim-java" },
         -- { import = "extensions.telescope" },
