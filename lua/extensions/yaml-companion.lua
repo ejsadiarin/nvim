@@ -19,6 +19,13 @@ return {
 
         -- Pass any additional options that will be merged in the final LSP config
         lspconfig = {
+            on_new_config = function(new_config)
+                new_config.settings.yaml.schemas = vim.tbl_deep_extend(
+                    "force",
+                    new_config.settings.yaml.schemas or {},
+                    require("schemastore").yaml.schemas()
+                )
+            end,
             cmd = { "yaml-language-server" },
             flags = {
                 debounce_text_changes = 150,
@@ -30,8 +37,8 @@ return {
                     format = { enable = true },
                     hover = true,
                     schemaStore = {
-                        enable = true,
-                        url = "https://www.schemastore.org/api/json/catalog.json",
+                        enable = false,
+                        url = "",
                     },
                     schemaDownload = { enable = true },
                     schemas = {},
