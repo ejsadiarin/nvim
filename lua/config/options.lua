@@ -7,9 +7,9 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
 if pcall(require, "lazyvim") then
-    vim.g.snacks_animate = false
-    vim.g.minipairs_disable = false
-    vim.g.lazyvim_picker = "snacks"
+  vim.g.snacks_animate = false
+  vim.g.minipairs_disable = false
+  vim.g.lazyvim_picker = "snacks"
 end
 
 -- Set to true if you have a Nerd Font installed and selected in the terminal
@@ -21,29 +21,29 @@ vim.g.autoformat = true -- format on save
 local _border = "rounded"
 
 vim.diagnostic.config({
-    float = { border = _border },
-    virtual_text = {
-        spacing = 4,
-        source = "if_many",
-        prefix = "●",
-        -- this will set set the prefix to a function that returns the diagnostics icon based on the severity
-        -- this only works on a recent 0.10.0 build. Will be set to "●" when not supported
-        -- prefix = "icons",
+  float = { border = _border },
+  virtual_text = {
+    spacing = 4,
+    source = "if_many",
+    prefix = "●",
+    -- this will set set the prefix to a function that returns the diagnostics icon based on the severity
+    -- this only works on a recent 0.10.0 build. Will be set to "●" when not supported
+    -- prefix = "icons",
+  },
+  underline = true,
+  update_in_insert = false,
+  severity_sort = true,
+  signs = {
+    severity = {
+      min = vim.diagnostic.severity.HINT,
     },
-    underline = true,
-    update_in_insert = false,
-    severity_sort = true,
-    signs = {
-        severity = {
-            min = vim.diagnostic.severity.HINT,
-        },
-        text = {
-            [vim.diagnostic.severity.ERROR] = " ",
-            [vim.diagnostic.severity.WARN] = " ",
-            [vim.diagnostic.severity.HINT] = " ",
-            [vim.diagnostic.severity.INFO] = "󰌵",
-        },
+    text = {
+      [vim.diagnostic.severity.ERROR] = " ",
+      [vim.diagnostic.severity.WARN] = " ",
+      [vim.diagnostic.severity.HINT] = " ",
+      [vim.diagnostic.severity.INFO] = "󰌵",
     },
+  },
 })
 
 --- NOTE: LSP borders (hover and signature help) are already handled by Noice
@@ -110,9 +110,9 @@ vim.opt.showmode = true -- Show mode for exquisite simplicity
 
 vim.opt.clipboard = "unnamed"
 
-vim.opt.tabstop = 2 -- Insert 4 spaces for a tab
-vim.opt.softtabstop = 2 -- Number of spaces tabs count for while editing
-vim.opt.shiftwidth = 2 -- the number of spaces inserted for each indentation
+vim.opt.tabstop = 4 -- Insert 4 spaces for a tab
+vim.opt.softtabstop = 4 -- Number of spaces tabs count for while editing
+vim.opt.shiftwidth = 4 -- the number of spaces inserted for each indentation
 vim.opt.expandtab = true -- convert tabs to spaces
 vim.opt.smartindent = true -- Makes indenting smart
 vim.opt.breakindent = true -- Enable break indent
@@ -171,14 +171,14 @@ vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
 -- }
 
 vim.opt.diffopt = {
-    "internal",
-    "filler",
-    "closeoff",
-    "context:12",
-    "algorithm:histogram",
-    "linematch:200",
-    "indent-heuristic",
-    -- "iwhite", -- I toggle this one, it doesn't fit all cases.
+  "internal",
+  "filler",
+  "closeoff",
+  "context:12",
+  "algorithm:histogram",
+  "linematch:200",
+  "indent-heuristic",
+  -- "iwhite", -- I toggle this one, it doesn't fit all cases.
 }
 
 -- Preview substitutions live, as you type!

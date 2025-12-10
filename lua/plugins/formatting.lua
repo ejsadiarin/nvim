@@ -9,7 +9,7 @@ return {
           prepend_args = { "-i", "2" }, -- 2 spaces instead of tab
         },
         stylua = {
-          prepend_args = { "--indent-type", "Spaces", "--indent-width", "2" }, -- 4 spaces instead of tab
+          prepend_args = { "--indent-type", "Spaces", "--indent-width", "4" }, -- 4 spaces instead of tab
         },
         yamlfmt = {
           prepend_args = {
@@ -27,7 +27,7 @@ return {
       -- end,
       -- log_level = vim.log.levels.TRACE,
       formatters_by_ft = {
-        go = { "goimports", "gofmt" },
+        go = { "gofumpt", "goimports" },
         javascript = { "prettier" },
         json = { "prettier" },
         lua = { "stylua" },
