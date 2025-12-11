@@ -90,6 +90,7 @@ end, { nargs = "*" })
 return {
     {
         "olimorris/codecompanion.nvim",
+        version = "17.33.0",
         lazy = false,
         -- event = "VeryLazy",
         -- cmd = { "CodeCompanion", "CodeCompanionChat", "CodeCompanionCmd", "CodeCompanionActions" },
