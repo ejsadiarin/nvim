@@ -42,15 +42,16 @@ require("lazy").setup({
         { import = "lazyvim.plugins.extras.coding.luasnip" },
         -- lazyvim's ai stuff
         -- { import = "lazyvim.plugins.extras.ai.copilot-native" },
-        -- { import = "lazyvim.plugins.extras.ai.sidekick" },
+        { import = "lazyvim.plugins.extras.ai.sidekick" },
         -- import/override with your plugins
         { import = "plugins" },
         -- optional plugins
         -- { import = "extensions.obsidian" },
         { import = "extensions.tmux-navigator" },
-        { import = "extensions.codecompanion" },
+        -- { import = "extensions.sidekick" },
+        -- { import = "extensions.codecompanion" },
         -- { import = "extensions.codecompanion-new" },
-        { import = "extensions.copilot" },
+        -- { import = "extensions.copilot" },
         -- { import = "extensions.avante" },
         { import = "extensions.vim-fugitive" },
         { import = "extensions.colorizer" },

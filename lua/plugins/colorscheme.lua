@@ -91,12 +91,8 @@ return {
                     CursorLineNr = { fg = "#fcef0b" },
                     -- CursorLineNr = { fg = "#b8bcb9" },
                     Cursor = { fg = "#fcef0b", bg = "#fcef0b" },
-                    NormalFloat = { bg = "NONE" },
-                    FloatTitle = { bg = "NONE" },
-                    FloatFooter = { bg = "NONE" },
-                    -- FloatTitle = { bg = "#f9cc6c" },
-                    -- FloatFooter = { bg = "#f9cc6c" },
-                    FloatBorder = { fg = "#425157" },
+                    NormalFloat = { bg = "#161b1e" }, -- Set a solid background for floating windows
+                    FloatBorder = { fg = "#425157", bg = "#161b1e" }, -- Ensure border is visible with a solid background
                     Directory = { fg = "#f9cc6c" },
                     SignColumn = { bg = "NONE" },
                     Comment = { bg = "NONE" },
@@ -247,6 +243,28 @@ return {
                     BufferLineInfoDiagnosticVisible = { bg = "NONE" },
                     BufferLineErrorDiagnosticVisible = { bg = "NONE" },
                     BufferLineWarningDiagnosticVisible = { bg = "NONE" },
+
+                    -- Avante.nvim
+                    AvanteTitle = { fg = "#273136", bg = "#a2e57b" }, -- background / accent4
+                    AvanteReversedTitle = { fg = "#a2e57b" },
+                    AvanteSubtitle = { fg = "#273136", bg = "#7cd5f1" }, -- background / accent5
+                    AvanteReversedSubtitle = { fg = "#7cd5f1" },
+                    AvanteThirdTitle = { fg = "#b8bcb9", bg = "#1e1e1e" }, -- dimmed1 / dimmed5
+                    AvanteReversedThirdTitle = { fg = "#6b7678" }, -- dimmed3
+
+                    avantepopuphint = { bg = "#1d2528" }, -- dark1
+                    avanteinlinehint = { fg = "#7cd5f1" }, -- accent5
+
+                    -- Sidebar needs a background if transparent is on
+                    AvanteSidebarNormal = { bg = "#161b1e" }, -- dark2
+
+                    -- Input area
+                    AvantePromptInput = { bg = "#1d1e24" }, -- CursorLine bg
+                    AvantePromptInputBorder = { fg = "#6b7678" }, -- dimmed3
+
+                    -- Diff/Conflict
+                    AvanteConflictCurrent = { bg = "#562C30", bold = true },
+                    AvanteConflictIncoming = { bg = "#314753", bold = true },
                 }
             end,
         },

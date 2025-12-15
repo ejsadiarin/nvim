@@ -1,33 +1,32 @@
+-- NOTE: I only use avante for inline editing (not inline suggestions) and inline asking (no sidebar chat)
+-- Workflow: Visual mode select input -> feed through avante (edit or ask)
 return {
     {
         "yetone/avante.nvim",
         build = vim.fn.has("win32") ~= 0
                 and "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false"
-            or "make BUILD_FROM_SOURCE=true",
+            or "make",
         event = "VeryLazy",
         version = false, -- set this if you want to always pull the latest change
         opts = {
-            instructions_file = "avante.md",
+            -- instructions_file = "avante.md", -- deprecated or optional
             ---@alias Provider "claude" | "openai" | "azure" | "gemini" | "cohere" | "copilot" | string
-            provider = "copilot",
-            auto_suggestions_provider = "copilot", -- Since auto-suggestions are a high-frequency operation and therefore expensive, it is recommended to specify an inexpensive provider or even a free provider: copilot
+            provider = "copilot", -- Use copilot as the default provider
+            auto_suggestions_provider = nil, -- Explicitly disable auto-suggestions provider
+
+            behaviour = {
+                auto_suggestions = false, -- Disable auto-suggestions (inline completions)
+                auto_set_keymaps = false, -- Disable default global keymaps (conflicts with codecompanion's <leader>aa)
+                auto_set_highlight_group = true,
+                auto_apply_diff_after_generation = false,
+                support_paste_from_clipboard = false,
+            },
+
             providers = {
-                -- copilot = {},
-                -- openai = {
-                --     --- DEEPSEEK (needs top-up balance) ---
-                --     endpoint = "https://api.deepseek.com",
-                --     model = "deepseek-chat", -- options: "deepseek-reasoning", "deepseek-chat"
-                --     timeout = 30000, -- Timeout in milliseconds
-                --     extra_request_body = {
-                --         max_tokens = 4096,
-                --         temperature = 0,
-                --     },
-                --     -- optional
-                --     api_key_name = "DEEPSEEK_API_KEY", -- default OPENAI_API_KEY if not set
-                -- },
+                copilot = {}, -- Uses zbirenbaum/copilot.lua
                 claude = {
                     endpoint = "https://api.anthropic.com",
-                    model = "claude-sonnet-4.5",
+                    model = "claude-3-5-sonnet-20241022",
                     extra_request_body = {
                         max_tokens = 4096,
                         temperature = 0,
@@ -35,65 +34,91 @@ return {
                     api_key_name = "ANTHROPIC_API_KEY",
                 },
                 gemini = {
-                    endpoint = "https://api.gemini.com",
-                    model = "gemini-2.5-pro",
-                    timeout = 20000, -- Timeout in milliseconds
+                    endpoint = "https://generativelanguage.googleapis.com/v1beta/models", -- Correct endpoint for Google's API if needed, but avante might handle the base URL
+                    model = "gemini-1.5-pro",
+                    timeout = 30000,
                     extra_request_body = {
-                        max_tokens = 2048,
+                        max_tokens = 4096,
                         temperature = 0.7,
                     },
                     api_key_name = "GEMINI_API_KEY",
                 },
             },
+
+            -- Customize mappings to remove chat-related global defaults if they exist within the plugin's internal handling,
+            -- effectively disabling the chat UI's easy access.
+            mappings = {
+                -- Keep useful internal mappings for the edit/diff windows
+                diff = {
+                    ours = "co",
+                    theirs = "ct",
+                    all_theirs = "ca",
+                    both = "cb",
+                    cursor = "cc",
+                    next = "]x",
+                    prev = "[x",
+                },
+                suggestion = {
+                    accept = "<M-l>",
+                    next = "<M-]>",
+                    prev = "<M-[>",
+                    dismiss = "<C-]>",
+                },
+                jump = {
+                    next = "]]",
+                    prev = "[[",
+                },
+                submit = {
+                    normal = "<CR>",
+                    insert = "<C-s>",
+                },
+            },
+
             hints = { enabled = false },
-            suggestion = {
-                debounce = 600,
-                throttle = 600,
+            selection = { enabled = false },
+            windows = {
+                wrap = true, -- similar to soft wrap
+                width = 30, -- default % based on available width
+                sidebar_header = {
+                    align = "center", -- left, center, right for title
+                    rounded = true,
+                },
             },
         },
         keys = {
+            -- Only map the visual edit command.
+            -- No mappings for toggling the chat sidebar (<leader>aa, <leader>ee removed).
+
             {
-                "<leader>aa",
+                "<leader>ae",
                 function()
-                    require("avante.api").ask()
+                    require("avante.api").edit()
                 end,
-                desc = "avante: [a]sk",
+                mode = { "v", "n" },
+                desc = "avante: [e]dit (inline)",
             },
-            { "<leader>ee", "<CMD>AvanteToggle<CR>", desc = "toggle avant[e]" },
         },
         dependencies = {
             "stevearc/dressing.nvim",
             "nvim-lua/plenary.nvim",
             "MunifTanjim/nui.nvim",
-            "folke/snacks.nvim", -- for input provider snacks
-            --- The below dependencies are optional,
-            -- "nvim-tree/nvim-web-devicons", -- or nvim-mini/mini.icons
+            "folke/snacks.nvim",
             "zbirenbaum/copilot.lua", -- for providers='copilot'
             {
                 -- support for image pasting
                 "HakonHarnes/img-clip.nvim",
                 event = "VeryLazy",
                 opts = {
-                    -- recommended settings
                     default = {
                         embed_image_as_base64 = false,
                         prompt_for_file_name = false,
                         drag_and_drop = {
                             insert_mode = true,
                         },
-                        -- required for Windows users
                         use_absolute_path = true,
                     },
                 },
             },
-            -- {
-            --     -- Make sure to set this up properly if you have lazy=true
-            --     "MeanderingProgrammer/render-markdown.nvim",
-            --     opts = {
-            --         file_types = { "markdown", "Avante" },
-            --     },
-            --     ft = { "markdown", "Avante" },
-            -- },
         },
     },
 }
