@@ -1,3 +1,5 @@
+-- NOTE: this sidekick-helper file is complementary to LazyVim's sidekick implementation module (enabled in init.lua)
+-- Added custom keybindings and cli.mux.backend = "tmux"
 return {
     {
         "folke/sidekick.nvim",
@@ -11,17 +13,17 @@ return {
             },
         },
         keys = {
-            {
-                "<tab>",
-                function()
-                    -- if there is a next edit, jump to it, otherwise apply it if any
-                    if not require("sidekick").nes_jump_or_apply() then
-                        return "<Tab>" -- fallback to normal tab
-                    end
-                end,
-                expr = true,
-                desc = "Goto/Apply Next Edit Suggestion",
-            },
+            -- {
+            --     "<tab>",
+            --     function()
+            --         -- if there is a next edit, jump to it, otherwise apply it if any
+            --         if not require("sidekick").nes_jump_or_apply() then
+            --             return "<Tab>" -- fallback to normal tab
+            --         end
+            --     end,
+            --     expr = true,
+            --     desc = "Goto/Apply Next Edit Suggestion",
+            -- },
             {
                 "<c-.>",
                 function()
@@ -37,6 +39,17 @@ return {
                 end,
                 desc = "Sidekick Toggle CLI",
             },
+
+            -- NOTE: custom aa on visual mode (faster send)
+            {
+                "<leader>aa",
+                function()
+                    require("sidekick.cli").send({ msg = "{this}" })
+                end,
+                mode = { "x" },
+                desc = "Sidekick: send selection",
+            },
+
             {
                 "<leader>as",
                 function()

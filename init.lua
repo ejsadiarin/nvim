@@ -48,7 +48,7 @@ require("lazy").setup({
         -- optional plugins
         -- { import = "extensions.obsidian" },
         { import = "extensions.tmux-navigator" },
-        -- { import = "extensions.sidekick" },
+        { import = "extensions.sidekick-helper" },
         -- { import = "extensions.codecompanion" },
         -- { import = "extensions.codecompanion-new" },
         -- { import = "extensions.copilot" },
