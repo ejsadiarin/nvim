@@ -49,7 +49,7 @@ require("lazy").setup({
         -- { import = "extensions.obsidian" },
         { import = "extensions.tmux-navigator" },
         { import = "extensions.sidekick-helper" },
-        -- { import = "extensions.codecompanion" },
+        { import = "extensions.codecompanion" },
         -- { import = "extensions.codecompanion-new" },
         -- { import = "extensions.copilot" },
         -- { import = "extensions.avante" },
