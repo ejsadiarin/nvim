@@ -1,16 +1,51 @@
 -- NOTE: this sidekick-helper file is complementary to LazyVim's sidekick implementation module (enabled in init.lua)
 -- Added custom keybindings and cli.mux.backend = "tmux"
+
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = { "sidekick_terminal" },
+    callback = function(event)
+        vim.keymap.set("t", "kj", "<C-\\><C-n>", { desc = "Exit terminal mode", silent = true, buffer = event.buf })
+
+        -- To allow <Esc> to be passed to the terminal, we must delete any mappings for it.
+        -- We use a protected call (pcall) to ignore errors if no mapping exists to be deleted.
+        pcall(vim.keymap.del, "t", "<C-[>", { buffer = event.buf })
+        pcall(vim.keymap.del, "t", "<Esc>", { buffer = event.buf })
+    end,
+})
+
+-- vim.keymap.set("t", "<Esc>", "<nop>", { desc = "No Exit terminal mode", silent = true })
+
 return {
     {
         "folke/sidekick.nvim",
         opts = {
             -- add any options here
             cli = {
+                win = {
+                    -- stylua: ignore
+                    keys = {
+                        buffers       = { "<c-b>", "buffers"   , mode = "nt", desc = "open buffer picker" },
+                        files         = { "<c-f>", "files"     , mode = "nt", desc = "open file picker" },
+                        hide_n        = { "q"    , "hide"      , mode = "n" , desc = "hide the terminal window" },
+                        hide_ctrl_a   = { "<c-a>", "hide"      , mode = "nt", desc = "hide the terminal window" },
+                        hide_ctrl_dot = { "<c-.>", "hide"      , mode = "nt", desc = "hide the terminal window" },
+                        hide_ctrl_q   = { "<c-q>", "hide"      , mode = "nt" , desc = "hide the terminal window" },
+                        -- hide_ctrl_z   = { "<c-z>", "hide"      , mode = "nt", desc = "hide the terminal window" },
+                        prompt        = { "<c-p>", "prompt"    , mode = "t" , desc = "insert prompt or context" },
+                        -- The line below was mapping <Esc> to exit terminal insert mode. It is now disabled.
+                        -- stopinsert    = { "<c-[>", "stopinsert", mode = "t" , desc = "enter normal mode" },
+                        -- navigations 
+                        nav_left_alt       = { "<m-h>", "nav_left"  , expr = true, desc = "navigate to the left window" },
+                        nav_left_ctrl      = { "<c-h>", "nav_left"  , expr = true, desc = "navigate to the left window" },
+                    },
+                    -- stylua: ignore end
+                },
                 mux = {
                     backend = "tmux",
                     enabled = true,
                 },
             },
+            nes = { enabled = false },
         },
         keys = {
             -- {
@@ -25,12 +60,13 @@ return {
             --     desc = "Goto/Apply Next Edit Suggestion",
             -- },
             {
-                "<c-.>",
+                "<c-a>",
                 function()
                     require("sidekick.cli").toggle()
                 end,
                 desc = "Sidekick Toggle",
-                mode = { "n", "t", "i", "x" },
+                mode = { "n", "t", "x" },
+                nowait = true,
             },
             {
                 "<leader>aa",
@@ -97,14 +133,6 @@ return {
                 mode = { "n", "x" },
                 desc = "Sidekick Select Prompt",
             },
-            -- Example of a keybinding to open Gemini directly
-            -- {
-            --     "<leader>ac",
-            --     function()
-            --         require("sidekick.cli").toggle({ name = "gemini", focus = true })
-            --     end,
-            --     desc = "Sidekick Toggle Gemini",
-            -- },
         },
     },
 }
