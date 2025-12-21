@@ -128,15 +128,15 @@ vim.api.nvim_create_autocmd({ "VimResized" }, {
 })
 
 -- auto insert mode on terminal mode when 'term://' opened
-vim.api.nvim_create_autocmd({ "TermOpen", "BufEnter" }, {
-    group = vim.api.nvim_create_augroup("auto-insert-on-term-mode", { clear = true }),
-    pattern = { "*" },
-    callback = function()
-        if vim.opt.buftype:get() == "terminal" then
-            vim.cmd(":startinsert")
-        end
-    end,
-})
+-- vim.api.nvim_create_autocmd({ "TermOpen" }, {
+--     group = vim.api.nvim_create_augroup("auto-insert-on-term-mode", { clear = true }),
+--     pattern = { "*" },
+--     callback = function()
+--         if vim.opt.buftype:get() == "terminal" then
+--             vim.cmd(":startinsert")
+--         end
+--     end,
+-- })
 
 -- TODO: moving qflist on cursor move
 -- vim.api.nvim_create_autocmd('CursorMoved', {
@@ -156,85 +156,85 @@ vim.api.nvim_create_autocmd({ "TermOpen", "BufEnter" }, {
 -- })
 
 vim.api.nvim_create_autocmd({ "FileType" }, {
-  pattern = { "yaml", "yml" },
-  group = vim.api.nvim_create_augroup("yaml-schema-picker", { clear = true }),
-  callback = function()
-    local function select_yaml_schema()
-      local lspconfig_ok, lspconfig = pcall(require, "lspconfig")
-      if not lspconfig_ok then
-        vim.notify("lspconfig not found", vim.log.levels.ERROR)
-        return
-      end
+    pattern = { "yaml", "yml" },
+    group = vim.api.nvim_create_augroup("yaml-schema-picker", { clear = true }),
+    callback = function()
+        local function select_yaml_schema()
+            local lspconfig_ok, lspconfig = pcall(require, "lspconfig")
+            if not lspconfig_ok then
+                vim.notify("lspconfig not found", vim.log.levels.ERROR)
+                return
+            end
 
-      local schemastore_ok, schemastore = pcall(require, "schemastore")
-      if not schemastore_ok then
-        vim.notify("schemastore.nvim not found", vim.log.levels.ERROR)
-        return
-      end
+            local schemastore_ok, schemastore = pcall(require, "schemastore")
+            if not schemastore_ok then
+                vim.notify("schemastore.nvim not found", vim.log.levels.ERROR)
+                return
+            end
 
-      -- 1. Get schemas from the config
-      local yamlls_opts = lspconfig.yamlls.manager.get_config()
-      local schemas = yamlls_opts.settings.yaml.schemas
+            -- 1. Get schemas from the config
+            local yamlls_opts = lspconfig.yamlls.manager.get_config()
+            local schemas = yamlls_opts.settings.yaml.schemas
 
-      local choices = {}
-      for uri, data in pairs(schemas) do
-        local name
-        if type(data) == "table" and data.name then
-          name = data.name
-        else
-          name = uri
+            local choices = {}
+            for uri, data in pairs(schemas) do
+                local name
+                if type(data) == "table" and data.name then
+                    name = data.name
+                else
+                    name = uri
+                end
+                choices[uri] = name
+            end
+
+            -- Add schemas from schemastore that are not in the custom list
+            local schemastore_schemas = schemastore.yaml.schemas()
+            for uri, data in pairs(schemastore_schemas) do
+                if not choices[uri] then
+                    choices[uri] = data.name or uri
+                end
+            end
+
+            local formatted_choices = {}
+            for uri, name in pairs(choices) do
+                table.insert(formatted_choices, { name = name, uri = uri })
+            end
+
+            -- 2. Show picker
+            vim.ui.select(formatted_choices, {
+                prompt = "Select YAML Schema for current buffer",
+                format_item = function(item)
+                    return item.name
+                end,
+            }, function(choice)
+                if not choice then
+                    return
+                end
+
+                -- 3. Apply schema
+                local clients = vim.lsp.get_active_clients({ bufnr = 0, name = "yamlls" })
+                if #clients > 0 then
+                    local client = clients[1]
+                    local file_uri = vim.uri_from_bufnr(0)
+                    -- Notifying the server about a configuration change for a specific file
+                    client.notify("workspace/didChangeConfiguration", {
+                        settings = {
+                            yaml = {
+                                schemas = {
+                                    [choice.uri] = file_uri,
+                                },
+                            },
+                        },
+                    })
+                    vim.notify("Applied schema: " .. choice.name)
+                else
+                    vim.notify("yamlls is not active for this buffer.", vim.log.levels.WARN)
+                end
+            end)
         end
-        choices[uri] = name
-      end
 
-      -- Add schemas from schemastore that are not in the custom list
-      local schemastore_schemas = schemastore.yaml.schemas()
-      for uri, data in pairs(schemastore_schemas) do
-        if not choices[uri] then
-          choices[uri] = data.name or uri
-        end
-      end
-
-      local formatted_choices = {}
-      for uri, name in pairs(choices) do
-        table.insert(formatted_choices, { name = name, uri = uri })
-      end
-
-      -- 2. Show picker
-      vim.ui.select(formatted_choices, {
-        prompt = "Select YAML Schema for current buffer",
-        format_item = function(item)
-          return item.name
-        end,
-      }, function(choice)
-        if not choice then
-          return
-        end
-
-        -- 3. Apply schema
-        local clients = vim.lsp.get_active_clients({ bufnr = 0, name = "yamlls" })
-        if #clients > 0 then
-          local client = clients[1]
-          local file_uri = vim.uri_from_bufnr(0)
-          -- Notifying the server about a configuration change for a specific file
-          client.notify("workspace/didChangeConfiguration", {
-            settings = {
-              yaml = {
-                schemas = {
-                  [choice.uri] = file_uri,
-                },
-              },
-            },
-          })
-          vim.notify("Applied schema: " .. choice.name)
-        else
-          vim.notify("yamlls is not active for this buffer.", vim.log.levels.WARN)
-        end
-      end)
-    end
-
-    vim.keymap.set("n", "<leader>cy", select_yaml_schema, { buffer = true, desc = "Change YAML Schema" })
-  end,
+        vim.keymap.set("n", "<leader>cy", select_yaml_schema, { buffer = true, desc = "Change YAML Schema" })
+    end,
 })
 
 -- -- wincmd L all vim-fugitive buffers

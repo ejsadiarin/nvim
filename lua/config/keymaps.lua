@@ -74,7 +74,11 @@ vim.keymap.set("n", "<leader>uI", "<cmd>InspectTree<cr>", { desc = "UI: [I]nspec
 -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
 -- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
 -- is not what someone will guess without a bit more experience.
-vim.keymap.set("t", "<C-[>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
+if vim.bo.filetype ~= "sidekick_terminal" then
+    vim.keymap.set("t", "<C-[>", "<C-\\><C-n>", { desc = "Exit terminal mode", buffer = true })
+end
+-- vim.keymap.set("t", "<Esc>", "<nop>", { desc = "No Exit terminal mode", silent = true })
+-- vim.keymap.set("t", "kj", "<C-\\><C-n>", { desc = "Exit terminal mode", silent = true })
 
 vim.keymap.set("n", "<c-/>", function()
     Snacks.terminal(nil, { cwd = LazyVim.root() })
@@ -492,10 +496,5 @@ end, {})
 vim.keymap.set("n", "<leader>nm", "<CMD>Messages<CR>", { desc = "notification: [m]essages" })
 
 vim.keymap.set("n", "<leader>eh", "<CMD>CloakToggle<CR>", { desc = "toggle cloak [h]ide" })
-
--- spawn terminal buffer with Gemini
-vim.keymap.set("n", "<leader>eg", function()
-    vim.cmd("split | terminal gemini")
-end, { desc = "gemini term buffer" })
 
 vim.keymap.set("i", "<C-a>", "<Esc>ggVG", { desc = "Select all text" })
