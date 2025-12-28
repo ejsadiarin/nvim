@@ -29,6 +29,9 @@ return {
             formatters_by_ft = {
                 go = { "gofumpt", "goimports" },
                 javascript = { "prettier" },
+                javascriptreact = { "prettier" },
+                typescript = { "prettier" },
+                typescriptreact = { "prettier" },
                 json = { "prettier" },
                 lua = { "stylua" },
                 ["markdown"] = { "prettier", "markdownlint-cli2", "markdown-toc" },

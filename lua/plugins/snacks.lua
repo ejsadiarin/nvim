@@ -236,6 +236,7 @@ late at night i think of you.
         -- Other
         { "<leader>n", false },
         { "<leader>z",  function() Snacks.zen() end, desc = "Toggle Zen Mode" },
+        { "<leader>uz", false },
         { "<leader>Z",  function() Snacks.zen.zoom() end, desc = "Toggle Zoom" },
         { "<leader>cs", function() Snacks.scratch() end, desc = "Spawn Scratch Buffer", },
         -- { "<leader>.",  function() Snacks.scratch() end, desc = "Toggle Scratch Buffer" },
@@ -349,6 +350,13 @@ late at night i think of you.
                     })
                 end,
             })
+
+            -- vim.keymap.set("n", "<leader>uz", function()
+            --     Snacks.zen()
+            --     Snacks.toggle.line_number()
+            --     Snacks.toggle.diagnostics()
+            --     -- Snacks.toggle.option("wrap")
+            -- end, { desc = "[z]en Focus Mode" })
         end,
     },
 

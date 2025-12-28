@@ -5,11 +5,8 @@ vim.api.nvim_create_autocmd("FileType", {
     pattern = { "sidekick_terminal" },
     callback = function(event)
         vim.keymap.set("t", "kj", "<C-\\><C-n>", { desc = "Exit terminal mode", silent = true, buffer = event.buf })
-
-        -- To allow <Esc> to be passed to the terminal, we must delete any mappings for it.
-        -- We use a protected call (pcall) to ignore errors if no mapping exists to be deleted.
-        pcall(vim.keymap.del, "t", "<C-[>", { buffer = event.buf })
-        pcall(vim.keymap.del, "t", "<Esc>", { buffer = event.buf })
+        -- Ensure <Esc> sends a literal escape to the terminal (for cancelling prompts)
+        vim.keymap.set("t", "<Esc>", "<Esc>", { buffer = event.buf, nowait = true })
     end,
 })
 
@@ -25,9 +22,9 @@ return {
                     -- stylua: ignore
                     keys = {
                         buffers       = { "<c-b>", "buffers"   , mode = "nt", desc = "open buffer picker" },
-                        files         = { "<c-f>", "files"     , mode = "nt", desc = "open file picker" },
+                        files         = { "<c-e>", "files"     , mode = "nt", desc = "open file picker" },
                         hide_n        = { "q"    , "hide"      , mode = "n" , desc = "hide the terminal window" },
-                        hide_ctrl_a   = { "<c-a>", "hide"      , mode = "nt", desc = "hide the terminal window" },
+                        hide_ctrl_backslash   = { "<c-\\>", "hide"      , mode = "nt" , desc = "hide the terminal window" },
                         hide_ctrl_dot = { "<c-.>", "hide"      , mode = "nt", desc = "hide the terminal window" },
                         hide_ctrl_q   = { "<c-q>", "hide"      , mode = "nt" , desc = "hide the terminal window" },
                         -- hide_ctrl_z   = { "<c-z>", "hide"      , mode = "nt", desc = "hide the terminal window" },
@@ -37,6 +34,10 @@ return {
                         -- navigations 
                         nav_left_alt       = { "<m-h>", "nav_left"  , expr = true, desc = "navigate to the left window" },
                         nav_left_ctrl      = { "<c-h>", "nav_left"  , expr = true, desc = "navigate to the left window" },
+                    },
+                    split = {
+                        width = 67,
+                        height = 20,
                     },
                     -- stylua: ignore end
                 },
@@ -60,7 +61,7 @@ return {
             --     desc = "Goto/Apply Next Edit Suggestion",
             -- },
             {
-                "<c-a>",
+                "<c-\\>",
                 function()
                     require("sidekick.cli").toggle()
                 end,
