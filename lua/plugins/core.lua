@@ -2,7 +2,8 @@ return {
     {
         "LazyVim/LazyVim",
         opts = {
-            colorscheme = "monokai-pro",
+            -- NOTE: this is set on colorscheme.lua
+            -- colorscheme = "monokai-pro",
             defaults = {
                 autocmds = true,
                 keymaps = true,

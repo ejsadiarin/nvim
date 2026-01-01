@@ -1,9 +1,16 @@
 -- Colorscheme:
+-- --> Catppuccin
 -- --> Monokai
 -- --> Jellybeans
 -- --> Tokyo Night
 
 return {
+    {
+        "LazyVim/LazyVim",
+        opts = {
+            colorscheme = "monokai-pro",
+        },
+    },
     -- WARN: THIS IS A VERY HEAVILY CUSTOMIZED MONOKAI
     {
         "loctvl842/monokai-pro.nvim",
@@ -87,6 +94,8 @@ return {
             override = function()
                 return {
                     Normal = { fg = "#fcffb8", bg = "NONE" }, -- #19171a
+                    -- Identifier = { fg = "#fcffb8", bg = "NONE" },
+                    -- Identifier = { fg = "#ffffff", bg = "NONE" }, -- #19171a
                     CursorLine = { bg = "#1d1e24" },
                     CursorLineNr = { fg = "#fcef0b" },
                     -- CursorLineNr = { fg = "#b8bcb9" },
@@ -94,7 +103,7 @@ return {
                     NormalFloat = { bg = "#161b1e" }, -- Set a solid background for floating windows
                     FloatBorder = { fg = "#425157", bg = "#161b1e" }, -- Ensure border is visible with a solid background
                     Directory = { fg = "#f9cc6c" },
-                    SignColumn = { bg = "NONE" },
+                    SignColumn = { fg = "NONE", bg = "NONE" },
                     Comment = { bg = "NONE" },
 
                     SnacksIndentScope = { fg = "#555555" },
@@ -109,14 +118,15 @@ return {
                     ["@lsp.type.namespace.go"] = { fg = "#be7be5" },
                     -- ["@lsp.type.namespace.go"] = { fg = "#b8bcb9" },
                     -- ['@lsp.type.namespace.go'] = { fg = '#fcffb8' },
+                    -- ["@keyword.function.lua"] = { fg = "#fcef0b" },
                     Function = { fg = "#ff6d7e" },
-                    -- Todo = { fg = "#222a2d" },
-                    TodoBgNOTE = { bg = "#7cd5f1", fg = "#222a2d", bold = true },
-                    TodoBgTODO = { bg = "#7cd5f1", fg = "#222a2d", bold = true },
-                    TodoBgWARN = { bg = "#ffb270", fg = "#222a2d", bold = true },
-                    TodoBgPERF = { bg = "#fcffb8", fg = "#222a2d", bold = true },
-                    TodoBgHACK = { bg = "#ffb270", fg = "#222a2d", bold = true },
-                    TodoBgFIX = { bg = "#c24c5a", fg = "#fcffb8", bold = true },
+                    -- Todo = { bg = "#7cd5f1", fg = "#222a2d", bold = true },
+                    TodoBgNOTE = { bg = "NONE", fg = "#7cd5f1", bold = true },
+                    TodoBgTODO = { bg = "NONE", fg = "#7cd5f1", bold = true },
+                    TodoBgWARN = { bg = "NONE", fg = "#ffb270", bold = true },
+                    TodoBgPERF = { bg = "NONE", fg = "#fcffb8", bold = true },
+                    TodoBgHACK = { bg = "NONE", fg = "#ffb270", bold = true },
+                    TodoBgFIX = { bg = "NONE", fg = "#c24c5a", bold = true },
                     yamlBlockMappingKey = { fg = "#c24c5a" },
 
                     MarkViewCode = { bg = "#141421" },
@@ -267,6 +277,136 @@ return {
                     AvanteConflictIncoming = { bg = "#314753", bold = true },
                 }
             end,
+        },
+    },
+
+    {
+        "catppuccin/nvim",
+        name = "catppuccin",
+        priority = 1000,
+        opts = {
+            flavour = "mocha", -- latte, frappe, macchiato, mocha
+            background = { -- :h background
+                light = "latte",
+                dark = "mocha",
+            },
+            transparent_background = false, -- disables setting the background color.
+            float = {
+                transparent = false, -- enable transparent floating windows
+                solid = false, -- use solid styling for floating windows, see |winborder|
+            },
+            show_end_of_buffer = false, -- shows the '~' characters after the end of buffers
+            term_colors = false, -- sets terminal colors (e.g. `g:terminal_color_0`)
+            dim_inactive = {
+                enabled = false, -- dims the background color of inactive window
+                shade = "dark",
+                percentage = 0.15, -- percentage of the shade to apply to the inactive window
+            },
+            no_italic = false, -- Force no italic
+            no_bold = false, -- Force no bold
+            no_underline = false, -- Force no underline
+            styles = { -- Handles the styles of general hi groups (see `:h highlight-args`):
+                comments = { "italic" }, -- Change the style of comments
+                conditionals = { "italic" },
+                loops = {},
+                functions = {},
+                keywords = {},
+                strings = {},
+                variables = {},
+                numbers = {},
+                booleans = {},
+                properties = {},
+                types = {},
+                operators = {},
+                -- miscs = {}, -- Uncomment to turn off hard-coded styles
+            },
+            lsp_styles = { -- Handles the style of specific lsp hl groups (see `:h lsp-highlight`).
+                virtual_text = {
+                    errors = { "italic" },
+                    hints = { "italic" },
+                    warnings = { "italic" },
+                    information = { "italic" },
+                    ok = { "italic" },
+                },
+                underlines = {
+                    errors = { "underline" },
+                    hints = { "underline" },
+                    warnings = { "underline" },
+                    information = { "underline" },
+                    ok = { "underline" },
+                },
+                inlay_hints = {
+                    background = true,
+                },
+            },
+            color_overrides = {
+                mocha = {
+                    -- this 16 colors are changed to onedark
+                    -- this 16 colors are changed to catppuccin mocha
+                    -- base = "#1e1e2e",
+                    base = "#050517",
+                    mantle = "#181825",
+                    surface0 = "#313244",
+                    surface1 = "#45475a",
+                    surface2 = "#585b70",
+                    text = "#cdd6f4",
+
+                    black = "#626483",
+                    red = "#fb007a",
+                    green = "#a6e22e",
+                    yellow = "#f3e430",
+                    blue = "#58AFC2",
+                    magenta = "#583794",
+                    cyan = "#926BCA",
+                    white = "#d9d9d9",
+
+                    rosewater = "#f5e0dc",
+                    lavender = "#b4befe",
+
+                    -- red = "#fb007a",
+                    -- yellow = "#f3e430",
+                    -- green = "#a6e22e",
+                    -- blue = "#89b4fa",
+                    peach = "#fab387",
+                    teal = "#94e2d5",
+                    mauve = "#cba6f7",
+                    flamingo = "#f2cdcd",
+
+                    -- now patching extra palettes
+                    maroon = "#eba0ac",
+                    sky = "#89dceb",
+
+                    -- extra colors
+                    pink = "#f5c2e7",
+                    sapphire = "#74c7ec",
+
+                    subtext1 = "#bac2de",
+                    subtext0 = "#a6adc8",
+                    overlay2 = "#9399b2",
+                    overlay1 = "#7f849c",
+                    overlay0 = "#6c7086",
+
+                    crust = "#11111b",
+                },
+            },
+            custom_highlights = {},
+            default_integrations = true,
+            auto_integrations = false,
+            integrations = {
+                cmp = true,
+                gitsigns = true,
+                nvimtree = true,
+                notify = false,
+                mini = {
+                    enabled = true,
+                    indentscope_color = "",
+                },
+                snacks = {
+                    enabled = true,
+                    indent_scope_color = "", -- catppuccin color (eg. `lavender`) Default: text
+                },
+                -- For more plugins integrations please scroll down (https://github.com/catppuccin/nvim#integrations)
+            },
         },
     },
 
