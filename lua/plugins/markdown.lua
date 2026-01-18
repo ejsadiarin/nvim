@@ -80,9 +80,13 @@ return {
                 enabled = false,
             },
         },
-        ft = { "markdown", "norg", "rmd", "org" },
+        ft = { "markdown", "norg", "rmd", "org", "codecompanion" },
         config = function(_, opts)
             require("render-markdown").setup(opts)
+
+            -- vim.api.nvim_set_hl(0, "RenderMarkdownH1", { fg = "#FFD700", bold = true })
+            vim.api.nvim_set_hl(0, "RenderMarkdownH1Bg", { fg = "#87CEEB", bold = true })
+
             Snacks.toggle({
                 name = "Render Markdown",
                 get = function()

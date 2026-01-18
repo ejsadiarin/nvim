@@ -10,6 +10,7 @@ if pcall(require, "lazyvim") then
     vim.g.snacks_animate = false
     vim.g.minipairs_disable = true
     vim.g.lazyvim_picker = "snacks"
+    vim.g.lazyvim_prettier_needs_config = false
 end
 
 -- Set to true if you have a Nerd Font installed and selected in the terminal

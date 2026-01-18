@@ -68,14 +68,15 @@ return {
             overridePalette = function(filter)
                 return {
                     -- Background and text colors
-                    dark2 = "#161b1e", -- Deep background color (darkest)
-                    dark1 = "#1d2528", -- Slightly lighter background
                     background = "#273136", -- Main background color
+                    dark1 = "#1d2528", -- Slightly lighter background
+                    dark2 = "#161b1e", -- Deep background color (darkest)
                     text = "#fcffb8", -- Primary text color
                     -- text = '#f2fffc',       -- Primary text color
-                    accent1 = "#c24c5a", -- Red accent (functions)
-                    -- accent1 = '#ff6d7e',    -- Red accent (functions)
+                    -- accent1 = "#c24c5a", -- Red accent (functions)
+                    accent1 = "#ff6d7e", -- Red accent (functions)
                     accent2 = "#ffb270", -- Orange accent (parameter)
+                    -- accent3 = "#90ee90", -- Yellow accent (strings)
                     accent3 = "#f9cc6c", -- Yellow accent (strings)
                     -- accent3 = '#fabd2f',    -- Yellow accent
                     -- accent4 = '#97e522',    -- Green accent
@@ -115,8 +116,20 @@ return {
                     NotificationWarning = { bg = "NONE" },
                     NotificationError = { bg = "NONE" },
 
-                    ["@lsp.type.namespace.go"] = { fg = "#be7be5" },
-                    -- ["@lsp.type.namespace.go"] = { fg = "#b8bcb9" },
+                    -- NOTE: for Go syntax
+                    ["@lsp.type.namespace.go"] = { fg = "#b8bcb9" },
+                    -- func keyword (same)
+                    ["@lsp.type.keyword.go"] = { fg = "#7cd5f1" },
+                    ["@keyword.function.go"] = { fg = "#7cd5f1" },
+                    --
+                    ["@function"] = { fg = "#a2e57b" }, -- #fcffb8
+                    -- ["@string"] = { fg = "#e6db74" },
+                    -- ["@property.yaml"] = { fg = "#2EF0E9" },
+                    -- ["@string.yaml"] = { fg = "#90ee90" },
+                    ["@keyword"] = { fg = "#fcef0b" },
+                    ["@punctuation.bracket"] = { fg = "#fcffb8" },
+
+                    -- ["@lsp.type.namespace.go"] = { fg = "#be7be5" },
                     -- ['@lsp.type.namespace.go'] = { fg = '#fcffb8' },
                     -- ["@keyword.function.lua"] = { fg = "#fcef0b" },
                     Function = { fg = "#ff6d7e" },

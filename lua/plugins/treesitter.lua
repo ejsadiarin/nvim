@@ -26,7 +26,7 @@ return {
                 "javascript",
                 "jsdoc",
                 "json",
-                "jsonc",
+                -- "jsonc",
                 "lua",
                 "luadoc",
                 "luap",
@@ -47,6 +47,10 @@ return {
         },
         ---@param opts lazyvim.TSConfig
         config = function(_, opts)
+            if vim.highlight.priorities then
+                vim.highlight.priorities.semantic_tokens = 95
+            end
+
             local TS = require("nvim-treesitter")
 
             -- some quick sanity checks

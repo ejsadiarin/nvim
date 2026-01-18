@@ -194,6 +194,13 @@ return {
                             },
                         },
                     },
+                    vtsls = {
+                        settings = { vtsls = { typescript = { format = { indentSize = 4, tabSize = 4 } } } },
+                        on_attach = function(client)
+                            client.server_capabilities.documentFormattingProvider = false
+                            client.server_capabilities.documentRangeFormattingProvider = false
+                        end,
+                    },
                     marksman = {
                         format = false,
                     },
@@ -349,6 +356,7 @@ return {
                 "stylua",
                 "shfmt",
                 "html-lsp",
+                "prettierd",
             },
         },
         ---@param opts MasonSettings | {ensure_installed: string[]}
