@@ -22,13 +22,13 @@ return {
                     -- stylua: ignore
                     keys = {
                         buffers       = { "<c-b>", "buffers"   , mode = "nt", desc = "open buffer picker" },
-                        files         = { "<c-e>", "files"     , mode = "nt", desc = "open file picker" },
+                        files         = { "<c-z>", "files"     , mode = "nt", desc = "open file picker" },
                         hide_n        = { "q"    , "hide"      , mode = "n" , desc = "hide the terminal window" },
                         hide_ctrl_backslash   = { "<c-\\>", "hide"      , mode = "nt" , desc = "hide the terminal window" },
-                        hide_ctrl_dot = { "<c-.>", "hide"      , mode = "nt", desc = "hide the terminal window" },
-                        hide_ctrl_q   = { "<c-q>", "hide"      , mode = "nt" , desc = "hide the terminal window" },
+                        -- hide_ctrl_dot = { "<c-.>", "hide"      , mode = "nt", desc = "hide the terminal window" },
+                        -- hide_ctrl_q   = { "<c-q>", "hide"      , mode = "nt" , desc = "hide the terminal window" },
                         -- hide_ctrl_z   = { "<c-z>", "hide"      , mode = "nt", desc = "hide the terminal window" },
-                        prompt        = { "<c-p>", "prompt"    , mode = "t" , desc = "insert prompt or context" },
+                        prompt        = { "<c-y>", "prompt"    , mode = "t" , desc = "insert prompt or context" },
                         -- The line below was mapping <Esc> to exit terminal insert mode. It is now disabled.
                         -- stopinsert    = { "<c-[>", "stopinsert", mode = "t" , desc = "enter normal mode" },
                         -- navigations 

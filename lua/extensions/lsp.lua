@@ -194,6 +194,20 @@ return {
                             },
                         },
                     },
+                    clangd = {
+                        capabilities = {
+                            offsetEncoding = { "utf-16" },
+                        },
+                        cmd = {
+                            "clangd",
+                            "--background-index",
+                            "--clang-tidy",
+                            "--header-insertion=iwyu",
+                            "--completion-style=detailed",
+                            "--function-arg-placeholders",
+                            "--fallback-style={IndentWidth: 4}",
+                        },
+                    },
                     vtsls = {
                         settings = { vtsls = { typescript = { format = { indentSize = 4, tabSize = 4 } } } },
                         on_attach = function(client)
@@ -357,6 +371,7 @@ return {
                 "shfmt",
                 "html-lsp",
                 "prettierd",
+                "clang-format",
             },
         },
         ---@param opts MasonSettings | {ensure_installed: string[]}

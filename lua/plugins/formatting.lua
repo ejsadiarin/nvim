@@ -111,6 +111,8 @@ return {
                     toml = { "taplo" },
                     typst = { "typstfmt" },
                     yaml = { "yamlfmt" },
+                    c = { "clang-format" },
+                    cpp = { "clang-format" },
                 },
                 -- format_on_save = function()
                 --     -- Disable with a global variable
@@ -164,6 +166,9 @@ return {
                             "-formatter",
                             "indent=2,include_document_start=false,retain_line_breaks_single=true,line_ending=lf,sequence_style=block,mapping-style=block",
                         },
+                    },
+                    ["clang-format"] = {
+                        prepend_args = { "--style={IndentWidth: 4, ContinuationIndentWidth: 4}" },
                     },
                     prettier = {
                         command = require("conform.util").find_executable({
