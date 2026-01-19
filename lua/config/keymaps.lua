@@ -67,6 +67,17 @@ vim.keymap.set("n", "<leader>cl", function()
 end, { desc = "Open [l]SP Info" })
 -- vim.keymap.set("n", "<leader>cl", "<cmd>check lspconfig<cr>", { desc = "Open [l]SP Info" })
 
+-- Restart LSP
+vim.api.nvim_create_user_command("LspRestart", function()
+    local clients = vim.lsp.get_clients({ bufnr = 0 })
+    for _, client in ipairs(clients) do
+        client:stop()
+    end
+    vim.cmd("edit")
+    vim.notify("Restarted LSP")
+end, {})
+vim.keymap.set("n", "<leader>cR", "<cmd>LspRestart<cr>", { desc = "Restart LSP" })
+
 -- Highlights Under Cursor
 vim.keymap.set("n", "<leader>ui", vim.show_pos, { desc = "UI: [i]nspect Pos" })
 vim.keymap.set("n", "<leader>uI", "<cmd>InspectTree<cr>", { desc = "UI: [I]nspect Tree" })
