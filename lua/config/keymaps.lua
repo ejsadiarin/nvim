@@ -434,8 +434,25 @@ if pcall(require, "oil") then
     vim.keymap.set("n", "<leader>-", "<CMD>Oil<CR>", { desc = "Open Oil" })
 end
 
+-- Tab Navigation
 vim.keymap.set("n", "<leader>[", "<CMD>tabprev<CR>", { desc = "tabprev" })
 vim.keymap.set("n", "<leader>]", "<CMD>tabnext<CR>", { desc = "tabnext" })
+
+-- Reliable Ctrl-based tab navigation that works with Tmux + Kitty
+-- Using <C-t> prefix since it's less commonly used
+vim.keymap.set({ "n", "x", "t" }, "<C-t>h", "<CMD>tabprev<CR>", { desc = "Previous tab" })
+vim.keymap.set({ "n", "x", "t" }, "<C-t>l", "<CMD>tabnext<CR>", { desc = "Next tab" })
+vim.keymap.set({ "n", "x", "t" }, "<C-t>n", "<CMD>tabnew<CR>", { desc = "New tab" })
+vim.keymap.set({ "n", "x", "t" }, "<C-t>c", "<CMD>tabclose<CR>", { desc = "Close tab" })
+
+-- Alternative using Meta/Alt key (works well in Tmux)
+-- Note: These use <M- > which is Alt key - very reliable in terminal
+vim.keymap.set({ "n", "x", "t" }, "<M-,>", "<CMD>tabprev<CR>", { desc = "Previous tab" })
+vim.keymap.set({ "n", "x", "t" }, "<M-.>", "<CMD>tabnext<CR>", { desc = "Next tab" })
+
+-- Fallback: Function key bindings (always work)
+-- vim.keymap.set({ "n", "x", "t" }, "<F7>", "<CMD>tabprev<CR>", { desc = "Previous tab" })
+-- vim.keymap.set({ "n", "x", "t" }, "<F8>", "<CMD>tabnext<CR>", { desc = "Next tab" })
 
 -- SPECIALS [e]
 -- vim.keymap.set("n", "<leader>ej", "<cmd>DBUIToggle<cr>", { desc = "open/close dbui", silent = true }) -- already in extensions.data-engineering.sql
