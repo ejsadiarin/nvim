@@ -11,6 +11,34 @@ return {
             colorscheme = "monokai-pro",
         },
     },
+    {
+        "garymjr/opencode.nvim",
+        priority = 1000,
+        opts = {
+            style = "dark", -- "dark" or "light"
+            transparent = false, -- Enable transparent background
+            terminal_colors = true, -- Apply colors to terminal
+            styles = {
+                comments = { italic = true },
+                keywords = { bold = true },
+                functions = {},
+                variables = {},
+                types = {},
+            },
+            integrations = {
+                telescope = true,
+                nvimtree = true,
+                which_key = true,
+                cmp = true,
+                gitsigns = true,
+                treesitter = true,
+            },
+            highlight_overrides = {
+                -- Custom highlight overrides
+                Normal = { fg = "#ffffff" },
+            },
+        },
+    },
     -- WARN: THIS IS A VERY HEAVILY CUSTOMIZED MONOKAI
     {
         "loctvl842/monokai-pro.nvim",
