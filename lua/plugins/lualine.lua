@@ -34,50 +34,50 @@ return {
                 normal = {
                     a = { fg = "#1d2528", bg = "#a2e57b", gui = "bold" }, -- green bg
                     b = { fg = "#a2e57b", bg = "#1d2528" }, -- subtle bg
-                    c = { fg = "#b8bcb9", bg = "NONE" },
-                    x = { fg = "#b8bcb9", bg = "NONE" },
+                    c = { fg = "#b8bcb9", bg = "#1a1b20" },
+                    x = { fg = "#b8bcb9", bg = "#1a1b20" },
                     y = { fg = "#fcffb8", bg = "#1d2528" },
                     z = { fg = "#1d2528", bg = "#a2e57b", gui = "bold" },
                 },
                 insert = {
                     a = { fg = "#1d2528", bg = "#f9cc6c", gui = "bold" }, -- yellow bg
                     b = { fg = "#f9cc6c", bg = "#1d2528" },
-                    c = { fg = "#b8bcb9", bg = "NONE" },
-                    x = { fg = "#b8bcb9", bg = "NONE" },
+                    c = { fg = "#b8bcb9", bg = "#1a1b20" },
+                    x = { fg = "#b8bcb9", bg = "#1a1b20" },
                     y = { fg = "#fcffb8", bg = "#1d2528" },
                     z = { fg = "#1d2528", bg = "#f9cc6c", gui = "bold" },
                 },
                 visual = {
                     a = { fg = "#1d2528", bg = "#baa0f8", gui = "bold" }, -- purple bg
                     b = { fg = "#baa0f8", bg = "#1d2528" },
-                    c = { fg = "#b8bcb9", bg = "NONE" },
-                    x = { fg = "#b8bcb9", bg = "NONE" },
+                    c = { fg = "#b8bcb9", bg = "#1a1b20" },
+                    x = { fg = "#b8bcb9", bg = "#1a1b20" },
                     y = { fg = "#fcffb8", bg = "#1d2528" },
                     z = { fg = "#1d2528", bg = "#baa0f8", gui = "bold" },
                 },
                 replace = {
                     a = { fg = "#1d2528", bg = "#ff6d7e", gui = "bold" }, -- red bg
                     b = { fg = "#ff6d7e", bg = "#1d2528" },
-                    c = { fg = "#b8bcb9", bg = "NONE" },
-                    x = { fg = "#b8bcb9", bg = "NONE" },
+                    c = { fg = "#b8bcb9", bg = "#1a1b20" },
+                    x = { fg = "#b8bcb9", bg = "#1a1b20" },
                     y = { fg = "#fcffb8", bg = "#1d2528" },
                     z = { fg = "#1d2528", bg = "#ff6d7e", gui = "bold" },
                 },
                 command = {
                     a = { fg = "#1d2528", bg = "#7cd5f1", gui = "bold" }, -- blue bg
                     b = { fg = "#7cd5f1", bg = "#1d2528" },
-                    c = { fg = "#b8bcb9", bg = "NONE" },
-                    x = { fg = "#b8bcb9", bg = "NONE" },
+                    c = { fg = "#b8bcb9", bg = "#1a1b20" },
+                    x = { fg = "#b8bcb9", bg = "#1a1b20" },
                     y = { fg = "#fcffb8", bg = "#1d2528" },
                     z = { fg = "#1d2528", bg = "#7cd5f1", gui = "bold" },
                 },
                 inactive = {
-                    a = { fg = "#6b7678", bg = "NONE" },
-                    b = { fg = "#6b7678", bg = "NONE" },
-                    c = { fg = "#6b7678", bg = "NONE" },
-                    x = { fg = "#6b7678", bg = "NONE" },
-                    y = { fg = "#6b7678", bg = "NONE" },
-                    z = { fg = "#6b7678", bg = "NONE" },
+                    a = { fg = "#6b7678", bg = "#1a1b20" },
+                    b = { fg = "#6b7678", bg = "#1a1b20" },
+                    c = { fg = "#6b7678", bg = "#1a1b20" },
+                    x = { fg = "#6b7678", bg = "#1a1b20" },
+                    y = { fg = "#6b7678", bg = "#1a1b20" },
+                    z = { fg = "#6b7678", bg = "#1a1b20" },
                 },
             }
 
