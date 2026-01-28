@@ -289,15 +289,15 @@ vim.api.nvim_create_autocmd("QuickFixCmdPost", {
 --- ######### GO SEMANTIC TOKEN PRIORITY ######### ---
 -- increase LSP semantic token priority for Go files so they override treesitter
 -- treesitter uses priority 100, semantic tokens default to 95
-vim.api.nvim_create_autocmd("LspAttach", {
-    group = vim.api.nvim_create_augroup("go-semantic-tokens-priority", { clear = true }),
-    callback = function(args)
-        local client = vim.lsp.get_client_by_id(args.data.client_id)
-        if client and client.name == "gopls" then
-            vim.highlight.priorities.semantic_tokens = 125
-        end
-    end,
-})
+-- vim.api.nvim_create_autocmd("LspAttach", {
+--     group = vim.api.nvim_create_augroup("go-semantic-tokens-priority", { clear = true }),
+--     callback = function(args)
+--         local client = vim.lsp.get_client_by_id(args.data.client_id)
+--         if client and client.name == "gopls" then
+--             vim.highlight.priorities.semantic_tokens = 125
+--         end
+--     end,
+-- })
 
 --- ######### GO-RELATED PERF IMPORTS ######### ---
 -- vim.cmd [[autocmd BufWritePre *.go lua vim.lsp.buf.format({ async = true })]]

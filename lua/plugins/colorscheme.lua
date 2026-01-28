@@ -93,7 +93,7 @@ return {
             ---@param hp Helper
             -- override = function(cs: Colorscheme, p: ColorschemeOptions, Config: MonokaiProOptions, hp: Helper) end,
             ---@param filter "classic" | "machine" | "octagon" | "pro" | "ristretto" | "spectrum"
-            overridePalette = function(filter)
+            override_palette = function(filter)
                 return {
                     -- Background and text colors
                     background = "#273136", -- Main background color
@@ -120,7 +120,7 @@ return {
                     dimmed5 = "#1e1e1e", -- Dark gray
                 }
             end,
-            override = function()
+            override = function(scheme)
                 return {
                     Normal = { fg = "#fcffb8", bg = "NONE" }, -- #19171a
                     -- Identifier = { fg = "#fcffb8", bg = "NONE" },
@@ -197,6 +197,7 @@ return {
 
                     SnacksScratchTitle = { fg = "#f2fffc", bg = "#1d1e24" },
                     SnacksScratchFooter = { fg = "#f2fffc", bg = "#1d1e24" },
+                    SnacksPickerTree = { bg = "NONE" },
 
                     -- SnacksNormal = { bg = "NONE" },
                     -- SnacksWinBar = { bg = "NONE" },
@@ -231,8 +232,6 @@ return {
                     -- SnacksNotifierFooterTrace = { bg = "NONE" },
                     -- SnacksNotifierHistoryTitle = { bg = "NONE" },
                     -- SnacksNotifierHistoryDateTime = { bg = "NONE" },
-
-                    lualine_a_normal = { bg = "#1e1e1e" },
 
                     ["@markup.raw.block.markdown"] = { bg = "NONE" },
                     ["@markup.raw.markdown_inline"] = { bg = "NONE" },
