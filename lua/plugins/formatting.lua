@@ -164,7 +164,7 @@ return {
                     yamlfmt = {
                         prepend_args = {
                             "-formatter",
-                            "indent=2,include_document_start=false,retain_line_breaks_single=true,line_ending=lf,sequence_style=block,mapping-style=block",
+                            "indent=2,include_document_start=true,retain_line_breaks_single=true,line_ending=lf,sequence_style=block,mapping-style=block",
                         },
                     },
                     ["clang-format"] = {

@@ -39,11 +39,11 @@ return {
                             },
                             -- see schema more catalogs here: https://github.com/datreeio/CRDs-catalog (https://raw.githubusercontent.com/datreeio/CRDs-catalog/main)
                             schemas = vim.tbl_deep_extend("force", require("schemastore").yaml.schemas(), {
-                                kubernetes = "*.yaml",
+                                kubernetes = { "*.yaml", "*.yml" },
                                 ["http://json.schemastore.org/ansible-stable-2.9"] = "roles/tasks/**/*.{yml,yaml}",
                                 ["http://json.schemastore.org/circleciconfig"] = ".circleci/**/*.{yml,yaml}",
                                 ["http://json.schemastore.org/github-workflow"] = ".github/workflows/*",
-                                ["http://json.schemastore.org/github-action"] = ".github/action.{yml,yaml}",
+["http://json.schemastore.org/github-action"] = ".github/action*.{yml,yaml}",
                                 ["https://raw.githubusercontent.com/microsoft/azure-pipelines-vscode/master/service-schema.json"] = "azure-pipelines*.{yml,yaml}",
                                 ["https://raw.githubusercontent.com/ansible/ansible-lint/main/src/ansiblelint/schemas/ansible.json#/$defs/tasks"] = "roles/tasks/*.{yml,yaml}",
                                 ["https://raw.githubusercontent.com/ansible/ansible-lint/main/src/ansiblelint/schemas/ansible.json#/$defs/playbook"] = "*play*.{yml,yaml}",

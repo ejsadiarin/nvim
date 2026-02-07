@@ -151,7 +151,8 @@ return {
                         -- NOTE: for Go syntax
                         ["@lsp.type.namespace.go"] = { fg = "#b8bcb9" },
                         -- func keyword (same)
-                        ["@lsp.type.keyword.go"] = { fg = "#7cd5f1" },
+                        ["@lsp.type.keyword.go"] = { fg = "#ff6d7e" },
+                        -- ["@lsp.type.keyword.go"] = { fg = "#7cd5f1" },
                         ["@keyword.function.go"] = { fg = "#7cd5f1" },
                         --
                         ["@function"] = { fg = "#a2e57b" }, -- #fcffb8
@@ -160,6 +161,7 @@ return {
                         -- ["@string.yaml"] = { fg = "#90ee90" },
                         ["@keyword"] = { fg = "#fcef0b" },
                         ["@punctuation.bracket"] = { fg = "#fcffb8" },
+                        ["@module.go"] = { fg = "#b8bcb9" },
 
                         -- ["@lsp.type.namespace.go"] = { fg = "#be7be5" },
                         -- ['@lsp.type.namespace.go'] = { fg = '#fcffb8' },
