@@ -174,10 +174,46 @@ return {
                         command = require("conform.util").find_executable({
                             "node_modules/.bin/prettier",
                         }, "prettier"),
-                        args = { "--tab-width", "4", "--config-precedence", "prefer-file", "--stdin-filepath", "$FILENAME" },
+                        args = {
+                            "--tab-width",
+                            "4",
+                            "--config-precedence",
+                            "prefer-file",
+                            "--stdin-filepath",
+                            "$FILENAME",
+                        },
                     },
                     prettierd = {
-                        args = { "--tab-width", "4", "--config-precedence", "prefer-file", "--stdin-filepath", "$FILENAME" },
+                        args = {
+                            "--tab-width",
+                            "4",
+                            "--config-precedence",
+                            "prefer-file",
+                            "--stdin-filepath",
+                            "$FILENAME",
+                        },
+                    },
+                    json = {
+                        command = "prettier",
+                        args = {
+                            "--tab-width",
+                            "2",
+                            "--config-precedence",
+                            "prefer-file",
+                            "--stdin-filepath",
+                            "$FILENAME",
+                        },
+                    },
+                    jsonc = {
+                        command = "prettier",
+                        args = {
+                            "--tab-width",
+                            "2",
+                            "--config-precedence",
+                            "prefer-file",
+                            "--stdin-filepath",
+                            "$FILENAME",
+                        },
                     },
                 },
             }
