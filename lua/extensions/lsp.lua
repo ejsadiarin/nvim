@@ -75,6 +75,7 @@ return {
                 ---@alias lazyvim.lsp.Config vim.lsp.Config|{mason?:boolean, enabled?:boolean, keys?:LazyKeysLspSpec[]}
                 ---@type table<string, lazyvim.lsp.Config|boolean>
                 servers = {
+                    copilot = { enabled = false },
                     ["*"] = {
                         capabilities = {
                             workspace = {
