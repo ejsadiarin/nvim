@@ -258,42 +258,43 @@ return {
                                     require("jdtls.dap").setup_dap_main_class_configs(opts.dap_main)
                                 end
 
-                                -- Java Test require Java debugger to work
-                                if opts.test and mason_registry.is_installed("java-test") then
-                                    -- custom keymaps for Java test runner (not yet compatible with neotest)
-                                    wk.add({
-                                        {
-                                            mode = "n",
-                                            buffer = args.buf,
-                                            { "<leader>t", group = "test" },
-                                            {
-                                                "<leader>tt",
-                                                function()
-                                                    require("jdtls.dap").test_class({
-                                                        config_overrides = type(opts.test) ~= "boolean"
-                                                                and opts.test.config_overrides
-                                                            or nil,
-                                                    })
-                                                end,
-                                                desc = "Run All Test",
-                                            },
-                                            {
-                                                "<leader>tr",
-                                                function()
-                                                    require("jdtls.dap").test_nearest_method({
-                                                        config_overrides = type(opts.test) ~= "boolean"
-                                                                and opts.test.config_overrides
-                                                            or nil,
-                                                    })
-                                                end,
-                                                desc = "Run Nearest Test",
-                                            },
-                                            { "<leader>tT", require("jdtls.dap").pick_test, desc = "Run Test" },
-                                        },
-                                    })
-                                end
-                            end
-                        end
+                                -- NOTE: UPDATE 2026-05-16: disabled neotest, let's just run test on another tmux window (simpler, easier, ergonomic)
+                        --         -- Java Test require Java debugger to work
+                        --         if opts.test and mason_registry.is_installed("java-test") then
+                        --             -- custom keymaps for Java test runner (not yet compatible with neotest)
+                        --             wk.add({
+                        --                 {
+                        --                     mode = "n",
+                        --                     buffer = args.buf,
+                        --                     { "<leader>t", group = "test" },
+                        --                     {
+                        --                         "<leader>tt",
+                        --                         function()
+                        --                             require("jdtls.dap").test_class({
+                        --                                 config_overrides = type(opts.test) ~= "boolean"
+                        --                                         and opts.test.config_overrides
+                        --                                     or nil,
+                        --                             })
+                        --                         end,
+                        --                         desc = "Run All Test",
+                        --                     },
+                        --                     {
+                        --                         "<leader>tr",
+                        --                         function()
+                        --                             require("jdtls.dap").test_nearest_method({
+                        --                                 config_overrides = type(opts.test) ~= "boolean"
+                        --                                         and opts.test.config_overrides
+                        --                                     or nil,
+                        --                             })
+                        --                         end,
+                        --                         desc = "Run Nearest Test",
+                        --                     },
+                        --                     { "<leader>tT", require("jdtls.dap").pick_test, desc = "Run Test" },
+                        --                 },
+                        --             })
+                        --         end
+                        --     end
+                        -- end
 
                         -- User can set additional keymaps in opts.on_attach
                         if opts.on_attach then
