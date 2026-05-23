@@ -165,7 +165,7 @@ return {
 
             -- Code blocks
             vim.api.nvim_set_hl(0, "RenderMarkdownCode", { bg = "#1f1f1f" })
-            vim.api.nvim_set_hl(0, "RenderMarkdownCodeInline", { fg = "#f9cc6c", bg = "#24283b", bold = true })
+            vim.api.nvim_set_hl(0, "RenderMarkdownCodeInline", { fg = "#f9cc6c", bg = "#24283b" })
             vim.api.nvim_set_hl(0, "RenderMarkdownCodeBorder", { fg = "#565f89" })
 
             -- Lists & Bullets

@@ -431,7 +431,8 @@ return {
                     subtext0 = "#8C84A8", -- tw.text.between (tertiary)
                     overlay2 = "#6C6280", -- tw.text.faded   (muted)
                     overlay1 = "#564E6A", -- dim muted
-                    overlay0 = "#3A3050", -- tw.text.specter (disabled)
+                    overlay0 = "#6C6280", -- tw.text.faded   (muted)
+                    -- overlay0 = "#3A3050", -- tw.text.specter (disabled)
 
                     -- ── 16 terminal colors ────────────────────────────
                     -- black / dark variants use surface tones
@@ -441,7 +442,7 @@ return {
                     red = "#FF4D8D", -- tw.briar.bright
                     green = "#22D98E", -- tw.thorn.bright
                     yellow = "#FFD166", -- tw.gilt.bright
-                    blue = "#007A99", -- tw.circuit.dim
+                    blue = "#009EC7", -- tw.circuit.dim
                     magenta = "#8B3FCC", -- tw.arcane.mid
                     cyan = "#00B8CC", -- tw.circuit.mid
                     white = "#B0A8CC", -- tw.text.vellum
@@ -483,7 +484,7 @@ return {
                 -- Shorthand aliases for readability
                 local circuit_bright = "#00E5FF"
                 local circuit_mid = "#00B8CC"
-                local circuit_dim = "#007A99"
+                local circuit_dim = "#009EC7"
                 local arcane_bright = "#C084FC"
                 local arcane_mid = "#8B3FCC"
                 local gilt_bright = "#FFD166"
@@ -495,7 +496,8 @@ return {
                 local text_rune = "#EDE8F8"
                 local text_vellum = "#B0A8CC"
                 local text_faded = "#6C6280"
-                local text_specter = "#3A3050"
+                local text_specter = "#6C6280"
+                -- local text_specter = "#3A3050"
                 local bg_base = "#0F0C1A"
                 local bg_surface = "#171224"
                 local bg_raised = "#1F1830"

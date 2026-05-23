@@ -23,6 +23,8 @@ if pcall(require, "lazyvim") then
     -- vim.keymap.del("n", "<leader>qS")
     vim.keymap.del("n", "<C-s>")
     vim.keymap.del("n", "<leader>fT")
+    vim.keymap.del("n", "<leader>uz")
+    vim.keymap.del("n", "<leader>uZ")
 end
 --  Remap normal mode to "kj" when insert mode
 vim.keymap.set("i", "kj", "<ESC>", { silent = true })
