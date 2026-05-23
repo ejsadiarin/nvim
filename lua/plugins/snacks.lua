@@ -237,7 +237,7 @@ late at night i think of you.
         { "<leader>n", false },
         { "<leader>z",  function() Snacks.zen() end, desc = "Toggle Zen Mode" },
         { "<leader>uz", false },
-        { "<leader>Z",  function() Snacks.zen.zoom() end, desc = "Toggle Zoom" },
+        -- { "<leader>Z",  function() Snacks.zen.zoom() end, desc = "Toggle Zoom" },
         { "<leader>cs", function() Snacks.scratch() end, desc = "Spawn Scratch Buffer", },
         -- { "<leader>.",  function() Snacks.scratch() end, desc = "Toggle Scratch Buffer" },
         { "<leader>cS", function() Snacks.scratch.select() end, desc = "Select Scratch Buffer", },
@@ -334,17 +334,18 @@ late at night i think of you.
                     Snacks.toggle.inlay_hints():map("<leader>uh")
                     Snacks.toggle({
                         name = "Buffer Centering",
+                        notify = false,
                         get = function()
-                            return require("config.noneckpain").is_active()
+                            return require("extensions.noneckpain").is_active()
                         end,
                         set = function(state)
                             if state then
-                                require("config.noneckpain").enable()
+                                require("extensions.noneckpain").enable()
                             else
-                                require("config.noneckpain").disable()
+                                require("extensions.noneckpain").disable()
                             end
                         end,
-                    }):map("<leader>uN")
+                    }):map("<leader>Z")
                 end,
             })
 
