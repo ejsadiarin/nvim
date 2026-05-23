@@ -332,6 +332,19 @@ late at night i think of you.
                         .option("background", { off = "light", on = "dark", name = "Dark Background" })
                         :map("<leader>ub")
                     Snacks.toggle.inlay_hints():map("<leader>uh")
+                    Snacks.toggle({
+                        name = "Buffer Centering",
+                        get = function()
+                            return require("config.noneckpain").is_active()
+                        end,
+                        set = function(state)
+                            if state then
+                                require("config.noneckpain").enable()
+                            else
+                                require("config.noneckpain").disable()
+                            end
+                        end,
+                    }):map("<leader>uN")
                 end,
             })
 
