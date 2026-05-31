@@ -10,6 +10,500 @@ return {
             colorscheme = "catppuccin-nvim",
         },
     },
+    {
+        "catppuccin/nvim",
+        name = "catppuccin",
+        priority = 1000,
+        opts = {
+            flavour = "mocha",
+            background = {
+                light = "latte",
+                dark = "mocha",
+            },
+            transparent_background = true,
+            float = {
+                transparent = true,
+                solid = false,
+            },
+            show_end_of_buffer = false,
+            term_colors = true,
+            dim_inactive = {
+                enabled = false,
+                shade = "dark",
+                percentage = 0.15,
+            },
+            no_italic = true,
+            no_bold = true,
+            no_underline = false,
+            styles = {
+                comments = { "italic" },
+                conditionals = { "italic" },
+                loops = {},
+                functions = {},
+                keywords = {},
+                strings = {},
+                variables = {},
+                numbers = {},
+                booleans = {},
+                properties = {},
+                types = {},
+                operators = {},
+            },
+            lsp_styles = {
+                virtual_text = {
+                    errors = { "italic" },
+                    hints = { "italic" },
+                    warnings = { "italic" },
+                    information = { "italic" },
+                    ok = { "italic" },
+                },
+                underlines = {
+                    errors = { "underline" },
+                    hints = { "underline" },
+                    warnings = { "underline" },
+                    information = { "underline" },
+                    ok = { "underline" },
+                },
+                inlay_hints = {
+                    background = true,
+                },
+            },
+
+            -- ╔══════════════════════════════════════════════════╗
+            -- ║  T H O R N W E A V E  ·  Color Overrides        ║
+            -- ║  tech × celtic × fantasy × briar                ║
+            -- ╚══════════════════════════════════════════════════╝
+            color_overrides = {
+                mocha = {
+                    -- ── Backgrounds ──────────────────────────────────
+                    base = "#0F0C1A", -- tw.bg.base
+                    mantle = "#171224", -- tw.bg.surface
+                    crust = "#080610", -- tw.bg.abyss
+
+                    -- ── Surface layers ────────────────────────────────
+                    surface0 = "#1F1830", -- tw.bg.raised
+                    surface1 = "#27203D", -- tw.bg.overlay
+                    surface2 = "#312849", -- tw.bg.mist
+
+                    -- ── Text hierarchy ────────────────────────────────
+                    text = "#EDE8F8", -- tw.text.rune    (primary)
+                    subtext1 = "#B0A8CC", -- tw.text.vellum  (secondary)
+                    subtext0 = "#8C84A8", -- tw.text.between (tertiary)
+                    overlay2 = "#6C6280", -- tw.text.faded   (muted)
+                    overlay1 = "#564E6A", -- dim muted
+                    overlay0 = "#6C6280", -- tw.text.faded   (muted)
+                    -- overlay0 = "#3A3050", -- tw.text.specter (disabled)
+
+                    -- ── 16 terminal colors ────────────────────────────
+                    -- black / dark variants use surface tones
+                    -- Mapped: red→briar, green→thorn, yellow→gilt,
+                    --         blue→circuit, magenta→arcane, cyan→circuit
+                    black = "#1F1830", -- tw.bg.raised  (dark bg)
+                    red = "#FF4D8D", -- tw.briar.bright
+                    green = "#22D98E", -- tw.thorn.bright
+                    yellow = "#FFD166", -- tw.gilt.bright
+                    blue = "#009EC7", -- tw.circuit.dim
+                    magenta = "#8B3FCC", -- tw.arcane.mid
+                    cyan = "#00B8CC", -- tw.circuit.mid
+                    white = "#B0A8CC", -- tw.text.vellum
+
+                    -- ── Extended palette (UI accents) ─────────────────
+                    -- rosewater → neutral highlight / cursor
+                    rosewater = "#EDE8F8", -- tw.text.rune
+
+                    -- lavender → selection / visual bg accent
+                    lavender = "#C084FC", -- tw.arcane.bright
+
+                    -- blue family → circuit teal (functions, links)
+                    sapphire = "#00B8CC", -- tw.circuit.mid
+                    sky = "#00E5FF", -- tw.circuit.bright
+                    teal = "#00E5FF", -- tw.circuit.bright
+
+                    -- peach → gilt gold (numbers, warnings)
+                    peach = "#FFD166", -- tw.gilt.bright
+
+                    -- red/pink family → briar rose (errors, constants)
+                    maroon = "#CC2563", -- tw.briar.mid
+                    flamingo = "#FF4D8D", -- tw.briar.bright
+                    pink = "#FF4D8D", -- tw.briar.bright
+
+                    -- mauve → briar red (keywords, magic)
+                    mauve = "#FF4D8D", -- tw.briar.bright
+
+                    -- green → thorn emerald (strings, success)
+                    -- (catppuccin "green" slot used in treesitter for strings)
+
+                    -- ── Muted accent variants ──────────────────────
+                    -- Desaturated versions for subtle UI, inactive
+                    -- states, or secondary indicators
+                    green = "#5ABF92", -- thorn.muted
+                    yellow = "#D4A843", -- gilt.muted
+                },
+            },
+
+            -- ╔══════════════════════════════════════════════════╗
+            -- ║  Custom highlight overrides                      ║
+            -- ║  Covers: TS, Go, Python, C#, Java, Lua, CSS,    ║
+            -- ║          Rust, HTML, JSX, YAML, JSON, Bash       ║
+            -- ╚══════════════════════════════════════════════════╝
+            custom_highlights = function(colors)
+                -- Shorthand aliases for readability
+                local circuit_bright = "#00E5FF"
+                local circuit_mid = "#00B8CC"
+                local circuit_dim = "#009EC7"
+                local arcane_bright = "#FF4D8D" -- briar.bright
+                local arcane_mid = "#9578D4"
+                -- local arcane_mid = "#9A6FCC"
+                -- local arcane_mid = "#8B3FCC"
+                local gilt_bright = "#FFD166"
+                -- local gilt_bright = "#B39248"
+                local gilt_mid = "#C9930A"
+                local briar_bright = "#FF4D8D"
+                local briar_mid = "#CC2563"
+                local thorn_bright = "#22D98E"
+                local thorn_mid = "#0FA864"
+                local circuit_muted = "#4A9DAD"
+                local arcane_muted = "#9A7CC4"
+                local briar_muted = "#C0607A"
+                local gilt_muted = "#D4A843"
+                local thorn_muted = "#5ABF92"
+                local text_rune = "#EDE8F8"
+                local text_vellum = "#B0A8CC"
+                local text_faded = "#6C6280"
+                local text_specter = "#6C6280"
+                -- local text_specter = "#3A3050"
+                local bg_base = "#0F0C1A"
+                local bg_surface = "#171224"
+                local bg_raised = "#1F1830"
+                local bg_overlay = "#27203D"
+
+                return {
+                    -- ── Core UI ────────────────────────────────────────
+                    Normal = { bg = colors.none },
+                    NormalNC = { bg = colors.none },
+                    NormalFloat = { bg = colors.none },
+                    FloatBorder = { bg = colors.none, fg = bg_overlay },
+                    CursorLine = { bg = colors.none },
+                    CursorLineNr = { fg = circuit_bright, bold = false },
+                    LineNr = { fg = text_specter },
+                    SignColumn = { bg = colors.none },
+                    StatusLine = { bg = bg_raised, fg = text_vellum },
+                    WinSeparator = { fg = bg_overlay },
+                    Visual = { bg = "#280D40" }, -- arcane.deep
+                    Search = { bg = "#3D2B00", fg = gilt_bright },
+                    IncSearch = { bg = gilt_bright, fg = bg_base },
+                    Pmenu = { bg = bg_raised, fg = text_vellum },
+                    PmenuSel = { bg = "#511A80", fg = text_rune }, -- arcane.dim
+                    PmenuSbar = { bg = bg_overlay },
+                    PmenuThumb = { bg = arcane_mid },
+
+                    -- ── Treesitter: universal syntax groups ────────────
+                    -- Keywords (if, for, while, return, import, etc.)
+                    ["@keyword"] = { fg = arcane_bright },
+                    ["@keyword.control"] = { fg = arcane_bright },
+                    ["@keyword.control.flow"] = { fg = arcane_bright },
+                    ["@keyword.control.import"] = { fg = briar_mid },
+                    ["@keyword.import"] = { fg = briar_mid },
+                    ["@keyword.return"] = { fg = arcane_bright },
+                    ["@keyword.function"] = { fg = arcane_bright },
+                    ["@keyword.operator"] = { fg = briar_mid },
+                    ["@keyword.modifier"] = { fg = briar_mid },
+                    ["@keyword.exception"] = { fg = briar_bright },
+                    ["@keyword.coroutine"] = { fg = arcane_bright },
+                    ["@keyword.debug"] = { fg = briar_mid },
+                    ["@keyword.directive"] = { fg = gilt_mid },
+                    ["@conditional"] = { fg = arcane_bright },
+                    ["@repeat"] = { fg = arcane_bright },
+                    ["@exception"] = { fg = briar_bright },
+                    ["@include"] = { fg = briar_mid },
+
+                    -- Functions
+                    ["@function"] = { fg = circuit_bright },
+                    ["@function.call"] = { fg = circuit_bright },
+                    ["@function.builtin"] = { fg = circuit_mid },
+                    ["@function.method"] = { fg = circuit_bright },
+                    ["@function.method.call"] = { fg = circuit_bright },
+                    ["@function.macro"] = { fg = circuit_mid },
+                    ["@constructor"] = { fg = circuit_mid },
+
+                    -- Types
+                    ["@type"] = { fg = gilt_mid },
+                    ["@type.builtin"] = { fg = gilt_mid },
+                    ["@type.definition"] = { fg = gilt_mid },
+                    ["@type.qualifier"] = { fg = arcane_mid },
+                    ["@storageclass"] = { fg = arcane_mid },
+                    ["@attribute"] = { fg = gilt_mid },
+                    ["@attribute.builtin"] = { fg = gilt_mid },
+
+                    -- Variables & parameters
+                    ["@variable"] = { fg = text_rune },
+                    ["@variable.builtin"] = { fg = briar_mid },
+                    ["@variable.parameter"] = { fg = text_vellum },
+                    ["@variable.member"] = { fg = arcane_mid },
+                    ["@field"] = { fg = arcane_mid },
+                    ["@property"] = { fg = arcane_mid },
+                    ["@parameter"] = { fg = text_vellum },
+                    ["@self"] = { fg = briar_mid },
+
+                    -- Strings
+                    ["@string"] = { fg = thorn_bright },
+                    ["@string.regex"] = { fg = thorn_mid },
+                    ["@string.escape"] = { fg = gilt_bright },
+                    ["@string.special"] = { fg = gilt_bright },
+                    ["@string.special.url"] = { fg = circuit_mid },
+                    ["@string.special.symbol"] = { fg = thorn_mid },
+                    ["@character"] = { fg = thorn_bright },
+                    ["@character.special"] = { fg = gilt_bright },
+
+                    -- Numbers & booleans
+                    ["@number"] = { fg = gilt_bright },
+                    ["@number.float"] = { fg = gilt_bright },
+                    ["@float"] = { fg = gilt_bright },
+                    ["@boolean"] = { fg = arcane_bright },
+
+                    -- Constants
+                    ["@constant"] = { fg = briar_bright },
+                    ["@constant.builtin"] = { fg = briar_mid },
+                    ["@constant.macro"] = { fg = briar_bright },
+                    ["@enum"] = { fg = gilt_mid },
+                    ["@enumMember"] = { fg = briar_bright },
+
+                    -- Operators & punctuation
+                    ["@operator"] = { fg = circuit_mid },
+                    ["@punctuation"] = { fg = text_faded },
+                    ["@punctuation.bracket"] = { fg = text_faded },
+                    ["@punctuation.delimiter"] = { fg = text_faded },
+                    ["@punctuation.special"] = { fg = circuit_mid },
+
+                    -- Comments
+                    ["@comment"] = { fg = text_faded, italic = true },
+                    ["@comment.documentation"] = { fg = text_faded, italic = true },
+                    ["@comment.note"] = { fg = thorn_mid, italic = true },
+                    ["@comment.todo"] = { fg = gilt_mid, italic = true },
+                    ["@comment.warning"] = { fg = gilt_bright, italic = true },
+                    ["@comment.error"] = { fg = briar_bright, italic = true },
+
+                    -- Namespace / module
+                    ["@namespace"] = { fg = gilt_bright },
+                    ["@module"] = { fg = gilt_bright },
+                    ["@module.builtin"] = { fg = gilt_mid },
+                    ["@label"] = { fg = circuit_mid },
+
+                    -- Tags (HTML / JSX / TSX)
+                    ["@tag"] = { fg = briar_mid },
+                    ["@tag.builtin"] = { fg = briar_mid },
+                    ["@tag.attribute"] = { fg = arcane_mid },
+                    ["@tag.delimiter"] = { fg = text_faded },
+
+                    -- ── Language-specific overrides ────────────────────
+                    -- TypeScript / JavaScript
+                    ["@keyword.type.typescript"] = { fg = arcane_bright },
+                    ["@variable.member.typescript"] = { fg = arcane_mid },
+                    ["@lsp.type.interface.typescript"] = { fg = gilt_mid },
+                    ["@lsp.type.typeParameter.typescript"] = { fg = gilt_mid },
+                    ["@lsp.type.enum.typescript"] = { fg = gilt_mid },
+                    ["@lsp.type.enumMember.typescript"] = { fg = briar_bright },
+                    ["@lsp.type.namespace.typescript"] = { fg = gilt_bright },
+                    ["@lsp.type.decorator.typescript"] = { fg = gilt_mid },
+                    ["@lsp.mod.readonly.typescript"] = { fg = briar_bright },
+
+                    -- Go
+                    -- ["@keyword.go"] = { fg = arcane_bright }, -- arcane-bright (violet, not pink)
+                    ["@keyword.go"] = { fg = "#C084FC" }, -- arcane-bright (violet, not pink)
+                    ["@type.go"] = { fg = gilt_mid },
+                    ["@lsp.type.struct.go"] = { fg = gilt_mid },
+                    ["@lsp.type.interface.go"] = { fg = gilt_mid },
+                    ["@lsp.type.method.go"] = { fg = circuit_bright },
+                    ["@function.method.go"] = { fg = circuit_mid },
+                    ["@variable.member.go"] = { fg = arcane_muted },
+                    ["@lsp.type.namespace.go"] = { fg = text_rune },
+
+                    -- Python
+                    ["@keyword.python"] = { fg = arcane_bright },
+                    ["@type.python"] = { fg = gilt_mid },
+                    ["@function.builtin.python"] = { fg = circuit_mid },
+                    ["@variable.builtin.python"] = { fg = briar_mid },
+                    ["@string.documentation.python"] = { fg = text_faded, italic = true },
+                    ["@lsp.type.class.python"] = { fg = gilt_mid },
+                    ["@lsp.type.decorator.python"] = { fg = gilt_mid },
+                    ["@lsp.type.module.python"] = { fg = gilt_bright },
+
+                    -- C / C++
+                    ["@keyword.c"] = { fg = arcane_bright },
+                    ["@keyword.cpp"] = { fg = arcane_bright },
+                    ["@type.c"] = { fg = gilt_mid },
+                    ["@type.cpp"] = { fg = gilt_mid },
+                    ["@lsp.type.struct.c"] = { fg = gilt_mid },
+                    ["@lsp.type.struct.cpp"] = { fg = gilt_mid },
+                    ["@lsp.type.macro.c"] = { fg = briar_bright },
+                    ["@lsp.type.macro.cpp"] = { fg = briar_bright },
+                    ["@preproc"] = { fg = gilt_mid },
+                    ["@define"] = { fg = briar_bright },
+
+                    -- C# / Java (via LSP semantic tokens)
+                    ["@lsp.type.class.cs"] = { fg = gilt_mid },
+                    ["@lsp.type.interface.cs"] = { fg = gilt_mid },
+                    ["@lsp.type.enum.cs"] = { fg = gilt_mid },
+                    ["@lsp.type.enumMember.cs"] = { fg = briar_bright },
+                    ["@lsp.type.namespace.cs"] = { fg = gilt_bright },
+                    ["@lsp.type.method.cs"] = { fg = circuit_bright },
+                    ["@lsp.type.property.cs"] = { fg = arcane_mid },
+                    ["@lsp.type.decorator.cs"] = { fg = gilt_mid },
+                    ["@lsp.mod.static.cs"] = { fg = briar_mid },
+                    ["@lsp.type.class.java"] = { fg = gilt_mid },
+                    ["@lsp.type.interface.java"] = { fg = gilt_mid },
+                    ["@lsp.type.enum.java"] = { fg = gilt_mid },
+                    ["@lsp.type.enumMember.java"] = { fg = briar_bright },
+                    ["@lsp.type.method.java"] = { fg = circuit_bright },
+                    ["@lsp.type.annotation.java"] = { fg = gilt_mid },
+                    ["@lsp.type.namespace.java"] = { fg = gilt_bright },
+
+                    -- Rust
+                    ["@keyword.rust"] = { fg = arcane_bright },
+                    ["@type.rust"] = { fg = gilt_mid },
+                    ["@lsp.type.struct.rust"] = { fg = gilt_mid },
+                    ["@lsp.type.enum.rust"] = { fg = gilt_mid },
+                    ["@lsp.type.enumMember.rust"] = { fg = briar_bright },
+                    ["@lsp.type.macro.rust"] = { fg = circuit_mid },
+                    ["@lsp.type.lifetime.rust"] = { fg = briar_mid },
+                    ["@lsp.type.interface.rust"] = { fg = gilt_mid },
+                    ["@lsp.type.typeParameter.rust"] = { fg = gilt_mid },
+                    ["@lsp.mod.mutable.rust"] = { fg = text_rune },
+                    ["@lsp.mod.consuming.rust"] = { fg = briar_mid },
+
+                    -- Lua
+                    ["@keyword.lua"] = { fg = arcane_bright },
+                    ["@function.call.lua"] = { fg = circuit_bright },
+                    ["@variable.member.lua"] = { fg = arcane_mid },
+                    ["@lsp.type.class.lua"] = { fg = gilt_mid },
+
+                    -- CSS / SCSS
+                    ["@property.css"] = { fg = arcane_mid },
+                    ["@property.scss"] = { fg = arcane_mid },
+                    ["@number.css"] = { fg = gilt_bright },
+                    ["@string.css"] = { fg = thorn_bright },
+                    ["@keyword.css"] = { fg = arcane_bright },
+                    ["@keyword.scss"] = { fg = arcane_bright },
+                    ["@type.css"] = { fg = circuit_mid },
+                    ["@variable.css"] = { fg = briar_mid },
+                    ["@variable.scss"] = { fg = briar_mid },
+
+                    -- HTML
+                    ["@tag.html"] = { fg = briar_mid },
+                    ["@tag.attribute.html"] = { fg = arcane_mid },
+                    ["@string.html"] = { fg = thorn_bright },
+
+                    -- JSON / YAML / TOML
+                    ["@property.json"] = { fg = circuit_bright },
+                    ["@label.json"] = { fg = circuit_bright },
+                    ["@string.json"] = { fg = thorn_bright },
+                    ["@number.json"] = { fg = gilt_bright },
+                    ["@boolean.json"] = { fg = arcane_bright },
+                    ["@constant.json"] = { fg = arcane_bright },
+                    ["@property.yaml"] = { fg = circuit_mid },
+                    ["@string.yaml"] = { fg = thorn_bright },
+                    ["@number.yaml"] = { fg = gilt_bright },
+                    ["@boolean.yaml"] = { fg = arcane_bright },
+                    ["@property.toml"] = { fg = arcane_mid },
+                    ["@string.toml"] = { fg = thorn_bright },
+                    ["@number.toml"] = { fg = gilt_bright },
+
+                    -- Bash / Shell
+                    ["@keyword.bash"] = { fg = arcane_bright },
+                    ["@function.bash"] = { fg = circuit_bright },
+                    ["@variable.bash"] = { fg = text_rune },
+                    ["@string.bash"] = { fg = thorn_bright },
+                    ["@number.bash"] = { fg = gilt_bright },
+                    ["@constant.bash"] = { fg = briar_bright },
+                    ["@operator.bash"] = { fg = circuit_mid },
+                    ["@punctuation.special.bash"] = { fg = circuit_mid },
+
+                    -- ── Diagnostics ────────────────────────────────────
+                    DiagnosticError = { fg = briar_bright },
+                    DiagnosticWarn = { fg = gilt_bright },
+                    DiagnosticInfo = { fg = circuit_bright },
+                    DiagnosticHint = { fg = thorn_bright },
+                    DiagnosticOk = { fg = thorn_bright },
+                    DiagnosticVirtualTextError = { fg = briar_mid, italic = true },
+                    DiagnosticVirtualTextWarn = { fg = gilt_mid, italic = true },
+                    DiagnosticVirtualTextInfo = { fg = circuit_dim, italic = true },
+                    DiagnosticVirtualTextHint = { fg = thorn_mid, italic = true },
+                    DiagnosticUnderlineError = { undercurl = true, sp = briar_bright },
+                    DiagnosticUnderlineWarn = { undercurl = true, sp = gilt_bright },
+                    DiagnosticUnderlineInfo = { undercurl = true, sp = circuit_bright },
+                    DiagnosticUnderlineHint = { undercurl = true, sp = thorn_bright },
+
+                    -- ── Git signs ──────────────────────────────────────
+                    GitSignsAdd = { fg = thorn_bright },
+                    GitSignsChange = { fg = gilt_bright },
+                    GitSignsDelete = { fg = briar_bright },
+                    DiffAdd = { bg = "#042D1C" }, -- thorn.deep
+                    DiffChange = { bg = "#3D2B00" }, -- gilt.deep
+                    DiffDelete = { bg = "#3D0A1C" }, -- briar.deep
+                    DiffText = { bg = "#7A5800" }, -- gilt.dim
+
+                    -- ── Telescope ──────────────────────────────────────
+                    TelescopeBorder = { fg = arcane_mid },
+                    TelescopePromptBorder = { fg = circuit_dim },
+                    TelescopeResultsBorder = { fg = bg_overlay },
+                    TelescopePreviewBorder = { fg = bg_overlay },
+                    TelescopeSelection = { bg = bg_raised, fg = text_rune },
+                    TelescopeMatching = { fg = gilt_bright },
+                    TelescopePromptPrefix = { fg = circuit_bright },
+
+                    -- ── nvim-cmp ───────────────────────────────────────
+                    CmpItemAbbr = { fg = text_vellum },
+                    CmpItemAbbrMatch = { fg = gilt_bright },
+                    CmpItemAbbrMatchFuzzy = { fg = gilt_mid },
+                    CmpItemMenu = { fg = text_faded },
+                    CmpItemKindFunction = { fg = circuit_bright },
+                    CmpItemKindMethod = { fg = circuit_bright },
+                    CmpItemKindKeyword = { fg = arcane_bright },
+                    CmpItemKindVariable = { fg = text_rune },
+                    CmpItemKindField = { fg = arcane_mid },
+                    CmpItemKindProperty = { fg = arcane_mid },
+                    CmpItemKindType = { fg = gilt_mid },
+                    CmpItemKindClass = { fg = gilt_mid },
+                    CmpItemKindInterface = { fg = gilt_mid },
+                    CmpItemKindEnum = { fg = gilt_mid },
+                    CmpItemKindEnumMember = { fg = briar_bright },
+                    CmpItemKindConstant = { fg = briar_bright },
+                    CmpItemKindString = { fg = thorn_bright },
+                    CmpItemKindModule = { fg = gilt_bright },
+
+                    -- ── Which-key ──────────────────────────────────────
+                    WhichKey = { fg = arcane_bright },
+                    WhichKeyGroup = { fg = gilt_bright },
+                    WhichKeyDesc = { fg = text_vellum },
+                    WhichKeySep = { fg = text_specter },
+                    WhichKeyBorder = { fg = bg_overlay },
+                    WhichKeyFloat = { bg = bg_raised },
+
+                    -- ── Indent guides (mini.indentscope / snacks) ──────
+                    MiniIndentscopeSymbol = { fg = bg_overlay },
+                    IblIndent = { fg = bg_overlay },
+                    IblScope = { fg = arcane_dim },
+                }
+            end,
+
+            default_integrations = true,
+            auto_integrations = true,
+            integrations = {
+                cmp = true,
+                gitsigns = true,
+                nvimtree = true,
+                notify = false,
+                mini = {
+                    enabled = true,
+                    indentscope_color = "",
+                },
+                snacks = {
+                    enabled = true,
+                    indent_scope_color = "",
+                },
+            },
+        },
+    },
     -- {
     --     "garymjr/opencode.nvim",
     --     priority = 1000,
@@ -350,485 +844,7 @@ return {
     --         })
     --     end,
     -- },
-    {
-        "catppuccin/nvim",
-        name = "catppuccin",
-        priority = 1000,
-        opts = {
-            flavour = "mocha",
-            background = {
-                light = "latte",
-                dark = "mocha",
-            },
-            transparent_background = true,
-            float = {
-                transparent = true,
-                solid = false,
-            },
-            show_end_of_buffer = false,
-            term_colors = true,
-            dim_inactive = {
-                enabled = false,
-                shade = "dark",
-                percentage = 0.15,
-            },
-            no_italic = true,
-            no_bold = true,
-            no_underline = false,
-            styles = {
-                comments = { "italic" },
-                conditionals = { "italic" },
-                loops = {},
-                functions = {},
-                keywords = {},
-                strings = {},
-                variables = {},
-                numbers = {},
-                booleans = {},
-                properties = {},
-                types = {},
-                operators = {},
-            },
-            lsp_styles = {
-                virtual_text = {
-                    errors = { "italic" },
-                    hints = { "italic" },
-                    warnings = { "italic" },
-                    information = { "italic" },
-                    ok = { "italic" },
-                },
-                underlines = {
-                    errors = { "underline" },
-                    hints = { "underline" },
-                    warnings = { "underline" },
-                    information = { "underline" },
-                    ok = { "underline" },
-                },
-                inlay_hints = {
-                    background = true,
-                },
-            },
-
-            -- ╔══════════════════════════════════════════════════╗
-            -- ║  T H O R N W E A V E  ·  Color Overrides        ║
-            -- ║  tech × celtic × fantasy × briar                ║
-            -- ╚══════════════════════════════════════════════════╝
-            color_overrides = {
-                mocha = {
-                    -- ── Backgrounds ──────────────────────────────────
-                    base = "#0F0C1A", -- tw.bg.base
-                    mantle = "#171224", -- tw.bg.surface
-                    crust = "#080610", -- tw.bg.abyss
-
-                    -- ── Surface layers ────────────────────────────────
-                    surface0 = "#1F1830", -- tw.bg.raised
-                    surface1 = "#27203D", -- tw.bg.overlay
-                    surface2 = "#312849", -- tw.bg.mist
-
-                    -- ── Text hierarchy ────────────────────────────────
-                    text = "#EDE8F8", -- tw.text.rune    (primary)
-                    subtext1 = "#B0A8CC", -- tw.text.vellum  (secondary)
-                    subtext0 = "#8C84A8", -- tw.text.between (tertiary)
-                    overlay2 = "#6C6280", -- tw.text.faded   (muted)
-                    overlay1 = "#564E6A", -- dim muted
-                    overlay0 = "#6C6280", -- tw.text.faded   (muted)
-                    -- overlay0 = "#3A3050", -- tw.text.specter (disabled)
-
-                    -- ── 16 terminal colors ────────────────────────────
-                    -- black / dark variants use surface tones
-                    -- Mapped: red→briar, green→thorn, yellow→gilt,
-                    --         blue→circuit, magenta→arcane, cyan→circuit
-                    black = "#1F1830", -- tw.bg.raised  (dark bg)
-                    red = "#FF4D8D", -- tw.briar.bright
-                    green = "#22D98E", -- tw.thorn.bright
-                    yellow = "#FFD166", -- tw.gilt.bright
-                    blue = "#009EC7", -- tw.circuit.dim
-                    magenta = "#8B3FCC", -- tw.arcane.mid
-                    cyan = "#00B8CC", -- tw.circuit.mid
-                    white = "#B0A8CC", -- tw.text.vellum
-
-                    -- ── Extended palette (UI accents) ─────────────────
-                    -- rosewater → neutral highlight / cursor
-                    rosewater = "#EDE8F8", -- tw.text.rune
-
-                    -- lavender → selection / visual bg accent
-                    lavender = "#C084FC", -- tw.arcane.bright
-
-                    -- blue family → circuit teal (functions, links)
-                    sapphire = "#00B8CC", -- tw.circuit.mid
-                    sky = "#00E5FF", -- tw.circuit.bright
-                    teal = "#00E5FF", -- tw.circuit.bright
-
-                    -- peach → gilt gold (numbers, warnings)
-                    peach = "#FFD166", -- tw.gilt.bright
-
-                    -- red/pink family → briar rose (errors, constants)
-                    maroon = "#CC2563", -- tw.briar.mid
-                    flamingo = "#FF4D8D", -- tw.briar.bright
-                    pink = "#FF4D8D", -- tw.briar.bright
-
-                    -- mauve → arcane violet (keywords, magic)
-                    mauve = "#C084FC", -- tw.arcane.bright
-
-                    -- green → thorn emerald (strings, success)
-                    -- (catppuccin "green" slot used in treesitter for strings)
-                },
-            },
-
-            -- ╔══════════════════════════════════════════════════╗
-            -- ║  Custom highlight overrides                      ║
-            -- ║  Covers: TS, Go, Python, C#, Java, Lua, CSS,    ║
-            -- ║          Rust, HTML, JSX, YAML, JSON, Bash       ║
-            -- ╚══════════════════════════════════════════════════╝
-            custom_highlights = function(colors)
-                -- Shorthand aliases for readability
-                local circuit_bright = "#00E5FF"
-                local circuit_mid = "#00B8CC"
-                local circuit_dim = "#009EC7"
-                local arcane_bright = "#C084FC"
-                local arcane_mid = "#8B3FCC"
-                local gilt_bright = "#FFD166"
-                local gilt_mid = "#C9930A"
-                local briar_bright = "#FF4D8D"
-                local briar_mid = "#CC2563"
-                local thorn_bright = "#22D98E"
-                local thorn_mid = "#0FA864"
-                local text_rune = "#EDE8F8"
-                local text_vellum = "#B0A8CC"
-                local text_faded = "#6C6280"
-                local text_specter = "#6C6280"
-                -- local text_specter = "#3A3050"
-                local bg_base = "#0F0C1A"
-                local bg_surface = "#171224"
-                local bg_raised = "#1F1830"
-                local bg_overlay = "#27203D"
-
-                return {
-                    -- ── Core UI ────────────────────────────────────────
-                    Normal = { bg = colors.none },
-                    NormalNC = { bg = colors.none },
-                    NormalFloat = { bg = colors.none },
-                    FloatBorder = { bg = colors.none, fg = bg_overlay },
-                    CursorLine = { bg = colors.none },
-                    CursorLineNr = { fg = circuit_bright, bold = false },
-                    LineNr = { fg = text_specter },
-                    SignColumn = { bg = colors.none },
-                    StatusLine = { bg = bg_raised, fg = text_vellum },
-                    WinSeparator = { fg = bg_overlay },
-                    Visual = { bg = "#280D40" }, -- arcane.deep
-                    Search = { bg = "#3D2B00", fg = gilt_bright },
-                    IncSearch = { bg = gilt_bright, fg = bg_base },
-                    Pmenu = { bg = bg_raised, fg = text_vellum },
-                    PmenuSel = { bg = "#511A80", fg = text_rune }, -- arcane.dim
-                    PmenuSbar = { bg = bg_overlay },
-                    PmenuThumb = { bg = arcane_mid },
-
-                    -- ── Treesitter: universal syntax groups ────────────
-                    -- Keywords (if, for, while, return, import, etc.)
-                    ["@keyword"] = { fg = arcane_bright },
-                    ["@keyword.control"] = { fg = arcane_bright },
-                    ["@keyword.control.flow"] = { fg = arcane_bright },
-                    ["@keyword.control.import"] = { fg = arcane_mid },
-                    ["@keyword.import"] = { fg = arcane_mid },
-                    ["@keyword.return"] = { fg = arcane_bright },
-                    ["@keyword.function"] = { fg = arcane_bright },
-                    ["@keyword.operator"] = { fg = arcane_mid },
-                    ["@keyword.modifier"] = { fg = arcane_mid },
-                    ["@keyword.exception"] = { fg = briar_bright },
-                    ["@keyword.coroutine"] = { fg = arcane_bright },
-                    ["@keyword.debug"] = { fg = briar_mid },
-                    ["@keyword.directive"] = { fg = gilt_mid },
-                    ["@conditional"] = { fg = arcane_bright },
-                    ["@repeat"] = { fg = arcane_bright },
-                    ["@exception"] = { fg = briar_bright },
-                    ["@include"] = { fg = arcane_mid },
-
-                    -- Functions
-                    ["@function"] = { fg = circuit_bright },
-                    ["@function.call"] = { fg = circuit_bright },
-                    ["@function.builtin"] = { fg = circuit_mid },
-                    ["@function.method"] = { fg = circuit_bright },
-                    ["@function.method.call"] = { fg = circuit_bright },
-                    ["@function.macro"] = { fg = circuit_mid },
-                    ["@constructor"] = { fg = circuit_mid },
-
-                    -- Types
-                    ["@type"] = { fg = gilt_mid },
-                    ["@type.builtin"] = { fg = gilt_mid },
-                    ["@type.definition"] = { fg = gilt_mid },
-                    ["@type.qualifier"] = { fg = arcane_mid },
-                    ["@storageclass"] = { fg = arcane_mid },
-                    ["@attribute"] = { fg = gilt_mid },
-                    ["@attribute.builtin"] = { fg = gilt_mid },
-
-                    -- Variables & parameters
-                    ["@variable"] = { fg = text_rune },
-                    ["@variable.builtin"] = { fg = briar_mid },
-                    ["@variable.parameter"] = { fg = text_vellum },
-                    ["@variable.member"] = { fg = arcane_mid },
-                    ["@field"] = { fg = arcane_mid },
-                    ["@property"] = { fg = arcane_mid },
-                    ["@parameter"] = { fg = text_vellum },
-                    ["@self"] = { fg = briar_mid },
-
-                    -- Strings
-                    ["@string"] = { fg = thorn_bright },
-                    ["@string.regex"] = { fg = thorn_mid },
-                    ["@string.escape"] = { fg = gilt_bright },
-                    ["@string.special"] = { fg = gilt_bright },
-                    ["@string.special.url"] = { fg = circuit_mid },
-                    ["@string.special.symbol"] = { fg = thorn_mid },
-                    ["@character"] = { fg = thorn_bright },
-                    ["@character.special"] = { fg = gilt_bright },
-
-                    -- Numbers & booleans
-                    ["@number"] = { fg = gilt_bright },
-                    ["@number.float"] = { fg = gilt_bright },
-                    ["@float"] = { fg = gilt_bright },
-                    ["@boolean"] = { fg = arcane_bright },
-
-                    -- Constants
-                    ["@constant"] = { fg = briar_bright },
-                    ["@constant.builtin"] = { fg = briar_mid },
-                    ["@constant.macro"] = { fg = briar_bright },
-                    ["@enum"] = { fg = gilt_mid },
-                    ["@enumMember"] = { fg = briar_bright },
-
-                    -- Operators & punctuation
-                    ["@operator"] = { fg = circuit_mid },
-                    ["@punctuation"] = { fg = text_faded },
-                    ["@punctuation.bracket"] = { fg = text_faded },
-                    ["@punctuation.delimiter"] = { fg = text_faded },
-                    ["@punctuation.special"] = { fg = circuit_mid },
-
-                    -- Comments
-                    ["@comment"] = { fg = text_faded, italic = true },
-                    ["@comment.documentation"] = { fg = text_faded, italic = true },
-                    ["@comment.note"] = { fg = thorn_mid, italic = true },
-                    ["@comment.todo"] = { fg = gilt_mid, italic = true },
-                    ["@comment.warning"] = { fg = gilt_bright, italic = true },
-                    ["@comment.error"] = { fg = briar_bright, italic = true },
-
-                    -- Namespace / module
-                    ["@namespace"] = { fg = gilt_bright },
-                    ["@module"] = { fg = gilt_bright },
-                    ["@module.builtin"] = { fg = gilt_mid },
-                    ["@label"] = { fg = circuit_mid },
-
-                    -- Tags (HTML / JSX / TSX)
-                    ["@tag"] = { fg = briar_mid },
-                    ["@tag.builtin"] = { fg = briar_mid },
-                    ["@tag.attribute"] = { fg = arcane_mid },
-                    ["@tag.delimiter"] = { fg = text_faded },
-
-                    -- ── Language-specific overrides ────────────────────
-                    -- TypeScript / JavaScript
-                    ["@keyword.type.typescript"] = { fg = arcane_bright },
-                    ["@variable.member.typescript"] = { fg = arcane_mid },
-                    ["@lsp.type.interface.typescript"] = { fg = gilt_mid },
-                    ["@lsp.type.typeParameter.typescript"] = { fg = gilt_mid },
-                    ["@lsp.type.enum.typescript"] = { fg = gilt_mid },
-                    ["@lsp.type.enumMember.typescript"] = { fg = briar_bright },
-                    ["@lsp.type.namespace.typescript"] = { fg = gilt_bright },
-                    ["@lsp.type.decorator.typescript"] = { fg = gilt_mid },
-                    ["@lsp.mod.readonly.typescript"] = { fg = briar_bright },
-
-                    -- Go
-                    ["@keyword.go"] = { fg = arcane_bright },
-                    ["@type.go"] = { fg = gilt_mid },
-                    ["@lsp.type.struct.go"] = { fg = gilt_mid },
-                    ["@lsp.type.interface.go"] = { fg = gilt_mid },
-                    ["@lsp.type.method.go"] = { fg = circuit_bright },
-                    ["@function.method.go"] = { fg = circuit_bright },
-                    ["@variable.member.go"] = { fg = arcane_mid },
-                    ["@lsp.type.namespace.go"] = { fg = gilt_bright },
-
-                    -- Python
-                    ["@keyword.python"] = { fg = arcane_bright },
-                    ["@type.python"] = { fg = gilt_mid },
-                    ["@function.builtin.python"] = { fg = circuit_mid },
-                    ["@variable.builtin.python"] = { fg = briar_mid },
-                    ["@string.documentation.python"] = { fg = text_faded, italic = true },
-                    ["@lsp.type.class.python"] = { fg = gilt_mid },
-                    ["@lsp.type.decorator.python"] = { fg = gilt_mid },
-                    ["@lsp.type.module.python"] = { fg = gilt_bright },
-
-                    -- C / C++
-                    ["@keyword.c"] = { fg = arcane_bright },
-                    ["@keyword.cpp"] = { fg = arcane_bright },
-                    ["@type.c"] = { fg = gilt_mid },
-                    ["@type.cpp"] = { fg = gilt_mid },
-                    ["@lsp.type.struct.c"] = { fg = gilt_mid },
-                    ["@lsp.type.struct.cpp"] = { fg = gilt_mid },
-                    ["@lsp.type.macro.c"] = { fg = briar_bright },
-                    ["@lsp.type.macro.cpp"] = { fg = briar_bright },
-                    ["@preproc"] = { fg = gilt_mid },
-                    ["@define"] = { fg = briar_bright },
-
-                    -- C# / Java (via LSP semantic tokens)
-                    ["@lsp.type.class.cs"] = { fg = gilt_mid },
-                    ["@lsp.type.interface.cs"] = { fg = gilt_mid },
-                    ["@lsp.type.enum.cs"] = { fg = gilt_mid },
-                    ["@lsp.type.enumMember.cs"] = { fg = briar_bright },
-                    ["@lsp.type.namespace.cs"] = { fg = gilt_bright },
-                    ["@lsp.type.method.cs"] = { fg = circuit_bright },
-                    ["@lsp.type.property.cs"] = { fg = arcane_mid },
-                    ["@lsp.type.decorator.cs"] = { fg = gilt_mid },
-                    ["@lsp.mod.static.cs"] = { fg = briar_mid },
-                    ["@lsp.type.class.java"] = { fg = gilt_mid },
-                    ["@lsp.type.interface.java"] = { fg = gilt_mid },
-                    ["@lsp.type.enum.java"] = { fg = gilt_mid },
-                    ["@lsp.type.enumMember.java"] = { fg = briar_bright },
-                    ["@lsp.type.method.java"] = { fg = circuit_bright },
-                    ["@lsp.type.annotation.java"] = { fg = gilt_mid },
-                    ["@lsp.type.namespace.java"] = { fg = gilt_bright },
-
-                    -- Rust
-                    ["@keyword.rust"] = { fg = arcane_bright },
-                    ["@type.rust"] = { fg = gilt_mid },
-                    ["@lsp.type.struct.rust"] = { fg = gilt_mid },
-                    ["@lsp.type.enum.rust"] = { fg = gilt_mid },
-                    ["@lsp.type.enumMember.rust"] = { fg = briar_bright },
-                    ["@lsp.type.macro.rust"] = { fg = circuit_mid },
-                    ["@lsp.type.lifetime.rust"] = { fg = briar_mid },
-                    ["@lsp.type.interface.rust"] = { fg = gilt_mid },
-                    ["@lsp.type.typeParameter.rust"] = { fg = gilt_mid },
-                    ["@lsp.mod.mutable.rust"] = { fg = text_rune },
-                    ["@lsp.mod.consuming.rust"] = { fg = briar_mid },
-
-                    -- Lua
-                    ["@keyword.lua"] = { fg = arcane_bright },
-                    ["@function.call.lua"] = { fg = circuit_bright },
-                    ["@variable.member.lua"] = { fg = arcane_mid },
-                    ["@lsp.type.class.lua"] = { fg = gilt_mid },
-
-                    -- CSS / SCSS
-                    ["@property.css"] = { fg = arcane_mid },
-                    ["@property.scss"] = { fg = arcane_mid },
-                    ["@number.css"] = { fg = gilt_bright },
-                    ["@string.css"] = { fg = thorn_bright },
-                    ["@keyword.css"] = { fg = arcane_bright },
-                    ["@keyword.scss"] = { fg = arcane_bright },
-                    ["@type.css"] = { fg = circuit_mid },
-                    ["@variable.css"] = { fg = briar_mid },
-                    ["@variable.scss"] = { fg = briar_mid },
-
-                    -- HTML
-                    ["@tag.html"] = { fg = briar_mid },
-                    ["@tag.attribute.html"] = { fg = arcane_mid },
-                    ["@string.html"] = { fg = thorn_bright },
-
-                    -- JSON / YAML / TOML
-                    ["@property.json"] = { fg = circuit_bright },
-                    ["@label.json"] = { fg = circuit_bright },
-                    ["@string.json"] = { fg = thorn_bright },
-                    ["@number.json"] = { fg = gilt_bright },
-                    ["@boolean.json"] = { fg = arcane_bright },
-                    ["@constant.json"] = { fg = arcane_bright },
-                    ["@property.yaml"] = { fg = circuit_mid },
-                    ["@string.yaml"] = { fg = thorn_bright },
-                    ["@number.yaml"] = { fg = gilt_bright },
-                    ["@boolean.yaml"] = { fg = arcane_bright },
-                    ["@property.toml"] = { fg = arcane_mid },
-                    ["@string.toml"] = { fg = thorn_bright },
-                    ["@number.toml"] = { fg = gilt_bright },
-
-                    -- Bash / Shell
-                    ["@keyword.bash"] = { fg = arcane_bright },
-                    ["@function.bash"] = { fg = circuit_bright },
-                    ["@variable.bash"] = { fg = text_rune },
-                    ["@string.bash"] = { fg = thorn_bright },
-                    ["@number.bash"] = { fg = gilt_bright },
-                    ["@constant.bash"] = { fg = briar_bright },
-                    ["@operator.bash"] = { fg = circuit_mid },
-                    ["@punctuation.special.bash"] = { fg = circuit_mid },
-
-                    -- ── Diagnostics ────────────────────────────────────
-                    DiagnosticError = { fg = briar_bright },
-                    DiagnosticWarn = { fg = gilt_bright },
-                    DiagnosticInfo = { fg = circuit_bright },
-                    DiagnosticHint = { fg = thorn_bright },
-                    DiagnosticOk = { fg = thorn_bright },
-                    DiagnosticVirtualTextError = { fg = briar_mid, italic = true },
-                    DiagnosticVirtualTextWarn = { fg = gilt_mid, italic = true },
-                    DiagnosticVirtualTextInfo = { fg = circuit_dim, italic = true },
-                    DiagnosticVirtualTextHint = { fg = thorn_mid, italic = true },
-                    DiagnosticUnderlineError = { undercurl = true, sp = briar_bright },
-                    DiagnosticUnderlineWarn = { undercurl = true, sp = gilt_bright },
-                    DiagnosticUnderlineInfo = { undercurl = true, sp = circuit_bright },
-                    DiagnosticUnderlineHint = { undercurl = true, sp = thorn_bright },
-
-                    -- ── Git signs ──────────────────────────────────────
-                    GitSignsAdd = { fg = thorn_bright },
-                    GitSignsChange = { fg = gilt_bright },
-                    GitSignsDelete = { fg = briar_bright },
-                    DiffAdd = { bg = "#042D1C" }, -- thorn.deep
-                    DiffChange = { bg = "#3D2B00" }, -- gilt.deep
-                    DiffDelete = { bg = "#3D0A1C" }, -- briar.deep
-                    DiffText = { bg = "#7A5800" }, -- gilt.dim
-
-                    -- ── Telescope ──────────────────────────────────────
-                    TelescopeBorder = { fg = arcane_mid },
-                    TelescopePromptBorder = { fg = circuit_dim },
-                    TelescopeResultsBorder = { fg = bg_overlay },
-                    TelescopePreviewBorder = { fg = bg_overlay },
-                    TelescopeSelection = { bg = bg_raised, fg = text_rune },
-                    TelescopeMatching = { fg = gilt_bright },
-                    TelescopePromptPrefix = { fg = circuit_bright },
-
-                    -- ── nvim-cmp ───────────────────────────────────────
-                    CmpItemAbbr = { fg = text_vellum },
-                    CmpItemAbbrMatch = { fg = gilt_bright },
-                    CmpItemAbbrMatchFuzzy = { fg = gilt_mid },
-                    CmpItemMenu = { fg = text_faded },
-                    CmpItemKindFunction = { fg = circuit_bright },
-                    CmpItemKindMethod = { fg = circuit_bright },
-                    CmpItemKindKeyword = { fg = arcane_bright },
-                    CmpItemKindVariable = { fg = text_rune },
-                    CmpItemKindField = { fg = arcane_mid },
-                    CmpItemKindProperty = { fg = arcane_mid },
-                    CmpItemKindType = { fg = gilt_mid },
-                    CmpItemKindClass = { fg = gilt_mid },
-                    CmpItemKindInterface = { fg = gilt_mid },
-                    CmpItemKindEnum = { fg = gilt_mid },
-                    CmpItemKindEnumMember = { fg = briar_bright },
-                    CmpItemKindConstant = { fg = briar_bright },
-                    CmpItemKindString = { fg = thorn_bright },
-                    CmpItemKindModule = { fg = gilt_bright },
-
-                    -- ── Which-key ──────────────────────────────────────
-                    WhichKey = { fg = arcane_bright },
-                    WhichKeyGroup = { fg = gilt_bright },
-                    WhichKeyDesc = { fg = text_vellum },
-                    WhichKeySep = { fg = text_specter },
-                    WhichKeyBorder = { fg = bg_overlay },
-                    WhichKeyFloat = { bg = bg_raised },
-
-                    -- ── Indent guides (mini.indentscope / snacks) ──────
-                    MiniIndentscopeSymbol = { fg = bg_overlay },
-                    IblIndent = { fg = bg_overlay },
-                    IblScope = { fg = arcane_dim },
-                }
-            end,
-
-            default_integrations = true,
-            auto_integrations = true,
-            integrations = {
-                cmp = true,
-                gitsigns = true,
-                nvimtree = true,
-                notify = false,
-                mini = {
-                    enabled = true,
-                    indentscope_color = "",
-                },
-                snacks = {
-                    enabled = true,
-                    indent_scope_color = "",
-                },
-            },
-        },
-    },
+    --
     -- {
     --     "catppuccin/nvim",
     --     name = "catppuccin",
