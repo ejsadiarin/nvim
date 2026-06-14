@@ -170,6 +170,24 @@ late at night i think of you.
         { "<leader>T", function() Snacks.explorer() end, desc = "File Explorer" },
         -- find
         { "<leader>fe", function() Snacks.picker.files() end, desc = "Find [e]very File (cwd)" },
+        -- find files based on args (separated by spaces)
+        { "<leader>fE", function()
+            -- specify dirs to find files on (args), should be able to search through multiple dirs
+            local ok, dirs_input = vim.fn.input("dirs: ")
+            if not ok or dirs_input == "" or dirs_input == nil then
+                return
+            end
+            -- string to []string the dirs
+            local dirs = vim.split(dirs_input, " ")
+            -- local dirs = {}
+            -- for dir in dirs_input:gmatch("[^ ]+") do
+            --     table.insert(dirs, dir)
+            -- end
+            if #dirs == 0 then
+                return
+            end
+            Snacks.picker.files({dirs = dirs})
+        end, desc = "Find [e]very File (cwd)" },
         { "<leader>fs", function() Snacks.picker.smart() end, desc = "Smart Find Files" },
         { "<leader>fg", function() Snacks.picker.git_files() end, desc = "Find [g]it Files (git-files)" },
         { "<leader>fb", function() Snacks.picker.buffers() end, desc = "Find [b]uffers" },

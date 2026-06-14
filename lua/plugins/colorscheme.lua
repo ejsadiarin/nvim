@@ -10,6 +10,30 @@ return {
             colorscheme = "catppuccin-nvim",
         },
     },
+
+    {
+        "blazkowolf/gruber-darker.nvim",
+        name = "gruber-darker",
+        priority = 1000,
+        lazy = false,
+        opts = {
+            bold = true,
+            italic = {
+                strings = false,
+                comments = false,
+                operators = false,
+                folds = true,
+            },
+            undercurl = true,
+            underline = true,
+            invert = {
+                signs = false,
+                tabline = false,
+                visual = false,
+            },
+        },
+    },
+
     {
         "catppuccin/nvim",
         name = "catppuccin",
@@ -374,6 +398,7 @@ return {
                     -- Lua
                     ["@keyword.lua"] = { fg = arcane_bright },
                     ["@function.call.lua"] = { fg = circuit_bright },
+                    ["@namespace.builtin.lua"] = { fg = text_rune },
                     ["@variable.member.lua"] = { fg = arcane_mid },
                     ["@lsp.type.class.lua"] = { fg = gilt_mid },
 

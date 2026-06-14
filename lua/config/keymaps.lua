@@ -29,9 +29,9 @@ end
 --  Remap normal mode to "kj" when insert mode
 vim.keymap.set("i", "kj", "<ESC>", { silent = true })
 
--- use Tab to switch cycle window
-vim.keymap.set("n", "<TAB>", "<C-W>w")
-vim.keymap.set("n", "<S-TAB>", "<C-W>W")
+-- use Tab to switch cycle window (i prefer ctrl+i jump list as of 2026-06-14 20:12)
+-- vim.keymap.set("n", "<TAB>", "<C-W>w")
+-- vim.keymap.set("n", "<S-TAB>", "<C-W>W")
 vim.keymap.set("n", "<leader>wh", "<C-W>s", { desc = "[H]orizontal Split" })
 vim.keymap.set("n", "<leader>wv", "<C-W>v", { desc = "[V]ertical Split" })
 
