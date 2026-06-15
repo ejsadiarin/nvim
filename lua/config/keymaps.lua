@@ -25,6 +25,7 @@ if pcall(require, "lazyvim") then
     vim.keymap.del("n", "<leader>fT")
     vim.keymap.del("n", "<leader>uz")
     vim.keymap.del("n", "<leader>uZ")
+    vim.keymap.del("n", "<leader>L")
 end
 --  Remap normal mode to "kj" when insert mode
 vim.keymap.set("i", "kj", "<ESC>", { silent = true })
@@ -274,19 +275,66 @@ vim.keymap.set("n", "<leader>bo", "<CMD>%bd|e#<CR>", { desc = "Buffer: delete [o
 --     Snacks.bufdelete.other()
 -- end, { desc = "Delete Other Buffers" })
 
-local function open_todo_in_floating_window()
-    -- NOTE: requires env variable $VAULT (`export VAULT=...` in your .bashrc or .zshrc)
-    local script_path = vim.fn.expand("$VAULT/wizardry/scripts-magic-spells/,todo")
+-- local function open_todo_in_floating_window()
+--     -- NOTE: requires env variable $VAULT (`export VAULT=...` in your .bashrc or .zshrc)
+--     local script_path = vim.fn.expand("$VAULT/wizardry/scripts-magic-spells/,todo")
+--
+--     vim.fn.system(script_path)
+--
+--     local date_today = os.date("%Y-%m-%d")
+--     local todo_file = vim.fn.expand("$VAULT/Personal/todos/" .. date_today .. ".md")
+--     if not vim.uv.fs_stat(todo_file) then
+--         vim.notify("Failed to find the todo file: " .. todo_file, vim.log.levels.ERROR)
+--         return
+--     end
+--
+--     if pcall(require, "snacks") then
+--         local width = math.floor(vim.o.columns * 0.8)
+--         local height = math.floor(vim.o.lines * 0.8)
+--         local row = math.floor((vim.o.lines - height) / 8)
+--         local col = math.floor((vim.o.columns - width) / 2)
+--         Snacks.win({
+--             title = date_today,
+--             title_pos = "center",
+--             file = todo_file,
+--             width = width,
+--             height = height,
+--             row = row,
+--             col = col,
+--             style = "float",
+--             border = "rounded",
+--             bo = {
+--                 modifiable = true,
+--             },
+--         })
+--     else
+--         local width = math.floor(vim.o.columns * 0.8)
+--         local height = math.floor(vim.o.lines * 0.8)
+--         local row = math.floor((vim.o.lines - height) / 2)
+--         local col = math.floor((vim.o.columns - width) / 2)
+--         local buf = vim.api.nvim_create_buf(false, true)
+--         vim.api.nvim_open_win(buf, true, {
+--             relative = "editor",
+--             width = width,
+--             height = height,
+--             row = row,
+--             col = col,
+--             style = "minimal",
+--             border = "rounded",
+--         })
+--         vim.cmd("edit " .. todo_file)
+--     end
+-- end
 
-    vim.fn.system(script_path)
-
-    local date_today = os.date("%Y-%m-%d")
-    local todo_file = vim.fn.expand("$VAULT/Personal/todos/" .. date_today .. ".md")
-    if not vim.uv.fs_stat(todo_file) then
-        vim.notify("Failed to find the todo file: " .. todo_file, vim.log.levels.ERROR)
+local function open_main_kanban()
+    local kanban_path = vim.fn.expand("$VAULT/main-kanban.md")
+    if not vim.uv.fs_stat(kanban_path) then
+        vim.notify("Failed to find the kanban file: " .. kanban_path, vim.log.levels.ERROR)
         return
     end
+    local date_today = os.date("%Y-%m-%d")
 
+    -- if has snacks.nvim plugin then use that to create the floating window instead
     if pcall(require, "snacks") then
         local width = math.floor(vim.o.columns * 0.8)
         local height = math.floor(vim.o.lines * 0.8)
@@ -295,7 +343,7 @@ local function open_todo_in_floating_window()
         Snacks.win({
             title = date_today,
             title_pos = "center",
-            file = todo_file,
+            file = kanban_path,
             width = width,
             height = height,
             row = row,
@@ -321,12 +369,12 @@ local function open_todo_in_floating_window()
             style = "minimal",
             border = "rounded",
         })
-        vim.cmd("edit " .. todo_file)
+        vim.cmd("edit " .. kanban_path)
     end
 end
 
-vim.api.nvim_create_user_command("OpenTodo", open_todo_in_floating_window, {})
-vim.keymap.set("n", "<leader>K", "<CMD>OpenTodo<CR>", { desc = "Open Todo" })
+vim.api.nvim_create_user_command("OpenKanban", open_main_kanban, {})
+vim.keymap.set("n", "<leader>K", "<CMD>OpenKanban<CR>", { desc = "Open Kanban" })
 
 local function open_backlog_in_floating_window()
     -- NOTE: requires env variable $VAULT (`export VAULT=...` in your .bashrc or .zshrc)
@@ -382,7 +430,7 @@ local function open_backlog_in_floating_window()
 end
 
 vim.api.nvim_create_user_command("OpenBacklog", open_backlog_in_floating_window, {})
-vim.keymap.set("n", "<leader>J", "<CMD>OpenBacklog<CR>", { desc = "Open Backlog" })
+vim.keymap.set("n", "<leader>L", "<CMD>OpenBacklog<CR>", { desc = "Open Backlog" })
 
 local function open_todo_template()
     local todo_template_file = vim.fn.expand("$VAULT/Personal/todo-template.md")
@@ -525,3 +573,7 @@ vim.keymap.set("n", "<leader>nm", "<CMD>Messages<CR>", { desc = "notification: [
 vim.keymap.set("n", "<leader>eh", "<CMD>CloakToggle<CR>", { desc = "toggle cloak [h]ide" })
 
 vim.keymap.set("i", "<C-a>", "<Esc>ggVG", { desc = "Select all text" })
+
+vim.keymap.set("n", "<leader>C", function()
+    LazyVim.news.changelog()
+end, { desc = "LazyVim Changelog" })
