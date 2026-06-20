@@ -178,10 +178,12 @@ vim.keymap.set("n", "<leader>ch", function()
     end
     local checkbox = {
         check = function(line)
-            return line:gsub(unchecked_checkbox, checked_checkbox, 1)
+            local result = line:gsub(unchecked_checkbox, checked_checkbox, 1)
+            return result:gsub("(] )(.*)", "] ~%2~", 1)
         end,
         uncheck = function(line)
-            return line:gsub(checked_checkbox, unchecked_checkbox, 1)
+            local result = line:gsub("~(.-)~", "%1", 1)
+            return result:gsub(checked_checkbox, unchecked_checkbox, 1)
         end,
         make_checkbox = function(line)
             -- handle lines that already start with "-" but don't have a checkbox
