@@ -219,6 +219,12 @@ return {
                     marksman = {
                         format = false,
                     },
+                    -- NOTE: requires unixODBC for libodbc.so.2 lib (install via "sudo apt|dnf install unixODBC"
+                    qmlls = {
+                        cmd = { "qmlls" },
+                        filetypes = { "qml", "qmljs" },
+                        root_markers = { ".git", ".qmlls.ini" },
+                    },
                 },
                 -- you can do any additional lsp server setup here
                 -- return true if you don't want this server to be setup with lspconfig
@@ -373,6 +379,7 @@ return {
                 "html-lsp",
                 "prettierd",
                 "clang-format",
+                "qmlls",
             },
         },
         ---@param opts MasonSettings | {ensure_installed: string[]}
